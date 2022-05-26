@@ -33,6 +33,7 @@ public class ClientController {
 
 	@PostMapping
 	public ClientDto save(@RequestBody ClientDto clientDto) {
+		System.out.println(clientDto.getDateNaissance());
 		return (clientService.add(clientDto));
 
 	}
@@ -49,7 +50,7 @@ public class ClientController {
 
 	}
 
-	@GetMapping("/{email}")
+	@GetMapping("/findByEmail/{email}")
 	public ClientDto findByMail(@PathVariable String email) {
 		return (clientService.findByEmail(email));
 

@@ -44,25 +44,17 @@ export class AddAndEditClientComponent implements OnInit {
 
   constructor(
     private serviceClient: ClientServiceService,
-    public serviceOrg:OrganismeServiceService,
+    public serviceOrg: OrganismeServiceService,
     public dialogRef: MatDialogRef<AddAndEditClientComponent>,
     public dialog: MatDialog,
-    public organisme:OrganismeComponent,
-    public groupe:GroupeFamComponent
+    public organisme: OrganismeComponent,
+    public groupe: GroupeFamComponent
   ) { }
   public listOrg: Organisme[];
-ngOnInit(): void { 
-  this.remplirListOrg();
-}
+  ngOnInit(): void {
+  }
 
-remplirListOrg(){
-this.organisme.remplirListOrg().subscribe(data => {
-  this.listOrg = data;
-}
 
-  )
-
-}
 
 
   onNoClick(): void {
@@ -78,17 +70,18 @@ this.organisme.remplirListOrg().subscribe(data => {
 
   }
 
-  deleteOrganisme(id: any){
+  deleteOrganisme(id: any) {
     this.organisme.deleteOrganisme(id);
   }
 
-//Save client
+  //Save client
   postClientDetails() {
+
     let client = {
       reference: this.formValue.value.reference,
       cin: this.formValue.value.cin,
       nomPrenom: this.formValue.value.nomPrenom,
-      dateNaissance: this.formValue.value.dateNaissance,
+      dateNaissance: this.formValue.value.dateNaissance + "T00:00:00",
       age: this.formValue.value.age,
       email: this.formValue.value.email,
       adresse: this.formValue.value.adresse,
@@ -115,20 +108,20 @@ this.organisme.remplirListOrg().subscribe(data => {
         this.formValue.reset();
         this.serviceClient.getClient();
       },
-        err => { alert("Quelque chose s'est mal passé") }
+        err => { console.log(err) }
       )
 
   }
 
-  clickAddClient(){
+  clickAddClient() {
     this.formValue.reset();
     this.showAdd = true;
-    this.showUpdate = false ;
+    this.showUpdate = false;
   }
-//fill in fields from client information
+  //fill in fields from client information
   onEdit(row: any) {
     this.showAdd = false;
-    this.showUpdate = true ;
+    this.showUpdate = true;
     console.log(row);
     this.client.id = row.id;
     this.formValue.patchValue({
@@ -148,12 +141,13 @@ this.organisme.remplirListOrg().subscribe(data => {
       solde: row.solde,
       organisme: row.organisme,
       groupe: row.groupe,
-      matriculeFiscal:row.matriculeFiscal,
-      observations:row.observations
-      })
+      matriculeFiscal: row.matriculeFiscal,
+      observations: row.observations
+    })
   }
-//update client
+  //update client
   UpdateClientDetails() {
+    console.log(this.formValue.value.pays);
     this.client.reference = this.formValue.value.reference;
     this.client.cin = this.formValue.value.cin;
     this.client.nomPrenom = this.formValue.value.nomPrenom;

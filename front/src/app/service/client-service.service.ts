@@ -10,7 +10,7 @@ import { AuthenticationServiceService } from './authentication-service.service';
 })
 export class ClientServiceService {
 
-  constructor(private http: HttpClient,private authService:AuthenticationServiceService) { }
+  constructor(private http: HttpClient, private authService: AuthenticationServiceService) { }
 
 
 
@@ -21,7 +21,7 @@ export class ClientServiceService {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers': 'Content-Type',
       'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
-      "Authorization":"Bearer "+ this.authService.getToken()    
+      "Authorization": "Bearer " + this.authService.getToken()
     });
     return headers;
   }
@@ -29,18 +29,19 @@ export class ClientServiceService {
 
 
   public getClient(): Observable<Client[]> {
-    return this.http.get<Client[]>(environment.API_URL + "clients/getAll",{headers :this.getHeaders()});
+    return this.http.get<Client[]>(environment.API_URL + "client", { headers: this.getHeaders() });
   }
 
   public postClient(client: any) {
-    return this.http.post<Client>(environment.API_URL + "clients/addClient", client, { headers: this.getHeaders() });
+    return this.http.post<Client>(environment.API_URL + "client", client, { headers: this.getHeaders() });
   }
 
   public UpdateClient(client: Client, id: number) {
-    return this.http.put<any>(environment.API_URL + "clients/editClient/" + id, client , { headers: this.getHeaders() })
+    console.log(id);
+    return this.http.put<any>(environment.API_URL + "client", client, { headers: this.getHeaders() })
   }
 
   public DeleteClient(id: number) {
-    return this.http.delete<any>(environment.API_URL + "clients/removeClient/" + id , { headers: this.getHeaders() })
+    return this.http.delete<any>(environment.API_URL + "client/" + id, { headers: this.getHeaders() })
   }
 }

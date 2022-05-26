@@ -1,4 +1,6 @@
-<h1 mat-dialog-title style="color: rgb(6, 59, 173);"><mat-icon>person_add </mat-icon>  CLIENT</h1>
+<h1 mat-dialog-title style="color: rgb(6, 59, 173);">
+  <mat-icon>person_add </mat-icon> CLIENT
+</h1>
 <div mat-dialog-content>
 
   <form [formGroup]="formValue">
@@ -62,12 +64,12 @@
 
     <table class="example-full-width" cellspacing="0">
       <tr>
-        <td style="padding-left:10%;" >
+        <td style="padding-left:10%;">
 
           <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
             <mat-label>Date de naissance :</mat-label>
-            <input matInput placeholder="JJ/MM/AAAA" type="date" formControlName="dateNaissance" class="form-control"
-              required id="dateNaissance">
+            <input matInput placeholder="JJ/MM/AAAA" type="datetime" formControlName="dateNaissance"
+              class="form-control" required id="dateNaissance">
             <mat-icon matSuffix>cake</mat-icon>
             <mat-hint>Hint</mat-hint>
           </mat-form-field>
@@ -135,10 +137,10 @@
           <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
             <mat-label>Pays :</mat-label>
             <select matNativeControl required formControlName="pays" class="form-control" id="pays">
-              <option value="volvo">Tunisie</option>
-              <option value="saab">France</option>
-              <option value="saab">Canada</option>
-              <option value="saab">Amérique</option>
+              <option value="Tunisie">Tunisie</option>
+              <option value="France">France</option>
+              <option value="Canada">Canada</option>
+              <option value="Amérique">Amérique</option>
             </select>
           </mat-form-field>
         </td>
@@ -181,7 +183,7 @@
         </td>
 
         <td style="padding-left:4%;">
-          <button title="Ajouter" class="ajout" (click)="openDialogOrg()" >
+          <button title="Ajouter" class="ajout" (click)="openDialogOrg()">
             <mat-icon style="align-items: center;">add </mat-icon>
           </button>
           <button title="supprimer" class="supp">
@@ -213,9 +215,10 @@
 
 
 <div mat-dialog-actions>
-  <button mat-raised-button color="warn" class="fermer" id="cancel" (click)="onNoClick()">Fermer <mat-icon>clear </mat-icon></button>
+  <button mat-raised-button color="warn" class="fermer" id="cancel" (click)="onNoClick()">Fermer <mat-icon>clear
+    </mat-icon></button>
 
-  <button mat-raised-button color="primary" *ngIf="showAdd" class="ajouter"  cdkFocusInitial
+  <button mat-raised-button color="primary" *ngIf="showAdd" class="ajouter" cdkFocusInitial
     (click)="postClientDetails()">Ajouter <mat-icon>person_add </mat-icon></button>
   <button mat-raised-button color="primary" class="modif" *ngIf="showUpdate" cdkFocusInitial
     (click)="UpdateClientDetails()">Modifier</button>
