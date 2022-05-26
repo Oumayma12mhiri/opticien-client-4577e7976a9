@@ -1,0 +1,27 @@
+<mat-nav-list *ngIf="getEtat()===true">
+
+  <div class="logo py-4">
+    <img src="./assets/opticien logo1.png" alt="Company Logo" />
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <h2 matSubheader class="mt-8">Menu</h2>
+
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">
+    <mat-icon>home</mat-icon> Home
+  </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard">
+    <mat-icon>people_alt</mat-icon> Clients
+  </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/vente"> <mat-icon>store</mat-icon> Vente </a>
+  <a mat-list-item> <mat-icon>attach_money</mat-icon> Caisse </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/frs"> <mat-icon>groups</mat-icon> Fournisseur </a>
+  <a mat-list-item> <mat-icon>receipt</mat-icon> Facturation </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/LS"> <mat-icon>visibility</mat-icon> Lunette Solaire </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/divers"> <mat-icon>visibility</mat-icon> Divers </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/monture"> <mat-icon >visibility</mat-icon> Monture </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/verre"> <mat-icon >visibility</mat-icon> Verres </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/lentille"> <mat-icon >visibility</mat-icon> Lentille </a>
+  <a mat-list-item> <mat-icon>settings</mat-icon> Paramétrage </a>
+</mat-nav-list>

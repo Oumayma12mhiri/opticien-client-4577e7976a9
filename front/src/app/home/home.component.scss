@@ -1,0 +1,25 @@
+.page {
+  color: white;
+  padding: 0 1rem;
+  background: #f1f5f9;
+  &__box {
+    min-height: 125px;
+    background: #082158;
+    margin: 0 -1rem;
+    font-size: 40px;
+  }
+  &__content {
+    min-height: calc(100vh - 178px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
+    background :image("../assets/back.jpg");
+    color: black;
+    font-size: 1.5rem;
+    &-data {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
