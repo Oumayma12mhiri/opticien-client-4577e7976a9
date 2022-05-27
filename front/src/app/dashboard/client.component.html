@@ -4,7 +4,8 @@
     <div>
       <!-- search field -->
       <div class="input-group rounded">
-        <input type="text" placeholder="Chercher par nom et prénom" class="search" [(ngModel)]="nomPrenom" (input)="Search()" />
+        <input type="text" placeholder="Chercher par nom et prénom" class="search" [(ngModel)]="nomPrenom"
+          (input)="Search()" />
       </div>
       <!-- table -->
       <table mat-table [dataSource]="dataSource" matSort>
@@ -18,7 +19,9 @@
         <!-- NomPrénom Column -->
         <ng-container matColumnDef="nomPrenom">
           <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;">Nom et Prénom</th>
-          <td mat-cell *matCellDef="let row" style="padding-left:2%;"><a (click)="openDialogFile();onEditFile(row);getVisiteByclient(row.id)" class="text-primary"> {{row.nomPrenom}}</a> </td>
+          <td mat-cell *matCellDef="let row" style="padding-left:2%;"><a
+              (click)="openDialogFile();onEditFile(row);getVisiteByclient(row.id)" class="text-primary">
+              {{row.nomPrenom}}</a> </td>
         </ng-container>
 
         <!-- chiffreAffaire Column -->
@@ -100,7 +103,7 @@
       </div>
       <!-- Client file button -->
       <div class="d-flex m-2">
-        <button type="button"  class="dossier" (click)="openDialogFile()" >
+        <button type="button" class="dossier" (click)="openDialogFile()">
           <mat-icon>attach_file </mat-icon> Dossier client
         </button>
       </div>

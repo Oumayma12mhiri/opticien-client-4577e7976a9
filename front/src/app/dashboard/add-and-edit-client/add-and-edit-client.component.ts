@@ -70,10 +70,7 @@ export class AddAndEditClientComponent implements OnInit {
 
   }
 
-  deleteOrganisme(id: any) {
-    this.organisme.deleteOrganisme(id);
-  }
-
+  
   //Save client
   postClientDetails() {
 
