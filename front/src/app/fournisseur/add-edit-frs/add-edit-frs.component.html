@@ -1,4 +1,6 @@
-<h1 mat-dialog-title style="color: rgb(6, 59, 173);"><mat-icon>person_add </mat-icon>  Fournisseur</h1>
+<h1 mat-dialog-title style="color: rgb(6, 59, 173);">
+  <mat-icon>person_add </mat-icon> Fournisseur
+</h1>
 <div mat-dialog-content>
 
   <form [formGroup]="formValue">
@@ -8,7 +10,7 @@
         <td style="padding-left:20%;">
           <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
             <mat-label>Nom Fournisseur :</mat-label>
-            <input matInput placeholder="..." type="text" formControlName="nomPrenom" class="form-control" required
+            <input matInput placeholder="..." type="text" formControlName="name" class="form-control" required
               id="nomPrenom">
             <mat-icon matSuffix>face</mat-icon>
             <mat-hint>Hint</mat-hint>
@@ -18,7 +20,7 @@
         <td style="padding-left:22%;">
           <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
             <mat-label>Matricule fiscale :</mat-label>
-            <input matInput placeholder="..." type="text" formControlName="matriculeFiscal" class="form-control"
+            <input matInput placeholder="..." type="text" formControlName="matriculeFiscale" class="form-control"
               required id="matriculeFiscal">
             <mat-icon matSuffix>description</mat-icon>
             <mat-hint>Hint</mat-hint>
@@ -27,12 +29,12 @@
       </tr>
     </table>
     <table>
-        <tr>
+      <tr>
         <td style="padding-left:20%;">
           <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
             <mat-label>N°Tél 1 :</mat-label>
-            <input matInput placeholder="..." type="text" formControlName="numTel1" class="form-control" required
-              id="numTel1">
+            <input matInput placeholder="..." type="text" formControlName="numTel" class="form-control" required
+              id="numTel">
             <mat-icon matSuffix>phone</mat-icon>
             <mat-hint>Hint</mat-hint>
           </mat-form-field>
@@ -41,17 +43,17 @@
         <td style="padding-left:22%;">
           <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
             <mat-label>Adresse :</mat-label>
-            <input matInput placeholder="..." type="text" formControlName="numTel2" class="form-control" required
-              id="numTel2">
+            <input matInput placeholder="..." type="text" formControlName="adresse" class="form-control" required
+              id="adresse">
             <mat-icon matSuffix>phone</mat-icon>
             <mat-hint>Hint</mat-hint>
           </mat-form-field>
         </td>
-    </tr>
+      </tr>
     </table>
 
     <table>
-        <tr>
+      <tr>
         <td style="padding-left:80%;">
           <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
             <mat-label>Email :</mat-label>
@@ -72,11 +74,14 @@
 
 
 <div mat-dialog-actions>
-  <button mat-raised-button color="warn" class="fermer" id="cancel" (click)="onNoClick()">Fermer <mat-icon>clear </mat-icon></button>
+  <button mat-raised-button color="warn" class="fermer" id="cancel" (click)="onNoClick()">Fermer <mat-icon>clear
+    </mat-icon></button>
 
-  <button mat-raised-button color="primary"  class="ajouter"  cdkFocusInitial
-    >Ajouter <mat-icon>person_add </mat-icon></button>
-  <button mat-raised-button color="primary" class="modif"  cdkFocusInitial
-    >Modifier</button>
+  <button mat-raised-button color="primary" *ngIf="showAdd" class="ajouter" (click)="postFournisseurDetails()"
+    cdkFocusInitial>Ajouter
+    <mat-icon>person_add </mat-icon>
+  </button>
+  <button mat-raised-button color="primary" *ngIf="showUpdate" class="modif" (click)="UpdateFournisseurDetails()"
+    cdkFocusInitial>Modifier</button>
 
 </div>
