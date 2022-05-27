@@ -1,0 +1,108 @@
+package tn.dksoft.opticien.mapper;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.Generated;
+import org.springframework.stereotype.Component;
+import tn.dksoft.opticien.dto.LentilleDto;
+import tn.dksoft.opticien.entity.Lentille;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2022-05-26T17:01:09+0200",
+    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.50.v20210914-1429, environment: Java 17.0.1 (Eclipse Adoptium)"
+)
+@Component
+public class LentilleMapperImpl implements LentilleMapper {
+
+    @Override
+    public List<LentilleDto> fromEntitiesToDtoList(List<Lentille> i) {
+        if ( i == null ) {
+            return null;
+        }
+
+        List<LentilleDto> list = new ArrayList<LentilleDto>( i.size() );
+        for ( Lentille lentille : i ) {
+            list.add( fromEntityToDto( lentille ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<Lentille> fromDtoListToEntities(List<LentilleDto> t) {
+        if ( t == null ) {
+            return null;
+        }
+
+        List<Lentille> list = new ArrayList<Lentille>( t.size() );
+        for ( LentilleDto lentilleDto : t ) {
+            list.add( fromDtoToEntity( lentilleDto ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public LentilleDto fromEntityToDto(Lentille i) {
+        if ( i == null ) {
+            return null;
+        }
+
+        LentilleDto lentilleDto = new LentilleDto();
+
+        lentilleDto.setAddInf( i.getAddInf() );
+        lentilleDto.setAddSup( i.getAddSup() );
+        lentilleDto.setCode( i.getCode() );
+        lentilleDto.setColoration( i.getColoration() );
+        lentilleDto.setCylInf( i.getCylInf() );
+        lentilleDto.setCylSup( i.getCylSup() );
+        lentilleDto.setDescription( i.getDescription() );
+        lentilleDto.setDia( i.getDia() );
+        lentilleDto.setId( i.getId() );
+        lentilleDto.setIndice( i.getIndice() );
+        lentilleDto.setMarque( i.getMarque() );
+        lentilleDto.setMatiere( i.getMatiere() );
+        lentilleDto.setPhotochromique( i.getPhotochromique() );
+        lentilleDto.setPrixAchat( BigDecimal.valueOf( i.getPrixAchat() ) );
+        lentilleDto.setPrixVente( BigDecimal.valueOf( i.getPrixVente() ) );
+        lentilleDto.setSphInf( i.getSphInf() );
+        lentilleDto.setSphSup( i.getSphSup() );
+
+        return lentilleDto;
+    }
+
+    @Override
+    public Lentille fromDtoToEntity(LentilleDto t) {
+        if ( t == null ) {
+            return null;
+        }
+
+        Lentille lentille = new Lentille();
+
+        lentille.setAddInf( t.getAddInf() );
+        lentille.setAddSup( t.getAddSup() );
+        lentille.setCode( t.getCode() );
+        lentille.setColoration( t.getColoration() );
+        lentille.setCylInf( t.getCylInf() );
+        lentille.setCylSup( t.getCylSup() );
+        lentille.setDescription( t.getDescription() );
+        lentille.setDia( t.getDia() );
+        lentille.setId( t.getId() );
+        lentille.setIndice( t.getIndice() );
+        lentille.setMarque( t.getMarque() );
+        lentille.setMatiere( t.getMatiere() );
+        lentille.setPhotochromique( t.getPhotochromique() );
+        if ( t.getPrixAchat() != null ) {
+            lentille.setPrixAchat( t.getPrixAchat().doubleValue() );
+        }
+        if ( t.getPrixVente() != null ) {
+            lentille.setPrixVente( t.getPrixVente().doubleValue() );
+        }
+        lentille.setSphInf( t.getSphInf() );
+        lentille.setSphSup( t.getSphSup() );
+
+        return lentille;
+    }
+}

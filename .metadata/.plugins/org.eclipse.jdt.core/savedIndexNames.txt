@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\.metadata\.plugins\org.eclipse.jdt.core
+399809651.index
+1865797976.index
+516275.index

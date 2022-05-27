@@ -41,6 +41,7 @@ export class VerreComponent implements OnInit {
     cylInf: new FormControl(''),
     cylSup: new FormControl(''),
     sphInf: new FormControl(''),
+    sphSup: new FormControl(''),
     dia: new FormControl(''),
     indice: new FormControl(''),
     prixAchat: new FormControl(''),
@@ -68,8 +69,8 @@ export class VerreComponent implements OnInit {
 
   openDialog(): void {
     this.dialogRef = this.dialog.open(AddEditVerreComponent, {
-      height: '80%',
-      width: '80%',
+      height: '70%',
+      width: '60%',
       data: {
         base: this.verre.base,
         code: this.verre.code,
@@ -84,6 +85,7 @@ export class VerreComponent implements OnInit {
         cylInf: this.verre.cylInf,  
         cylSup: this.verre.cylSup,
         sphInf: this.verre.sphInf,
+        sphSup:this.verre.sphSup,
         dia: this.verre.dia,
         indice: this.verre.indice,
         prixAchat: this.verre.prixAchat,
@@ -93,6 +95,14 @@ export class VerreComponent implements OnInit {
     this.dialogRef.afterClosed().subscribe(_result => {
       this.loadData()
     });
+  }
+
+  //fill in fields from client information
+  onEdite(row: any) {
+    this.dialogRef.componentInstance.onEdit(row);
+  }
+  addVerre(){
+    this.dialogRef.componentInstance.clickAddVerre();
   }
 
   //remove verre

@@ -1,0 +1,141 @@
+package tn.dksoft.opticien.mapper;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.Generated;
+import org.springframework.stereotype.Component;
+import tn.dksoft.opticien.dto.ClientDto;
+import tn.dksoft.opticien.dto.VenteDto;
+import tn.dksoft.opticien.entity.Client;
+import tn.dksoft.opticien.entity.Vente;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2022-05-26T17:01:09+0200",
+    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.50.v20210914-1429, environment: Java 17.0.1 (Eclipse Adoptium)"
+)
+@Component
+public class VenteMapperImpl implements VenteMapper {
+
+    @Override
+    public List<VenteDto> fromEntitiesToDtoList(List<Vente> i) {
+        if ( i == null ) {
+            return null;
+        }
+
+        List<VenteDto> list = new ArrayList<VenteDto>( i.size() );
+        for ( Vente vente : i ) {
+            list.add( fromEntityToDto( vente ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<Vente> fromDtoListToEntities(List<VenteDto> t) {
+        if ( t == null ) {
+            return null;
+        }
+
+        List<Vente> list = new ArrayList<Vente>( t.size() );
+        for ( VenteDto venteDto : t ) {
+            list.add( fromDtoToEntity( venteDto ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public VenteDto fromEntityToDto(Vente i) {
+        if ( i == null ) {
+            return null;
+        }
+
+        VenteDto venteDto = new VenteDto();
+
+        venteDto.setClient( clientToClientDto( i.getClient() ) );
+        venteDto.setDateVente( i.getDateVente() );
+        venteDto.setId( i.getId() );
+        venteDto.setQuantite( i.getQuantite() );
+        venteDto.setRemise( i.getRemise() );
+        venteDto.setTotalVente( i.getTotalVente() );
+        venteDto.setTva( i.getTva() );
+
+        return venteDto;
+    }
+
+    @Override
+    public Vente fromDtoToEntity(VenteDto t) {
+        if ( t == null ) {
+            return null;
+        }
+
+        Vente vente = new Vente();
+
+        vente.setClient( clientDtoToClient( t.getClient() ) );
+        vente.setDateVente( t.getDateVente() );
+        vente.setId( t.getId() );
+        vente.setQuantite( t.getQuantite() );
+        vente.setRemise( t.getRemise() );
+        vente.setTotalVente( t.getTotalVente() );
+        vente.setTva( t.getTva() );
+
+        return vente;
+    }
+
+    protected ClientDto clientToClientDto(Client client) {
+        if ( client == null ) {
+            return null;
+        }
+
+        ClientDto clientDto = new ClientDto();
+
+        clientDto.setAdresse( client.getAdresse() );
+        clientDto.setAge( client.getAge() );
+        clientDto.setChiffreAffaire( client.getChiffreAffaire() );
+        clientDto.setCin( client.getCin() );
+        clientDto.setDateNaissance( client.getDateNaissance() );
+        clientDto.setEmail( client.getEmail() );
+        clientDto.setId( client.getId() );
+        clientDto.setMatriculeFiscal( client.getMatriculeFiscal() );
+        clientDto.setNomPrenom( client.getNomPrenom() );
+        clientDto.setNumAssureSocial( client.getNumAssureSocial() );
+        clientDto.setNumTel1( client.getNumTel1() );
+        clientDto.setNumTel2( client.getNumTel2() );
+        clientDto.setObservations( client.getObservations() );
+        clientDto.setPays( client.getPays() );
+        clientDto.setReference( client.getReference() );
+        clientDto.setSolde( client.getSolde() );
+        clientDto.setVille( client.getVille() );
+
+        return clientDto;
+    }
+
+    protected Client clientDtoToClient(ClientDto clientDto) {
+        if ( clientDto == null ) {
+            return null;
+        }
+
+        Client client = new Client();
+
+        client.setAdresse( clientDto.getAdresse() );
+        client.setAge( clientDto.getAge() );
+        client.setChiffreAffaire( clientDto.getChiffreAffaire() );
+        client.setCin( clientDto.getCin() );
+        client.setDateNaissance( clientDto.getDateNaissance() );
+        client.setEmail( clientDto.getEmail() );
+        client.setId( clientDto.getId() );
+        client.setMatriculeFiscal( clientDto.getMatriculeFiscal() );
+        client.setNomPrenom( clientDto.getNomPrenom() );
+        client.setNumAssureSocial( clientDto.getNumAssureSocial() );
+        client.setNumTel1( clientDto.getNumTel1() );
+        client.setNumTel2( clientDto.getNumTel2() );
+        client.setObservations( clientDto.getObservations() );
+        client.setPays( clientDto.getPays() );
+        client.setReference( clientDto.getReference() );
+        client.setSolde( clientDto.getSolde() );
+        client.setVille( clientDto.getVille() );
+
+        return client;
+    }
+}

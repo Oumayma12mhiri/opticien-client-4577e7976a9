@@ -1,0 +1,107 @@
+package tn.dksoft.opticien.mapper;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.Generated;
+import org.springframework.stereotype.Component;
+import tn.dksoft.opticien.dto.VerreDto;
+import tn.dksoft.opticien.entity.Verre;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2022-05-26T17:01:09+0200",
+    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.50.v20210914-1429, environment: Java 17.0.1 (Eclipse Adoptium)"
+)
+@Component
+public class VerreMapperImpl implements VerreMapper {
+
+    @Override
+    public List<VerreDto> fromEntitiesToDtoList(List<Verre> i) {
+        if ( i == null ) {
+            return null;
+        }
+
+        List<VerreDto> list = new ArrayList<VerreDto>( i.size() );
+        for ( Verre verre : i ) {
+            list.add( fromEntityToDto( verre ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<Verre> fromDtoListToEntities(List<VerreDto> t) {
+        if ( t == null ) {
+            return null;
+        }
+
+        List<Verre> list = new ArrayList<Verre>( t.size() );
+        for ( VerreDto verreDto : t ) {
+            list.add( fromDtoToEntity( verreDto ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public VerreDto fromEntityToDto(Verre i) {
+        if ( i == null ) {
+            return null;
+        }
+
+        VerreDto verreDto = new VerreDto();
+
+        verreDto.setAddInf( i.getAddInf() );
+        verreDto.setAddSup( i.getAddSup() );
+        verreDto.setAxe( i.getAxe() );
+        verreDto.setBase( i.getBase() );
+        verreDto.setCode( i.getCode() );
+        verreDto.setColoration( i.getColoration() );
+        verreDto.setCylInf( i.getCylInf() );
+        verreDto.setCylSup( i.getCylSup() );
+        verreDto.setDescription( i.getDescription() );
+        verreDto.setDia( i.getDia() );
+        verreDto.setId( i.getId() );
+        verreDto.setIndice( i.getIndice() );
+        verreDto.setMarque( i.getMarque() );
+        verreDto.setMatiere( i.getMatiere() );
+        verreDto.setPhotochromique( i.getPhotochromique() );
+        verreDto.setPrixAchat( i.getPrixAchat() );
+        verreDto.setPrixVente( i.getPrixVente() );
+        verreDto.setSphInf( i.getSphInf() );
+        verreDto.setSphSup( i.getSphSup() );
+
+        return verreDto;
+    }
+
+    @Override
+    public Verre fromDtoToEntity(VerreDto t) {
+        if ( t == null ) {
+            return null;
+        }
+
+        Verre verre = new Verre();
+
+        verre.setAddInf( t.getAddInf() );
+        verre.setAddSup( t.getAddSup() );
+        verre.setAxe( t.getAxe() );
+        verre.setBase( t.getBase() );
+        verre.setCode( t.getCode() );
+        verre.setColoration( t.getColoration() );
+        verre.setCylInf( t.getCylInf() );
+        verre.setCylSup( t.getCylSup() );
+        verre.setDescription( t.getDescription() );
+        verre.setDia( t.getDia() );
+        verre.setId( t.getId() );
+        verre.setIndice( t.getIndice() );
+        verre.setMarque( t.getMarque() );
+        verre.setMatiere( t.getMatiere() );
+        verre.setPhotochromique( t.getPhotochromique() );
+        verre.setPrixAchat( t.getPrixAchat() );
+        verre.setPrixVente( t.getPrixVente() );
+        verre.setSphInf( t.getSphInf() );
+        verre.setSphSup( t.getSphSup() );
+
+        return verre;
+    }
+}

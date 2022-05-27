@@ -50,6 +50,7 @@ import { LunetteSolaireComponent } from './lunette-solaire/lunette-solaire.compo
 import { AddEditLSComponent } from './lunette-solaire/add-edit-ls/add-edit-ls.component';
 import { AddEditVerreComponent } from './verre/add-edit-verre/add-edit-verre.component';
 import { MontureService } from './service/monture.service';
+import { AddEditLentilleComponent } from './lentille/add-edit-lentille/add-edit-lentille.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { MontureService } from './service/monture.service';
     LunetteSolaireComponent,
     AddEditLSComponent,
     AddEditVerreComponent,
+    AddEditLentilleComponent,
   ],
   imports: [
     BrowserModule,

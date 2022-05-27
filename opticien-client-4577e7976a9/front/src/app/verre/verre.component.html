@@ -77,7 +77,7 @@
             <mat-paginator [pageSizeOptions]="[ 5, 10, 50]" aria-label="Select page of listVerre"></mat-paginator>
             <!-- Add Button -->
             <div class="d-flex  m-2">
-                <button type="button" class="ajouter" mat-raised-button (click)="openDialog()">
+                <button type="button" class="ajouter" mat-raised-button (click)="openDialog();addVerre()">
             <mat-icon>person_add </mat-icon> Ajouter Verre
           </button>
             </div>
