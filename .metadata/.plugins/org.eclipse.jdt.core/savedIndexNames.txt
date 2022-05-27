@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\USER\Desktop\omayma\opticien-client-4577e7976a9\.metadata\.plugins\org.eclipse.jdt.core
+2758799104.index
+1865797976.index
+516275.index

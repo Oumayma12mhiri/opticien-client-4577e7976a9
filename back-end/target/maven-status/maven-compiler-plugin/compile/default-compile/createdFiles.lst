@@ -1,0 +1,10 @@
+tn\dksoft\opticien\mapper\DiversMapperImpl.class
+tn\dksoft\opticien\mapper\CategorieMapperImpl.class
+tn\dksoft\opticien\mapper\VerreMapperImpl.class
+tn\dksoft\opticien\mapper\FournisseurMapperImpl.class
+tn\dksoft\opticien\mapper\VisiteClientMapperImpl.class
+tn\dksoft\opticien\mapper\ClientMapperImpl.class
+tn\dksoft\opticien\mapper\MontureMapperImpl.class
+tn\dksoft\opticien\mapper\LunetteSolaireMapperImpl.class
+tn\dksoft\opticien\mapper\LentilleMapperImpl.class
+tn\dksoft\opticien\mapper\VenteMapperImpl.class
