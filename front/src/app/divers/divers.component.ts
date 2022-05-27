@@ -18,7 +18,7 @@ export class DiversComponent implements OnInit {
   divers: Divers = new Divers();
   diversData !: any;
   listDivers: any;
-  displayedColumns: string[] = ['nomDivers', 'prixAchat', 'prixVent', 'qte' , 'ref']
+  displayedColumns: string[] = ['ref','nomDivers','prixAchat', 'prixVent', 'qte','actions']
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;

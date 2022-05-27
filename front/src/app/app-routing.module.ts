@@ -9,6 +9,7 @@ import { FournisseurComponent } from './fournisseur/fournisseur.component';
 import { HomeComponent } from './home/home.component';
 import { LentilleComponent } from './lentille/lentille.component';
 import { LunetteSolaireComponent } from './lunette-solaire/lunette-solaire.component';
+
 import { MontureComponent } from './monture/monture.component';
 import { VenteComponent } from './vente/vente.component';
 import { VerreComponent } from './verre/verre.component';
@@ -22,7 +23,7 @@ const routes: Routes = [
   { path: 'frs', component: FournisseurComponent},
   { path: 'divers', component: DiversComponent},
   { path: 'monture', component: MontureComponent},
-  { path: 'LS', component: LunetteSolaireComponent},
+  { path: 'lunetteSolaire', component: LunetteSolaireComponent},
   { path: 'verre', component: VerreComponent},
   { path: 'lentille', component: LentilleComponent},
   { path: 'register', component: RegisterComponent }

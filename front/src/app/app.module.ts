@@ -38,13 +38,18 @@ import { GroupeFamServiceService } from './service/groupe-fam-service.service';
 import { NewVisitComponent } from './dashboard/client-file/new-visit/new-visit.component';
 import { VenteComponent } from './vente/vente.component';
 import { FournisseurComponent } from './fournisseur/fournisseur.component';
-import { LunetteSolaireComponent } from './lunette-solaire/lunette-solaire.component';
+
 import { DiversComponent } from './divers/divers.component';
 import { MontureComponent } from './monture/monture.component';
 import { VerreComponent } from './verre/verre.component';
 import { LentilleComponent } from './lentille/lentille.component';
 import { AddEditFRSComponent } from './fournisseur/add-edit-frs/add-edit-frs.component';
 import { AddEditDiversComponent } from './divers/add-edit-divers/add-edit-divers.component';
+import { AddEditMontureComponent } from './monture/add-edit-monture/add-edit-monture.component';
+import { LunetteSolaireComponent } from './lunette-solaire/lunette-solaire.component';
+import { AddEditLSComponent } from './lunette-solaire/add-edit-ls/add-edit-ls.component';
+import { AddEditVerreComponent } from './verre/add-edit-verre/add-edit-verre.component';
+
 
 
 
@@ -66,13 +71,18 @@ import { AddEditDiversComponent } from './divers/add-edit-divers/add-edit-divers
     NewVisitComponent,
     VenteComponent,
     FournisseurComponent,
-    LunetteSolaireComponent,
+
     DiversComponent,
     MontureComponent,
     VerreComponent,
     LentilleComponent,
     AddEditFRSComponent,
     AddEditDiversComponent,
+    AddEditMontureComponent,
+    LunetteSolaireComponent,
+    AddEditLSComponent,
+    AddEditVerreComponent,
+  
     
 
     
