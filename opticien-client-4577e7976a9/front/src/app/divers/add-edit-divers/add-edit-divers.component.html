@@ -1,0 +1,84 @@
+<h1 mat-dialog-title style="color: rgb(6, 59, 173);"><mat-icon>person_add </mat-icon>  Divers</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="formValue">
+
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td style="padding-left:20%;">
+          <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
+            <mat-label>Reference :</mat-label>
+            <input matInput placeholder="..." type="text" formControlName="nomPrenom" class="form-control" required
+              id="nomPrenom">
+            <mat-icon matSuffix>face</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </td>
+
+        <td style="padding-left:22%;">
+          <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
+            <mat-label>Nom de divers :</mat-label>
+            <input matInput placeholder="..." type="text" formControlName="matriculeFiscal" class="form-control"
+              required id="matriculeFiscal">
+            <mat-icon matSuffix>description</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <table>
+        <tr>
+        <td style="padding-left:20%;">
+          <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
+            <mat-label>Prix d'achat :</mat-label>
+            <input matInput placeholder="..." type="text" formControlName="numTel1" class="form-control" required
+              id="numTel1">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </td>
+
+        <td style="padding-left:22%;">
+          <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
+            <mat-label>Prix de vente :</mat-label>
+            <input matInput placeholder="..." type="text" formControlName="numTel2" class="form-control" required
+              id="numTel2">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </td>
+    </tr>
+    </table>
+
+    <table>
+        <tr>
+        <td style="padding-left:80%;">
+          <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
+            <mat-label>Quantité :</mat-label>
+            <input matInput placeholder="..." type="text" formControlName="email" class="form-control"
+              required id="email">
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-hint>Hint</mat-hint>
+          </mat-form-field>
+        </td>
+
+      </tr>
+    </table>
+
+
+
+  </form>
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" class="fermer" id="cancel" (click)="onNoClick()">Fermer <mat-icon>clear </mat-icon></button>
+
+  <button mat-raised-button color="primary"  class="ajouter"  cdkFocusInitial
+    >Ajouter <mat-icon>person_add </mat-icon></button>
+  <button mat-raised-button color="primary" class="modif"  cdkFocusInitial
+    >Modifier</button>
+
+</div>
+
+
