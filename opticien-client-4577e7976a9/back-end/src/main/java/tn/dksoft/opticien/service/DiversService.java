@@ -55,7 +55,7 @@ public class DiversService {
 	
 	public List<DiversDto> findAll() {
 		try {
-			List<Divers> divers = diversRepository.findAll();
+			List<Divers> divers = diversRepository.findByIsDeletedIsFalse();
 			log.info("Door gotted successfully ");
 			return diversMapper.fromEntitiesToDtoList(divers);
 		} catch (Exception e) {
