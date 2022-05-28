@@ -115,7 +115,7 @@ export class AddEditVerreComponent implements OnInit {
   }
 
   //update verre
-  UpdateVerreDetails() {
+  updateVerreDetails() {
     let verre = {
       id:this.verre.id,
       base:this.formValue.value.base,

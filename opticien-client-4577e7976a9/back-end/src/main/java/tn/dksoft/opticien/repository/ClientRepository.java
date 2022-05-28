@@ -12,7 +12,6 @@ import tn.dksoft.opticien.entity.Client;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-	
 	Client findByIdAndIsDeletedIsFalse(Long id);
 	List<Client> findByIsDeletedIsFalse();
 	Page<Client> findByIsDeletedIsFalse(Pageable pageable);

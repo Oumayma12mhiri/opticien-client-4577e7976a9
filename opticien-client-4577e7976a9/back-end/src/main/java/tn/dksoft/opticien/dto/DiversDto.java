@@ -25,6 +25,6 @@ public class DiversDto implements Serializable {
 	private BigDecimal prixAchat;
 	private BigDecimal prixVente;
 	private int quantite;
-	private CategorieDto categorieDto;
+	private FournisseurDto fournisseur;
 	private VenteDto venteDto;
 }

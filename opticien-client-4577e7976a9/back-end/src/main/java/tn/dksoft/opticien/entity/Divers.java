@@ -50,7 +50,7 @@ public class Divers implements Serializable {
 	private boolean isDeleted;
 
 	@ManyToOne
-	private Categorie categorie;
+	private Fournisseur fournisseur;
 
 	@ManyToOne
 	private Vente vente;

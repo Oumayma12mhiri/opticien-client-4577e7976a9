@@ -1,205 +1,187 @@
 <h1 mat-dialog-title style="color: rgb(6, 59, 173);">
     <mat-icon>person_add </mat-icon> Verre
-  </h1>
-  <div mat-dialog-content>
-  
+</h1>
+<div mat-dialog-content>
+
     <form [formGroup]="formValue">
-  
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td style="padding-left:4%;">
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label> code:</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="code" class="form-control" required
-                id="code">
-            </mat-form-field>
-          </td>
-  
-          <td style="padding-left:6%;">
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label> description:</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="description" class="form-control"
-                required id="description">
-            </mat-form-field>
-          </td>
-  
-          <td style="padding-left:8%;">
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>marque:</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="marque" class="form-control" required
-                id="marque">
-            </mat-form-field>
-          </td>
-  
-          <td style="padding-left:10%;">
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>matiere:</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="matiere" class="form-control" required
-                id="matiere">
-            </mat-form-field>
-          </td>
-  
-        </tr>
-    </table>
 
-    <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td style="padding-left:4%;">
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>ADD inf :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="addInf" class="form-control"
-                required id="addInf">
-            </mat-form-field>
-          </td>
-  
-        
-  
-      
-          <td style="padding-left:6%;">
-  
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>ADD sup :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="addSup" class="form-control"
-                required id="addSup">
-            </mat-form-field>
-          </td>
-  
-          <td style="padding-left:8%;">
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>CYL inf :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="cylInf" class="form-control" required id="cylInf">
-            </mat-form-field>
-          </td>
-  
-       
-          <td style="padding-left:10%;">
-  
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>CYL sup :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="cylSup" class="form-control" required id="cylSup">
-            </mat-form-field>
-          </td>
-        </tr>
-    </table>
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td style="padding-left:4%;">
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label> code:</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="code" class="form-control" required id="code">
+                    </mat-form-field>
+                </td>
 
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-          <td style="padding-left:4%;">
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>SPH inf :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="sphInf" class="form-control"
-                required id="sphInf">
-            </mat-form-field>
-          </td>
-        
-          <td style="padding-left:6%;">
-  
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>SPH sup :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="sphSup" class="form-control" required
-                id="sphSup">
-            </mat-form-field>
-          </td>
-  
-          <td style="padding-left:8%;">
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>DIA :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="dia" class="form-control" required
-                id="dia">
-            </mat-form-field>
-          </td>
-  
-          <td style="padding-left:10%;">
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>indice :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="indice" class="form-control" required
-                id="indice">
-            </mat-form-field>
-          </td>
-  
-        </tr>
-      </table>
-  
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td style="padding-left:4%;">
-  
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>AXE :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="axe" class="form-control" required
-                id="axe">
-            </mat-form-field>
-          </td>
-  
-  
-          <td style="padding-left:6%;">
-  
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>base :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="base" class="form-control" required
-                id="base">
-            </mat-form-field>
-          </td>
-  
-          <td style="padding-left:8%;">
-  
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>coloration :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="coloration" class="form-control" required
-                id="coloration">
-            </mat-form-field>
+                <td style="padding-left:6%;">
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label> description:</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="description" class="form-control" required id="description">
+                    </mat-form-field>
+                </td>
 
-          </td>
-       
-          <td style="padding-left:10%;">
-  
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>Photochromique :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="photochromique" class="form-control" required
-                id="photochromique">
-            </mat-form-field>
-          </td>
-        </tr>
-    </table>
+                <td style="padding-left:8%;">
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>marque:</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="marque" class="form-control" required id="marque">
+                    </mat-form-field>
+                </td>
 
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-  
-          <td style="padding-left:61%;">
-  
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>PrixAchat :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="prixAchat" class="form-control" required
-                id="prixAchat">
-            </mat-form-field>
-          </td>
-  
-          <td style="padding-left:63%;">
-  
-            <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
-              <mat-label>prixVente :</mat-label>
-              <input matInput placeholder="..." type="text" formControlName="prixVente" class="form-control" required
-                id="prixVente">
-            </mat-form-field>
-            
-          </td>
-        </tr>
-      </table>
+                <td style="padding-left:10%;">
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>matiere:</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="matiere" class="form-control" required id="matiere">
+                    </mat-form-field>
+                </td>
 
-  
-  
-  
+            </tr>
+        </table>
+
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td style="padding-left:4%;">
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>ADD inf :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="addInf" class="form-control" required id="addInf">
+                    </mat-form-field>
+                </td>
+
+
+
+
+                <td style="padding-left:6%;">
+
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>ADD sup :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="addSup" class="form-control" required id="addSup">
+                    </mat-form-field>
+                </td>
+
+                <td style="padding-left:8%;">
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>CYL inf :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="cylInf" class="form-control" required id="cylInf">
+                    </mat-form-field>
+                </td>
+
+
+                <td style="padding-left:10%;">
+
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>CYL sup :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="cylSup" class="form-control" required id="cylSup">
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td style="padding-left:4%;">
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>SPH inf :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="sphInf" class="form-control" required id="sphInf">
+                    </mat-form-field>
+                </td>
+
+                <td style="padding-left:6%;">
+
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>SPH sup :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="sphSup" class="form-control" required id="sphSup">
+                    </mat-form-field>
+                </td>
+
+                <td style="padding-left:8%;">
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>DIA :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="dia" class="form-control" required id="dia">
+                    </mat-form-field>
+                </td>
+
+                <td style="padding-left:10%;">
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>indice :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="indice" class="form-control" required id="indice">
+                    </mat-form-field>
+                </td>
+
+            </tr>
+        </table>
+
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td style="padding-left:4%;">
+
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>AXE :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="axe" class="form-control" required id="axe">
+                    </mat-form-field>
+                </td>
+
+
+                <td style="padding-left:6%;">
+
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>base :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="base" class="form-control" required id="base">
+                    </mat-form-field>
+                </td>
+
+                <td style="padding-left:8%;">
+
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>coloration :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="coloration" class="form-control" required id="coloration">
+                    </mat-form-field>
+
+                </td>
+
+                <td style="padding-left:10%;">
+
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>Photochromique :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="photochromique" class="form-control" required id="photochromique">
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+
+                <td style="padding-left:61%;">
+
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>PrixAchat :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="prixAchat" class="form-control" required id="prixAchat">
+                    </mat-form-field>
+                </td>
+
+                <td style="padding-left:63%;">
+
+                    <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
+                        <mat-label>prixVente :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="prixVente" class="form-control" required id="prixVente">
+                    </mat-form-field>
+
+                </td>
+            </tr>
+        </table>
+
+
+
+
     </form>
-  </div>
-  
-  
-  <div mat-dialog-actions>
+</div>
+
+
+<div mat-dialog-actions>
     <button mat-raised-button color="warn" class="fermer" id="cancel" (click)="onNoClick()">Fermer <mat-icon>clear
       </mat-icon></button>
-  
-    <button mat-raised-button color="primary" *ngIf="showAdd" (click)="postVerreDetails()"  class="ajouter" cdkFocusInitial
-      >Ajouter <mat-icon>person_add </mat-icon></button>
-    <button mat-raised-button color="primary" *ngIf="showUpdate" (click)="updateVerreDetails()" class="modif"  cdkFocusInitial
-      >Modifier</button>
-  
-  </div>
+
+    <button mat-raised-button color="primary" *ngIf="showAdd" (click)="postVerreDetails()" class="ajouter" cdkFocusInitial>Ajouter <mat-icon>person_add </mat-icon></button>
+    <button mat-raised-button color="primary" *ngIf="showUpdate" (click)="updateVerreDetails()" class="modif" cdkFocusInitial>Modifier</button>
+
+</div>

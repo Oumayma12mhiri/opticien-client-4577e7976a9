@@ -1,17 +1,13 @@
 package tn.dksoft.opticien.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -41,25 +37,5 @@ public class Categorie implements Serializable {
 	private String name;
 	@Column(columnDefinition = "tinyint(1) default 0")
 	private boolean isDeleted;
-
-	@OneToMany(mappedBy = "categorie")
-	@JsonIgnore
-	private List<Divers> divers;
-
-	@OneToMany(mappedBy = "categorie")
-	@JsonIgnore
-	private List<Lentille> lentille;
-
-	@OneToMany(mappedBy = "categorie")
-	@JsonIgnore
-	private List<Monture> monture;
-
-	@OneToMany(mappedBy = "categorie")
-	@JsonIgnore
-	private List<Verre> verre;
-
-	@OneToMany(mappedBy = "categorie")
-	@JsonIgnore
-	private List<LunetteSolaire> lunettesolaire;
 
 }

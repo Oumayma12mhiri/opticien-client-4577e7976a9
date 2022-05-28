@@ -57,7 +57,7 @@ public class VerreService {
 
 	public List<VerreDto> findAll() {
 		try {
-			List<Verre> verres = verreRepository.findAll();
+			List<Verre> verres = verreRepository.findByIsDeletedIsFalse();
 			log.info("Verres gotted successfully ");
 			return verreMapper.fromEntitiesToDtoList(verres);
 		} catch (Exception e) {

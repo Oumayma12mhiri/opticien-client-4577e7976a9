@@ -1,6 +1,7 @@
 package tn.dksoft.opticien.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -50,4 +54,25 @@ public class Fournisseur implements Serializable {
 
 	@ManyToOne
 	private Categorie categorie;
+	
+
+	@OneToMany(mappedBy = "fournisseur")
+	@JsonIgnore
+	private List<Divers> divers;
+
+	@OneToMany(mappedBy = "fournisseur")
+	@JsonIgnore
+	private List<Lentille> lentille;
+
+	@OneToMany(mappedBy = "fournisseur")
+	@JsonIgnore
+	private List<Monture> monture;
+
+	@OneToMany(mappedBy = "fournisseur")
+	@JsonIgnore
+	private List<Verre> verre;
+
+	@OneToMany(mappedBy = "fournisseur")
+	@JsonIgnore
+	private List<LunetteSolaire> lunettesolaire;
 }

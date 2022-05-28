@@ -17,7 +17,6 @@ import lombok.EqualsAndHashCode.Include;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Getter
@@ -25,7 +24,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
 @Table(name = "t_solaire")
 public class LunetteSolaire implements Serializable {
 
@@ -51,7 +49,7 @@ public class LunetteSolaire implements Serializable {
 	private boolean isDeleted;
 
 	@ManyToOne
-	private Categorie categorie;
+	private Fournisseur fournisseur;
 	
 	@ManyToOne
 	private Vente vente;

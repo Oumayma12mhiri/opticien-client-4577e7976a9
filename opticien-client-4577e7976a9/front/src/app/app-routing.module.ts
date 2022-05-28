@@ -16,7 +16,7 @@ import { VerreComponent } from './verre/verre.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
- // { path: 'authentification', component: AuthenticationComponent },
+  { path: 'authentification', component: AuthenticationComponent },
   { path: 'home', component: HomeComponent },
   { path: 'vente', component: VenteComponent },
   { path: 'dashboard', component: ClientComponent},

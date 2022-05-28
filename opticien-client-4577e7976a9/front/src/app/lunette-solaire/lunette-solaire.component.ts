@@ -20,13 +20,14 @@ export class LunetteSolaireComponent implements OnInit {
     marque: new FormControl(''),
     prixAchat: new FormControl(''),
     prixVente: new FormControl(''),
-    quantite: new FormControl('')
+    quantite: new FormControl(''),
+    fournisseur: new FormControl('')
   })
   dataSource: MatTableDataSource<LunetteSolaire>;
   lunetteSolaire: LunetteSolaire = new LunetteSolaire();
   lunetteSolaireData !: any;
   listlunetteSolaire: any;
-  displayedColumns: string[] = ['ref','marque','prixAchat', 'prixVente', 'quantite' ,'actions']
+  displayedColumns: string[] = ['ref','marque','prixAchat', 'prixVente', 'quantite' ,'fournisseur','actions']
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -47,7 +48,7 @@ export class LunetteSolaireComponent implements OnInit {
   loadData() {
     this.lunetteSolaireService.getLunetteSolaire().subscribe(
       (data : any) => {
-        console.log(data)
+        console.log("data ",data)
         if(data){ 
         this.listlunetteSolaire = data;
         this.dataSource = new MatTableDataSource(this.listlunetteSolaire)
@@ -66,14 +67,23 @@ export class LunetteSolaireComponent implements OnInit {
         marque:this.lunetteSolaire.marque,
         prixAchat:this.lunetteSolaire.prixAchat,
         prixVente:this.lunetteSolaire.prixVente,
-        quantite:this.lunetteSolaire.quantite
+        quantite:this.lunetteSolaire.quantite,
+        fournisseur:this.lunetteSolaire.fournisseur.name
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {
       this.loadData();
     });
   }
-  
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   //fill in fields from client information
   onEdite(row: any) {
     this.dialogRef.componentInstance.onEdit(row);
