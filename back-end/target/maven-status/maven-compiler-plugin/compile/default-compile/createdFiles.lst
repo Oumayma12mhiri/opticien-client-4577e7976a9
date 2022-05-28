@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 tn\dksoft\opticien\repository\MontureRepository.class
 tn\dksoft\opticien\entity\Monture.class
 tn\dksoft\opticien\repository\VerreRepository.class
@@ -77,3 +78,15 @@ tn\dksoft\opticien\mapper\DiversMapper.class
 tn\dksoft\opticien\dto\search\PageRequest.class
 tn\dksoft\opticien\repository\CategorieRepository.class
 tn\dksoft\opticien\repository\ClientRepository.class
+=======
+tn\dksoft\opticien\mapper\DiversMapperImpl.class
+tn\dksoft\opticien\mapper\CategorieMapperImpl.class
+tn\dksoft\opticien\mapper\VerreMapperImpl.class
+tn\dksoft\opticien\mapper\FournisseurMapperImpl.class
+tn\dksoft\opticien\mapper\VisiteClientMapperImpl.class
+tn\dksoft\opticien\mapper\ClientMapperImpl.class
+tn\dksoft\opticien\mapper\MontureMapperImpl.class
+tn\dksoft\opticien\mapper\LunetteSolaireMapperImpl.class
+tn\dksoft\opticien\mapper\LentilleMapperImpl.class
+tn\dksoft\opticien\mapper\VenteMapperImpl.class
+>>>>>>> 1c525e8f3498ce55efca84691f5a9061201c10a3

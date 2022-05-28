@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 INDEX VERSION 1.131+D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\.metadata\.plugins\org.eclipse.jdt.core
 399809651.index
+=======
+INDEX VERSION 1.131+C:\Users\USER\Desktop\omayma\opticien-client-4577e7976a9\.metadata\.plugins\org.eclipse.jdt.core
+2758799104.index
+>>>>>>> 1c525e8f3498ce55efca84691f5a9061201c10a3
 1865797976.index
 516275.index
