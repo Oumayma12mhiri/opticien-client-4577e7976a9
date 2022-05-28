@@ -3,7 +3,7 @@
 </h1>
 <div mat-dialog-content>
 
-  <form [formGroup]="formValue">
+  <form ngNativeValidate [formGroup]="formValue">
 
     <table class="example-full-width" cellspacing="0">
       <tr>
@@ -77,7 +77,7 @@
   <button mat-raised-button color="warn" class="fermer" id="cancel" (click)="onNoClick()">Fermer <mat-icon>clear
     </mat-icon></button>
 
-  <button mat-raised-button color="primary" *ngIf="showAdd" (click)="postDiversDetails()" class="ajouter"
+  <button mat-raised-button color="primary" type="submit" *ngIf="showAdd" (click)="postDiversDetails()" class="ajouter"
     cdkFocusInitial>Ajouter <mat-icon>person_add
     </mat-icon></button>
   <button mat-raised-button color="primary" *ngIf="showUpdate" (click)="updateDiversDetails()" class="modif"
