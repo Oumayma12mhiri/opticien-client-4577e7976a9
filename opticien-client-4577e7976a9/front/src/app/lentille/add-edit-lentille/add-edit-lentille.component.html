@@ -182,6 +182,21 @@
             </mat-form-field>
             
           </td>
+          <td style="padding-left:20%;">
+            <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
+                <mat-label>Fournisseur :</mat-label>
+                <!--<select matInput placeholder="..." formControlName="fournisseur" class="form-control" required id="fournisseur">
+                    <option value=""></option>
+                </select>-->
+                <mat-select formControlName="fournisseur" [(ngModel)]="selected" id="fournisseur" placeholder="...">
+                    <mat-option *ngFor="let fournisseur of allFournisseur" [value]="fournisseur">
+                        {{fournisseur.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>fournisseur</mat-icon>
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </td>
         </tr>
       </table>
 

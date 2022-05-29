@@ -68,7 +68,7 @@ export class LunetteSolaireComponent implements OnInit {
         prixAchat:this.lunetteSolaire.prixAchat,
         prixVente:this.lunetteSolaire.prixVente,
         quantite:this.lunetteSolaire.quantite,
-        fournisseur:this.lunetteSolaire.fournisseur.name
+        fournisseur:this.lunetteSolaire.fournisseur.name,
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {
@@ -92,10 +92,10 @@ export class LunetteSolaireComponent implements OnInit {
     this.dialogRef.componentInstance.clickAddLunetteSolaire();
   }
   deleteLunetteSolaire(id: any) {
-    if (confirm("êtes-vous sur de supprimer ce lunette solire?")) {
+    if (confirm("Etes-vous sur de supprimer cette lunette solire?")) {
       this.lunetteSolaireService.DeleteLunetteSolaire(id)
        .subscribe(_res => {
-          alert("Lunette solaire supprimé ");
+          alert("Lunette solaire supprimée avec succés ");
           this.loadData();
         }
        )

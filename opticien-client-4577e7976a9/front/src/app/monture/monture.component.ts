@@ -19,7 +19,7 @@ export class MontureComponent implements OnInit {
   monture: Monture = new Monture();
   montureData !: any;
   listmonture: any;
-  displayedColumns: string[] = ['reference','marque','prixAchat', 'prixVente', 'quantite','actions']
+  displayedColumns: string[] = ['reference','marque','prixAchat', 'prixVente', 'quantite' ,'fournisseur','actions']
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -32,7 +32,8 @@ export class MontureComponent implements OnInit {
     marque: new FormControl(''),
     prixAchat: new FormControl(''),
     prixVente: new FormControl(''),
-    quantite: new FormControl('')
+    quantite: new FormControl(''),
+    fournisseur: new FormControl('')
   })
 
   constructor(public dialog: MatDialog,
@@ -64,7 +65,8 @@ export class MontureComponent implements OnInit {
         marque:this.monture.marque,
         prixAchat:this.monture.prixAchat,
         prixVente:this.monture.prixVente,
-        quantite:this.monture.quantite
+        quantite:this.monture.quantite,
+        fournisseur:this.monture.fournisseur.name
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {
@@ -77,11 +79,20 @@ export class MontureComponent implements OnInit {
   addMonture(){
     this.dialogRef.componentInstance.clickAddMonture();
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  } 
+  
   deleteMonture(id: any) {
-    if (confirm("êtes-vous sur de supprimer ce monture?")) {
+    if (confirm("Etes-vous sur de supprimer cette monture?")) {
       this.montureService.DeleteMonture(id)
        .subscribe(_res => {
-          alert("Monture supprimé ");
+          alert("Monture supprimée avec succés ");
           this.loadData();
         }
        )

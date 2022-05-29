@@ -260,34 +260,67 @@
 
                         <table>
                             <tr>
-                                <td style="padding-left:5%;">
-                                    <button title="" class="vision">Vision de loin
-                                        <mat-icon>visibility </mat-icon>
+                                <td style="padding-left:190%;">
+                                    <a routerLink="/lentille" class="text-primary">
+                                    <button title="" class="vision">Lentille
+                                    
+                                        <mat-icon> </mat-icon>
+                                    
                                     </button>
+                                </a>
                                 </td>
                             
-                                <td style="padding-left:10%;">
-                                    <button title="" class="vision">Vision de prés
-                                        <mat-icon>visibility </mat-icon>
+                                <td style="padding-left:192%;">
+                                    <a routerLink="/verre" class="text-primary">
+                                    <button title="" class="vision">Verre
+                                        <mat-icon> </mat-icon>
                                     </button>
+                                </a>
                                 </td>
                             
-                                <td style="padding-left:15%;">
-                                    <button title="" class="vision">Vision Multi./Prog.
-                                        <mat-icon> visibility </mat-icon>
-                                    </button>
-                                </td>
+                                
                             </tr>
                         </table>
                     </form>
 
+                    
 
 
-
+                    </div>
+                    <div style="margin-top: 1%; padding-left: 60%;">
+                        <table>
+                            <tr>
+                                <td style="padding-left:1%;">
+                                    <a routerLink="/monture" class="text-primary">
+                                    <button title="" class="vision">Monture
+                                        <mat-icon> </mat-icon>
+                                    </button>
+                                    </a>
+                                </td>
+                            
+                                <td style="padding-left:2%;">
+                                    <a routerLink="/lunetteSolaire" class="text-primary">
+                                    <button title="" class="vision1">Lunette Solaire
+                                        <mat-icon> </mat-icon>
+                                    </button>
+                                    </a>
+                                </td>
+                                <td style="padding-left:3%;">
+                                    <a routerLink="/divers" class="text-primary">
+                                    <button title="" class="vision">Divers
+                                        <mat-icon> </mat-icon>
+                                    </button>
+                                    </a>
+                                </td>
+                            
+                                
+                            </tr>
+                        </table>
                     </div>
                     <!-- ---------------------tableau de verre------------------- -->
                     <div class="example-small-box mat-elevation-z4">
                         <!-- table -->
+                        
                         <table class="table1" mat-table [dataSource]="dataSource" matSort>
 
                             <!-- Id Column -->

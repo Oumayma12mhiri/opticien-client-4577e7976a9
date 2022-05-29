@@ -1,5 +1,5 @@
 <h1 mat-dialog-title style="color: rgb(6, 59, 173);">
-    <mat-icon>person_add </mat-icon> Verre
+    <mat-icon>visibility </mat-icon> Verre
 </h1>
 <div mat-dialog-content>
 
@@ -167,6 +167,21 @@
                     </mat-form-field>
 
                 </td>
+                <td style="padding-left:20%;">
+                    <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
+                        <mat-label>Fournisseur :</mat-label>
+                        <!--<select matInput placeholder="..." formControlName="fournisseur" class="form-control" required id="fournisseur">
+                            <option value=""></option>
+                        </select>-->
+                        <mat-select formControlName="fournisseur" [(ngModel)]="selected" id="fournisseur" placeholder="...">
+                            <mat-option *ngFor="let fournisseur of allFournisseur" [value]="fournisseur">
+                                {{fournisseur.name}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-icon matSuffix>fournisseur</mat-icon>
+                        <mat-hint>Hint</mat-hint>
+                    </mat-form-field>
+                </td>
             </tr>
         </table>
 
@@ -181,7 +196,7 @@
     <button mat-raised-button color="warn" class="fermer" id="cancel" (click)="onNoClick()">Fermer <mat-icon>clear
       </mat-icon></button>
 
-    <button mat-raised-button color="primary" *ngIf="showAdd" (click)="postVerreDetails()" class="ajouter" cdkFocusInitial>Ajouter <mat-icon>person_add </mat-icon></button>
+    <button mat-raised-button color="primary" *ngIf="showAdd" (click)="postVerreDetails()" class="ajouter" cdkFocusInitial>Ajouter <mat-icon>visibility </mat-icon></button>
     <button mat-raised-button color="primary" *ngIf="showUpdate" (click)="updateVerreDetails()" class="modif" cdkFocusInitial>Modifier</button>
 
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Lentille } from 'src/app/model/lentille';
+import { FournisseurService } from 'src/app/service/frs-service';
 import { LentilleService } from 'src/app/service/lentille.service';
 
 @Component({
@@ -29,23 +30,40 @@ export class AddEditLentilleComponent implements OnInit {
     dia: new FormControl(''),
     indice: new FormControl(''),
     prixAchat: new FormControl(''),
-    prixVente: new FormControl('')
+    prixVente: new FormControl(''),
+    fournisseur: new FormControl('')
   })
   showAdd!: boolean;
   showUpdate!: boolean;
+  allFournisseur :any;
+  selected:[];
+  i=0;
 
   lentille: Lentille = new Lentille();
   constructor(
     public dialogRef: MatDialogRef<AddEditLentilleComponent>,
-    public lentilleService: LentilleService) { }
+    public lentilleService: LentilleService,
+    public fournisseurService: FournisseurService,) { }
 
   
 
   ngOnInit(): void {
+    this.getAllFournisseur();
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  getAllFournisseur(){
+    this.fournisseurService.getFournisseurByCategorieName('lentille').subscribe(res => {
+     this.allFournisseur = res
+     if(this.allFournisseur[this.i].name != this.lentille.fournisseur.name){
+      this.i=this.i+1;
+    }
+    this.selected= this.allFournisseur[this.i];
+    },
+      err => { console.log(err) }
+    )
   }
   clickAddLentille() {
     this.formValue.reset();
@@ -72,7 +90,8 @@ export class AddEditLentilleComponent implements OnInit {
     dia: this.formValue.value.dia,
     indice: this.formValue.value.indice,
     prixAchat: this.formValue.value.prixAchat,
-    prixVente: this.formValue.value.prixVente
+    prixVente: this.formValue.value.prixVente,
+    fournisseurDto: this.formValue.value.fournisseur,
 
     }
 
@@ -111,7 +130,8 @@ export class AddEditLentilleComponent implements OnInit {
     dia: row.dia,
     indice: row.indice,
     prixAchat: row.prixAchat,
-    prixVente: row.prixVente
+    prixVente: row.prixVente,
+    fournisseur: row.fournisseur
 
     })
   }
@@ -137,7 +157,8 @@ export class AddEditLentilleComponent implements OnInit {
       dia: this.formValue.value.dia,
       indice: this.formValue.value.indice,
       prixAchat: this.formValue.value.prixAchat,
-      prixVente: this.formValue.value.prixVente
+      prixVente: this.formValue.value.prixVente,
+      fournisseur: this.formValue.value.fournisseur
   
       }
 

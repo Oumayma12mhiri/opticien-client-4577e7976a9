@@ -1,3 +1,6 @@
+import { Fournisseur } from "./fournisseur";
+
+
 export class Lentille {
 
     public id !:number;
@@ -34,5 +37,5 @@ export class Lentille {
     public prixAchat !:number;
 
     public prixVente !:number;
-    
+    public fournisseur: Fournisseur;
 }

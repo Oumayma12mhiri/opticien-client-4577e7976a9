@@ -4,7 +4,7 @@
         <div>
             <!-- search field -->
             <div class="input-group rounded">
-                <input type="text" placeholder="Chercher par code" class="search" />
+                <input type="text" placeholder="Chercher par code" class="search" (keyup)="applyFilter($event)"   />
             </div>
             <!-- table -->
             <table mat-table [dataSource]="dataSource" matSort>
@@ -43,6 +43,12 @@
                 <ng-container matColumnDef="prixVente">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;"> prixVente </th>
                     <td mat-cell *matCellDef="let row" style="padding-left:2%;"> {{row.prixVente}}</td>
+                </ng-container>
+
+                 <!-- solde Column -->
+                 <ng-container matColumnDef="fournisseur">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style=" padding-left:5%; "> Fournisseur </th>
+                    <td mat-cell *matCellDef="let row " style="padding-left:5%; ">{{row.fournisseur.name}} </td>
                 </ng-container>
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Verre } from 'src/app/model/verre';
+import { FournisseurService } from 'src/app/service/frs-service';
 import { VerreService } from 'src/app/service/verre.service';
 
 @Component({
@@ -29,21 +30,43 @@ export class AddEditVerreComponent implements OnInit {
     dia: new FormControl(''),
     indice: new FormControl(''),
     prixAchat: new FormControl(''),
-    prixVente: new FormControl('')
+    prixVente: new FormControl(''),
+    fournisseur: new FormControl(''),
   })
+
   showAdd!: boolean;
   showUpdate!: boolean;
+  allFournisseur :any;
+  selected:[];
+  i=0;
 
   verre: Verre = new Verre();
+
   constructor(public dialogRef: MatDialogRef<AddEditVerreComponent>,
-    public verreService: VerreService) { }
+    public verreService: VerreService,
+    public fournisseurService: FournisseurService,
+    ) { }
 
   ngOnInit(): void {
+    this.getAllFournisseur();
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  getAllFournisseur(){
+    this.fournisseurService.getFournisseurByCategorieName('verre').subscribe(res => {
+     this.allFournisseur = res
+     if(this.allFournisseur[this.i].name != this.verre.fournisseur.name){
+      this.i=this.i+1;
+    }
+    this.selected= this.allFournisseur[this.i];
+    },
+      err => { console.log(err) }
+    )
+  }
+  
   clickAddVerre() {
     this.formValue.reset();
     this.showAdd = true;
@@ -69,7 +92,8 @@ export class AddEditVerreComponent implements OnInit {
     dia: this.formValue.value.dia,
     indice: this.formValue.value.indice,
     prixAchat: this.formValue.value.prixAchat,
-    prixVente: this.formValue.value.prixVente
+    prixVente: this.formValue.value.prixVente,
+    fournisseurDto: this.formValue.value.fournisseur
 
     }
 
@@ -109,7 +133,8 @@ export class AddEditVerreComponent implements OnInit {
     dia: row.dia,
     indice: row.indice,
     prixAchat: row.prixAchat,
-    prixVente: row.prixVente
+    prixVente: row.prixVente,
+    fournisseur: row.fournisseur
 
     })
   }
@@ -135,7 +160,8 @@ export class AddEditVerreComponent implements OnInit {
       dia: this.formValue.value.dia,
       indice: this.formValue.value.indice,
       prixAchat: this.formValue.value.prixAchat,
-      prixVente: this.formValue.value.prixVente
+      prixVente: this.formValue.value.prixVente,
+      fournisseur: this.formValue.value.fournisseur
   
       }
 
@@ -143,7 +169,7 @@ export class AddEditVerreComponent implements OnInit {
       this.verreService.UpdateVerre(verre)
         .subscribe(res => {
           console.log(res);
-          alert("Verre modifier avec succès")
+          alert("Verre modifié avec succès")
           let ref = document.getElementById('cancel')
           ref?.click();
           this.formValue.reset();

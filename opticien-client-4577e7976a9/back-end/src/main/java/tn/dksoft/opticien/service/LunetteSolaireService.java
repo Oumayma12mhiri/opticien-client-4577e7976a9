@@ -32,8 +32,10 @@ public class LunetteSolaireService {
 	public LunetteSolaireDto add(LunetteSolaireDto dto) {
 		try {
 			LunetteSolaire lunette = lunetteSolaireMapper.fromDtoToEntity(dto);
+			
 			Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(dto.getFournisseur().getId());
 			lunette.setFournisseur(fournisseur);
+			
 			lunetteSolaireRepository.saveAndFlush(lunette);
 			log.info("Lunette Solaire with id= {} saved successfully", lunette.getId());
 			return lunetteSolaireMapper.fromEntityToDto(lunette);
@@ -79,8 +81,10 @@ public class LunetteSolaireService {
 			if (lunetteSolaireOptional.isPresent()) {
 				LunetteSolaire lunette = lunetteSolaireOptional.get();
 				lunette.setRef(lunetteDto.getRef());
+				
 				Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(lunetteDto.getFournisseur().getId());
 				lunette.setFournisseur(fournisseur);
+				
 				lunette.setMarque(lunetteDto.getMarque());
 				lunette.setQuantite(lunetteDto.getQuantite());
 				lunette.setPrixAchat(lunetteDto.getPrixAchat());

@@ -65,7 +65,7 @@ export class AddEditLSComponent implements OnInit {
     this.lunetteSolaireService.postLunetteSolaire(lunetteSolaire)
       .subscribe(res => {
         console.log(res);
-        alert("Lunette Solaire ajouté avec succès")
+        alert("Lunette Solaire ajoutée avec succès")
         let ref = document.getElementById('cancel')
         ref?.click();
         this.formValue.reset();
@@ -89,7 +89,7 @@ export class AddEditLSComponent implements OnInit {
       this.lunetteSolaireService.UpdateLunetteSolaire(lunetteSolaire)
         .subscribe(res => {
           console.log(res);
-          alert("Lunette Solaire modifier avec succès")
+          alert("Lunette Solaire modifiée avec succès")
           let ref = document.getElementById('cancel')
           ref?.click();
           this.formValue.reset();

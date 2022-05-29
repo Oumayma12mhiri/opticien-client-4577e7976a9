@@ -19,7 +19,7 @@ export class LentilleComponent implements OnInit {
   lentille: Lentille = new Lentille();
   LentilleData !: any;
   listLentille: any;
-  displayedColumns: string[] = ['code', 'description', 'marque','matiere' ,'prixAchat', 'prixVente','actions']
+  displayedColumns: string[] = ['code', 'description', 'marque','matiere' ,'prixAchat', 'prixVente','fournisseur','actions']
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -45,7 +45,8 @@ export class LentilleComponent implements OnInit {
     dia: new FormControl(''),
     indice: new FormControl(''),
     prixAchat: new FormControl(''),
-    prixVente: new FormControl('')
+    prixVente: new FormControl(''),
+    fournisseur: new FormControl('')
   })
 
 
@@ -91,7 +92,8 @@ export class LentilleComponent implements OnInit {
         dia: this.lentille.dia,
         indice: this.lentille.indice,
         prixAchat: this.lentille.prixAchat,
-        prixVente: this.lentille.prixVente
+        prixVente: this.lentille.prixVente,
+        fournisseur:this.lentille.fournisseur.name
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {
@@ -105,6 +107,14 @@ export class LentilleComponent implements OnInit {
   }
   addLentille(){
     this.dialogRef.componentInstance.clickAddLentille();
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   //remove verre

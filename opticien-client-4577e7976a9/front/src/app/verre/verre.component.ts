@@ -19,7 +19,7 @@ export class VerreComponent implements OnInit {
   verre: Verre = new Verre();
   VerreData !: any;
   listVerre: any;
-  displayedColumns: string[] = ['code', 'description', 'marque','matiere' ,'prixAchat', 'prixVente','actions']
+  displayedColumns: string[] = ['code', 'description', 'marque','matiere' ,'prixAchat', 'prixVente','fournisseur','actions']
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -45,7 +45,8 @@ export class VerreComponent implements OnInit {
     dia: new FormControl(''),
     indice: new FormControl(''),
     prixAchat: new FormControl(''),
-    prixVente: new FormControl('')
+    prixVente: new FormControl(''),
+    fournisseur: new FormControl('')
   })
 
   constructor(public dialog: MatDialog,
@@ -89,7 +90,8 @@ export class VerreComponent implements OnInit {
         dia: this.verre.dia,
         indice: this.verre.indice,
         prixAchat: this.verre.prixAchat,
-        prixVente: this.verre.prixVente
+        prixVente: this.verre.prixVente,
+        fournisseur:this.verre.fournisseur.name
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {
@@ -105,12 +107,20 @@ export class VerreComponent implements OnInit {
     this.dialogRef.componentInstance.clickAddVerre();
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   //remove verre
  deleteVerre(id: any) {
-  if (confirm("êtes-vous sur de supprimer ce verre ?")) {
+  if (confirm("Etes-vous sur de supprimer ce verre ?")) {
     this.verreService.DeleteVerre(id)
      .subscribe(_res => {
-        alert("Verre supprimé ");
+        alert("Verre supprimé avec succés ");
         this.loadData();
       }
      )
