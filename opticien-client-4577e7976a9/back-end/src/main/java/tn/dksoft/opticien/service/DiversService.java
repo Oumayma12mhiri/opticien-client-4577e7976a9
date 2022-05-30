@@ -75,6 +75,7 @@ public class DiversService {
 			if (diverOptional.isPresent()) {
 				Divers diver = diverOptional.get();
 				diver.setName(diversDto.getName());
+				log.info("fournisseur {}",diversDto.getFournisseur());
 				Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(diversDto.getFournisseur().getId());
 				diver.setFournisseur(fournisseur);
 				diver.setReference(diversDto.getReference());

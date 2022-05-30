@@ -51,6 +51,7 @@ import { AddEditLSComponent } from './lunette-solaire/add-edit-ls/add-edit-ls.co
 import { AddEditVerreComponent } from './verre/add-edit-verre/add-edit-verre.component';
 import { MontureService } from './service/monture.service';
 import { AddEditLentilleComponent } from './lentille/add-edit-lentille/add-edit-lentille.component';
+import { ListClientsComponent } from './vente/list-clients/list-clients.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { AddEditLentilleComponent } from './lentille/add-edit-lentille/add-edit-
     AddEditLSComponent,
     AddEditVerreComponent,
     AddEditLentilleComponent,
+    ListClientsComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,7 +109,7 @@ import { AddEditLentilleComponent } from './lentille/add-edit-lentille/add-edit-
     
   ],
  
-  providers: [ClientServiceService,MontureService,AuthenticationComponent,VisiteServiceService,ClientFileComponent,OrganismeServiceService,OrganismeComponent,{provide:MatDialogRef,useValue:[]},GroupeFamComponent,GroupeFamServiceService,NewVisitComponent,ClientComponent,AddAndEditClientComponent],
+  providers: [ClientServiceService,ListClientsComponent,MontureService,AuthenticationComponent,VisiteServiceService,ClientFileComponent,OrganismeServiceService,OrganismeComponent,{provide:MatDialogRef,useValue:[]},GroupeFamComponent,GroupeFamServiceService,NewVisitComponent,ClientComponent,AddAndEditClientComponent],
   
   bootstrap: [AppComponent],
 })

@@ -76,7 +76,7 @@ export class DiversComponent implements OnInit {
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {
-
+      this.loadData();
     });
   }
 

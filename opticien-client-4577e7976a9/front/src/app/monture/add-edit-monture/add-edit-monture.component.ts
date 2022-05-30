@@ -24,6 +24,7 @@ export class AddEditMontureComponent implements OnInit {
   formValue = new FormGroup({
     name: new FormControl(''),
     reference: new FormControl(''),
+    marque: new FormControl(''),
     prixAchat: new FormControl(''),
     prixVente: new FormControl(''),
     quantite: new FormControl(''),
@@ -55,13 +56,14 @@ export class AddEditMontureComponent implements OnInit {
 
   //Save lunette Solaire
   postMontureDetails() {
+    console.log(this.formValue.value.marque);
     let monture = {
       reference: this.formValue.value.reference,
       marque: this.formValue.value.marque,
       prixAchat: this.formValue.value.prixAchat,
       prixVente: this.formValue.value.prixVente,
       quantite: this.formValue.value.quantite,
-      fournisseurDto: this.formValue.value.fournisseur
+      fournisseur: this.formValue.value.fournisseur
     }
     console.log(monture);
     this.montureService.postMonture(monture)
@@ -111,6 +113,7 @@ export class AddEditMontureComponent implements OnInit {
     this.showAdd = false;
     this.showUpdate = true;
     console.log(row);
+    this.monture = row;
     this.monture.id = row.id;
     this.formValue.patchValue({
       id: row.id,

@@ -80,7 +80,7 @@ public class VerreService {
 			if (verreOptional.isPresent()) {
 				Verre verre = verreOptional.get();
 				verre.setAddInf(verreDto.getAddInf());
-				
+				log.info("fournisseur {}",verreDto.getFournisseur());
 				Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(verreDto.getFournisseur().getId());
 				verre.setFournisseur(fournisseur);
 				

@@ -28,7 +28,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
 @Table(name = "t_fournisseur")
 public class Fournisseur implements Serializable {
 

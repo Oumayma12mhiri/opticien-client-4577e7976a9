@@ -93,7 +93,7 @@ export class LentilleComponent implements OnInit {
         indice: this.lentille.indice,
         prixAchat: this.lentille.prixAchat,
         prixVente: this.lentille.prixVente,
-        fournisseur:this.lentille.fournisseur.name
+        fournisseur:this.lentille.fournisseur
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {

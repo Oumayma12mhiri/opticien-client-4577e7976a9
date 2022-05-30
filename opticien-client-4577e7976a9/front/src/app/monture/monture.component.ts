@@ -66,7 +66,7 @@ export class MontureComponent implements OnInit {
         prixAchat:this.monture.prixAchat,
         prixVente:this.monture.prixVente,
         quantite:this.monture.quantite,
-        fournisseur:this.monture.fournisseur.name
+        fournisseur:this.monture.fournisseur
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {

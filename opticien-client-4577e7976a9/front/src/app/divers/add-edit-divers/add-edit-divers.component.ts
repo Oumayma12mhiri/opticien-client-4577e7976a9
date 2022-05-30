@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Divers } from 'src/app/model/divers';
+import { Fournisseur } from 'src/app/model/fournisseur';
 import { DiversService } from 'src/app/service/divers.service';
 import { FournisseurService } from 'src/app/service/frs-service';
 
@@ -68,7 +69,7 @@ export class AddEditDiversComponent implements OnInit {
       prixAchat: this.formValue.value.prixAchat,
       prixVente: this.formValue.value.prixVente,
       quantite: this.formValue.value.quantite,
-      fournisseurDto: this.formValue.value.fournisseur
+      fournisseur: this.formValue.value.fournisseur
     }
 
     this.diversService.postDivers(divers)
@@ -85,6 +86,7 @@ export class AddEditDiversComponent implements OnInit {
   }
 
   updateDiversDetails() {
+    console.log(this.formValue.value.fournisseur)
     let divers = {
       id: this.divers.id,
       name: this.formValue.value.name,
@@ -111,6 +113,7 @@ export class AddEditDiversComponent implements OnInit {
     this.showAdd = false;
     this.showUpdate = true;
     console.log(row);
+    this.divers=row;
     this.divers.id = row.id;
     this.formValue.patchValue({
       id: row.id,

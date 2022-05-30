@@ -32,7 +32,7 @@ public class LunetteSolaireService {
 	public LunetteSolaireDto add(LunetteSolaireDto dto) {
 		try {
 			LunetteSolaire lunette = lunetteSolaireMapper.fromDtoToEntity(dto);
-			
+			log.info("fournisseur {} ",dto.getFournisseur());
 			Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(dto.getFournisseur().getId());
 			lunette.setFournisseur(fournisseur);
 			

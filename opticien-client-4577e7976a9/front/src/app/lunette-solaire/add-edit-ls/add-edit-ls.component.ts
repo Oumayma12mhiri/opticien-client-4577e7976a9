@@ -59,9 +59,8 @@ export class AddEditLSComponent implements OnInit {
       prixAchat: this.formValue.value.prixAchat,
       prixVente: this.formValue.value.prixVente,
       quantite: this.formValue.value.quantite,
-      fournisseurDto: this.formValue.value.fournisseur
+      fournisseur: this.formValue.value.fournisseur
     }
-
     this.lunetteSolaireService.postLunetteSolaire(lunetteSolaire)
       .subscribe(res => {
         console.log(res);

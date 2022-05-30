@@ -68,7 +68,7 @@ export class LunetteSolaireComponent implements OnInit {
         prixAchat:this.lunetteSolaire.prixAchat,
         prixVente:this.lunetteSolaire.prixVente,
         quantite:this.lunetteSolaire.quantite,
-        fournisseur:this.lunetteSolaire.fournisseur.name,
+        fournisseur:this.lunetteSolaire.fournisseur,
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {

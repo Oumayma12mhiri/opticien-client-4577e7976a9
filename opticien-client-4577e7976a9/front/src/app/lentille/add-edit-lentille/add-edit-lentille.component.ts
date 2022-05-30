@@ -91,8 +91,7 @@ export class AddEditLentilleComponent implements OnInit {
     indice: this.formValue.value.indice,
     prixAchat: this.formValue.value.prixAchat,
     prixVente: this.formValue.value.prixVente,
-    fournisseurDto: this.formValue.value.fournisseur,
-
+    fournisseur: this.formValue.value.fournisseur,
     }
 
     this.lentilleService.postLentille(lentille)
@@ -111,6 +110,7 @@ export class AddEditLentilleComponent implements OnInit {
   onEdit(row: any) {
     this.showAdd = false;
     this.showUpdate = true;
+    this.lentille = row;
     this.lentille.id = row.id;
     this.formValue.patchValue({
       base:row.base,
@@ -132,12 +132,11 @@ export class AddEditLentilleComponent implements OnInit {
     prixAchat: row.prixAchat,
     prixVente: row.prixVente,
     fournisseur: row.fournisseur
-
     })
   }
 
   //update lentille
-  UpdateLentilleDetails() {
+  updateLentilleDetails() {
     let lentille = {
       id:this.lentille.id,
       base:this.formValue.value.base,
@@ -159,10 +158,7 @@ export class AddEditLentilleComponent implements OnInit {
       prixAchat: this.formValue.value.prixAchat,
       prixVente: this.formValue.value.prixVente,
       fournisseur: this.formValue.value.fournisseur
-  
       }
-
-      console.log(lentille);
       this.lentilleService.UpdateLentille(lentille)
         .subscribe(res => {
           console.log(res);

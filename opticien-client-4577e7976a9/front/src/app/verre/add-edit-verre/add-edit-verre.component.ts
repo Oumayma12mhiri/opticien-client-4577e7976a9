@@ -93,7 +93,7 @@ export class AddEditVerreComponent implements OnInit {
     indice: this.formValue.value.indice,
     prixAchat: this.formValue.value.prixAchat,
     prixVente: this.formValue.value.prixVente,
-    fournisseurDto: this.formValue.value.fournisseur
+    fournisseur: this.formValue.value.fournisseur
 
     }
 
@@ -114,6 +114,7 @@ export class AddEditVerreComponent implements OnInit {
   onEdit(row: any) {
     this.showAdd = false;
     this.showUpdate = true;
+    this.verre = row;
     this.verre.id = row.id;
     this.formValue.patchValue({
       base:row.base,
@@ -135,7 +136,6 @@ export class AddEditVerreComponent implements OnInit {
     prixAchat: row.prixAchat,
     prixVente: row.prixVente,
     fournisseur: row.fournisseur
-
     })
   }
 
@@ -162,7 +162,6 @@ export class AddEditVerreComponent implements OnInit {
       prixAchat: this.formValue.value.prixAchat,
       prixVente: this.formValue.value.prixVente,
       fournisseur: this.formValue.value.fournisseur
-  
       }
 
       console.log(verre);

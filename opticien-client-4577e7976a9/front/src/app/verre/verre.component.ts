@@ -91,7 +91,7 @@ export class VerreComponent implements OnInit {
         indice: this.verre.indice,
         prixAchat: this.verre.prixAchat,
         prixVente: this.verre.prixVente,
-        fournisseur:this.verre.fournisseur.name
+        fournisseur:this.verre.fournisseur
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {
