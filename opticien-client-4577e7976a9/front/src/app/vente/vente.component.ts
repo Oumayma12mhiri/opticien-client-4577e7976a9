@@ -1,13 +1,19 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddAndEditClientComponent } from '../dashboard/add-and-edit-client/add-and-edit-client.component';
 import { ClientFileComponent } from '../dashboard/client-file/client-file.component';
 import { ClientComponent } from '../dashboard/client.component';
 import { Client } from '../model/client';
 import { Vente } from '../model/vente';
+import { DiversService } from '../service/divers.service';
 import { ListClientsComponent } from './list-clients/list-clients.component';
+import { ListDiversComponent } from './list-divers/list-divers.component';
+import { ListLentillesComponent } from './list-lentilles/list-lentilles.component';
+import { ListLunetteSolaireComponent } from './list-lunette-solaire/list-lunette-solaire.component';
+import { ListMontureComponent } from './list-monture/list-monture.component';
+import { ListVerresComponent } from './list-verres/list-verres.component';
 
 @Component({
   selector: 'app-vente',
@@ -47,7 +53,14 @@ selectedClient:Client;
     public dialog: MatDialog,
     public add:AddAndEditClientComponent,
     public list:ListClientsComponent,
-    public clientFile:ClientFileComponent
+    public clientFile:ClientFileComponent,
+    public dialogRef: MatDialogRef<ListDiversComponent>,
+    public dialogRef1: MatDialogRef<ListLunetteSolaireComponent>,
+    public dialogRef2: MatDialogRef<ListMontureComponent>,
+    public dialogRef3: MatDialogRef<ListLentillesComponent>,
+    public dialogRef4: MatDialogRef<ListVerresComponent>,
+    public diversService: DiversService,
+    public listDivers : ListDiversComponent,
   ) { }
 
 test(){
@@ -81,8 +94,74 @@ test(){
   openDialogFile(): void {
     this.clientFile.openDialogFile();
   }
+
   openDialogList(): void {
     this.list.openDialogList();
+  }
+
+  openDialogListLunette(): void {
+    this.dialogRef1 = this.dialog.open(ListLunetteSolaireComponent, {
+      height: '70%',
+      width: '90%',
+      data: {
+        
+      },
+    });
+    this.dialogRef.afterClosed().subscribe(_result => {
+      this.listDivers.loadData();
+    });
+  }
+
+  openDialogListDivers(): void {
+    this.dialogRef = this.dialog.open(ListDiversComponent, {
+      height: '70%',
+      width: '90%',
+      data: {
+        
+      },
+    });
+    this.dialogRef.afterClosed().subscribe(_result => {
+      this.listDivers.loadData();
+    });
+  }
+
+  openDialogListMonture(): void {
+    this.dialogRef2 = this.dialog.open(ListMontureComponent, {
+      height: '70%',
+      width: '90%',
+      data: {
+        
+      },
+    });
+    this.dialogRef.afterClosed().subscribe(_result => {
+      this.listDivers.loadData();
+    });
+  }
+
+  openDialogListLentille(): void {
+    this.dialogRef3 = this.dialog.open(ListLentillesComponent, {
+      height: '70%',
+      width: '90%',
+      data: {
+        
+      },
+    });
+    this.dialogRef.afterClosed().subscribe(_result => {
+      this.listDivers.loadData();
+    });
+  }
+
+  openDialogListVerre(): void {
+    this.dialogRef4 = this.dialog.open(ListVerresComponent, {
+      height: '70%',
+      width: '90%',
+      data: {
+        
+      },
+    });
+    this.dialogRef.afterClosed().subscribe(_result => {
+      this.listDivers.loadData();
+    });
   }
 
 }

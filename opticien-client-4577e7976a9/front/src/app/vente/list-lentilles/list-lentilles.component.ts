@@ -1,19 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Lentille } from '../model/lentille';
-import { LentilleService } from '../service/lentille.service';
-import { AddEditLentilleComponent } from './add-edit-lentille/add-edit-lentille.component';
+import { Lentille } from 'src/app/model/lentille';
+import { LentilleService } from 'src/app/service/lentille.service';
+import { ListDiversComponent } from '../list-divers/list-divers.component';
 
 @Component({
-  selector: 'app-lentille',
-  templateUrl: './lentille.component.html',
-  styleUrls: ['./lentille.component.scss']
+  selector: 'app-list-lentilles',
+  templateUrl: './list-lentilles.component.html',
+  styleUrls: ['./list-lentilles.component.scss']
 })
-export class LentilleComponent implements OnInit {
+export class ListLentillesComponent implements OnInit {
 
   dataSource!: MatTableDataSource<Lentille>;
   lentille: Lentille = new Lentille();
@@ -26,7 +26,7 @@ export class LentilleComponent implements OnInit {
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
 
-  dialogRef: any;
+
   formValue = new FormGroup({
     base: new FormControl(''),
     code: new FormControl(''),
@@ -49,16 +49,15 @@ export class LentilleComponent implements OnInit {
     fournisseur: new FormControl('')
   })
 
-
   constructor(
     public dialog: MatDialog,
     private lentilleService: LentilleService,
-    ) { }
+    public dialogRef: MatDialogRef<ListDiversComponent>
+  ) { }
 
   ngOnInit(): void {
     this.loadData();
   }
-
   loadData(){
     this.lentilleService.getLentille().subscribe(
       (data : any) => {
@@ -71,43 +70,8 @@ export class LentilleComponent implements OnInit {
     )
   }
 
-  openDialog(): void {
-    this.dialogRef = this.dialog.open(AddEditLentilleComponent, {
-      height: '70%',
-      width: '60%',
-      data: {
-        base: this.lentille.base,
-        code: this.lentille.code,
-        coloration: this.lentille.coloration,
-        description: this.lentille.description,
-        marque: this.lentille.marque,
-        matiere: this.lentille.matiere,
-        photochromique: this.lentille.photochromique,
-        addInf: this.lentille.addInf,
-        addSup: this.lentille.addSup,
-        axe: this.lentille.axe,
-        cylInf: this.lentille.cylInf,  
-        cylSup: this.lentille.cylSup,
-        sphInf: this.lentille.sphInf,
-        sphSup:this.lentille.sphSup,
-        dia: this.lentille.dia,
-        indice: this.lentille.indice,
-        prixAchat: this.lentille.prixAchat,
-        prixVente: this.lentille.prixVente,
-        fournisseur:this.lentille.fournisseur
-      },
-    });
-    this.dialogRef.afterClosed().subscribe(_result => {
-      this.loadData()
-    });
-  }
-
-  //fill in fields from client information
-  onEdite(row: any) {
-    this.dialogRef.componentInstance.onEdit(row);
-  }
-  addLentille(){
-    this.dialogRef.componentInstance.clickAddLentille();
+  onCloseLentille(row: any ): void {
+    this.dialogRef.close();
   }
 
   applyFilter(event: Event) {
@@ -117,17 +81,5 @@ export class LentilleComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
-  //remove verre
- deleteLentille(id: any) {
-  if (confirm("êtes-vous sur de supprimer ce lentille ?")) {
-    this.lentilleService.DeleteLentille(id)
-     .subscribe(_res => {
-        alert("Lentillr supprimé ");
-        this.loadData();
-      }
-     )
-  }
-}
 
 }
