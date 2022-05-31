@@ -17,12 +17,12 @@ export class NewVisitComponent implements OnInit {
   client: Client = new Client();
   newVisite: Visite = new Visite();
 
-   dateVisNow !:Date;
-   @Input() date ="";
-   heureVisNow !:Date;
-   hours ="";
-   //dateVisNow =0;
-   idClient="";
+  dateVisNow !: Date;
+  @Input() date = "";
+  heureVisNow !: Date;
+  hours = "";
+  //dateVisNow =0;
+  idClient = "";
 
   formValue = new FormGroup({
     refVisite: new FormControl(''),
@@ -35,17 +35,19 @@ export class NewVisitComponent implements OnInit {
     private serviceVisite: VisiteServiceService,
     public dialogRef: MatDialogRef<NewVisitComponent>) { }
   ngOnInit(): void {
-    
+
 
     this.dateVisNow = new Date();
-    this.date = this.dateVisNow.getFullYear()+'-'+(this.dateVisNow.getMonth()+1)+'-'+this.dateVisNow.getDate();
+    this.date = this.dateVisNow.getFullYear() + '-' + (this.dateVisNow.getMonth() + 1) + '-' + this.dateVisNow.getDate();
     console.log(this.date);
 
     this.heureVisNow = new Date();
     this.hours = this.heureVisNow.getHours() + ":" + this.heureVisNow.getMinutes() + ":" + this.heureVisNow.getSeconds();
     console.log(this.hours);
 
-    this.idClient=localStorage.getItem('idClient');
+    this.idClient = localStorage.getItem('idClient');
+    console.log(this.idClient);
+
   }
 
   //open modal de button nouvelle visite
@@ -54,6 +56,7 @@ export class NewVisitComponent implements OnInit {
       height: '75%',
       width: '30%',
       data: {
+        id: this.idClient,
         refVisite: this.visite.refVisite,
         date: this.visite.date,
         heure: this.visite.heure,
@@ -61,7 +64,7 @@ export class NewVisitComponent implements OnInit {
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {
-      this.serviceVisite.getVisite();
+      this.serviceVisite.getAllVisites();
     });
   }
 
@@ -76,7 +79,7 @@ export class NewVisitComponent implements OnInit {
       refVisite: this.formValue.value.refVisite,
       date: this.formValue.value.date,
       heure: this.formValue.value.heure,
-      montantReçuParVisite:this.formValue.value.montantReçuParVisite
+      montantReçuParVisite: this.formValue.value.montantReçuParVisite
     }
 
     this.serviceVisite.postVisite(visit)
@@ -86,11 +89,12 @@ export class NewVisitComponent implements OnInit {
         let ref = document.getElementById('cancel2')
         ref?.click();
         this.formValue.reset();
-        this.serviceVisite.getVisite();
+        this.serviceVisite.getAllVisites();
       },
         err => { alert("Quelque chose s'est mal passé") }
       )
 
   }
+
 
 }

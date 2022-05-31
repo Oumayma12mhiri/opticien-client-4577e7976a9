@@ -61,7 +61,7 @@ export class ClientFileComponent implements OnInit {
   getVisiteNonArchive() {
     this.serviceVisite.getVisitNonArchive().subscribe(
       data => {
-        
+
         this.listVisite = data;
         this.dataSource = new MatTableDataSource(this.listVisite)
         this.dataSource.paginator = this.paginator;
@@ -76,9 +76,9 @@ export class ClientFileComponent implements OnInit {
     console.log(id);
     let v = new Visite();
     v.isDeleted = true;
-    this.serviceVisite.UpdateVisiteArchive(v, id).subscribe(val=>console.log(val));
+    this.serviceVisite.UpdateVisiteArchive(v, id).subscribe(val => console.log(val));
     //this.serviceVisite.UpdateVisiteArchive(v, id).subscribe(res => {
-      //alert("Visite archivée");
+    //alert("Visite archivée");
     //})
 
 
@@ -87,9 +87,10 @@ export class ClientFileComponent implements OnInit {
   //afficher les visites pour chaque client
   getVisiteByClient(id) {
     console.log();
-    this.serviceVisite.getVisitesByClient(id).subscribe(
+    this.serviceVisite.getVisitesOfClient(id).subscribe(
       data => {
-        localStorage.setItem('idClient',id);
+        console.log(id)
+        localStorage.setItem('idClient', id);
         this.listVisite = data;
         this.dataSource = new MatTableDataSource(this.listVisite)
         this.dataSource.paginator = this.paginator;
@@ -99,7 +100,7 @@ export class ClientFileComponent implements OnInit {
 
   }
 
-  
+
 
 
 
@@ -149,7 +150,7 @@ export class ClientFileComponent implements OnInit {
   //afficher tous les visites 
   getAllVisites() {
 
-    this.serviceVisite.getVisite().subscribe(
+    this.serviceVisite.getAllVisites().subscribe(
       data => {
 
         this.listVisite = data;
@@ -166,6 +167,7 @@ export class ClientFileComponent implements OnInit {
     this.visite.id = row.id;
 
     this.formValue.patchValue({
+      id: row.id,
       nomPrenom: row.nomPrenom,
       dateNaissance: row.dateNaissance,
       adresse: row.adresse,

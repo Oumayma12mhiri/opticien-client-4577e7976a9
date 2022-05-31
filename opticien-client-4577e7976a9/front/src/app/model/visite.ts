@@ -6,5 +6,5 @@ export class Visite {
     public heure!: Date;
     public montantReçuParVisite!: number;
     public isDeleted!: boolean;
-    
+
 }

@@ -28,23 +28,24 @@ export class VisiteServiceService {
     return this.http.post<Visite>(environment.API_URL + "visites/addVisite", visite, { headers: this.getHeaders() });
   }
 
-  public getVisite(): Observable<Visite[]> {
-    return this.http.get<Visite[]>(environment.API_URL + "visites/getAll", { headers: this.getHeaders() });
+  public getAllVisites(): Observable<Visite[]> {
+    return this.http.get<Visite[]>(environment.API_URL + "visiteclient", { headers: this.getHeaders() });
   }
 
-  public getVisitesByClient(id:number): Observable<Visite[]> {
-  return this.http.get<Visite[]>("http://localhost:9090/visites/getByClientId/"+id ,{headers :this.getHeaders()});
+  public getVisitesOfClient(id: number): Observable<Visite[]> {
+    return this.http.get<Visite[]>(environment.API_URL + "find-by-client/ " + id, { headers: this.getHeaders() });
   }
 
   public getVisitNonArchive(): Observable<Visite[]> {
-    return this.http.get<Visite[]>("http://localhost:9090/visites/getVisitNonArchive", { headers: this.getHeaders() });
+    return this.http.get<Visite[]>("http://localhost:9090/api/visiteclient", { headers: this.getHeaders() });
   }
 
   public UpdateVisite(visite: Visite, id: number) {
     return this.http.put<any>(environment.API_URL + "visites/editVisite/" + id, visite, { headers: this.getHeaders() })
   }
 
-  public UpdateVisiteArchive(visite: Visite, id: number) {console.log(id);
+  public UpdateVisiteArchive(visite: Visite, id: number) {
+    console.log(id);
     return this.http.put<any>(environment.API_URL + "visites/editVisiteNonArchive/" + id, visite, { headers: this.getHeaders() })
   }
 
