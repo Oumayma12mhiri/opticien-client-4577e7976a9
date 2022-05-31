@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output,EventEmitter, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -13,6 +13,8 @@ import { VerreService } from 'src/app/service/verre.service';
   styleUrls: ['./list-verres.component.scss']
 })
 export class ListVerresComponent implements OnInit {
+  @Input() selectedVerre:any;
+  @Output() newItemEvent = new EventEmitter<any>();
 
   dataSource!: MatTableDataSource<Verre>;
   verre: Verre = new Verre();
@@ -24,7 +26,7 @@ export class ListVerresComponent implements OnInit {
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
-
+  selected;
 
   formValue = new FormGroup({
     base: new FormControl(''),
@@ -64,9 +66,16 @@ export class ListVerresComponent implements OnInit {
     }
   }
 
-  onCloseVerre(row: any ): void {
-    this.dialogRef.close();
+  VerreChangedHandler(selectedVerre: Verre) {
+    this.selected = selectedVerre;
   }
+
+  onCloseVerre(row: any ): void {
+    console.log("selected row 1",row)
+    this.selectedVerre=row;
+    this.newItemEvent.emit(row);
+  }
+
 
   loadData(){
     this.verreService.getVerre().subscribe(

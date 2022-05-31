@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output,EventEmitter, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -14,11 +14,14 @@ import { ListDiversComponent } from '../list-divers/list-divers.component';
   styleUrls: ['./list-lentilles.component.scss']
 })
 export class ListLentillesComponent implements OnInit {
+  @Input() selectedLentille:any;
+  @Output() newItemEvent = new EventEmitter<any>();
 
   dataSource!: MatTableDataSource<Lentille>;
   lentille: Lentille = new Lentille();
   LentilleData !: any;
   listLentille: any;
+  selected;
   displayedColumns: string[] = ['code', 'description', 'marque','matiere' ,'prixAchat', 'prixVente','fournisseur','actions']
 
   @ViewChild(MatPaginator)
@@ -69,9 +72,14 @@ export class ListLentillesComponent implements OnInit {
       }}
     )
   }
+  lentilleChangedHandler(selectedLentille: Lentille) {
+    this.selected = selectedLentille;
+  }
 
   onCloseLentille(row: any ): void {
-    this.dialogRef.close();
+    console.log("selected row 1",row)
+    this.selectedLentille=row;
+    this.newItemEvent.emit(row);
   }
 
   applyFilter(event: Event) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild,EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -13,6 +13,8 @@ import { LunetteSolaireService } from 'src/app/service/lunette-solaire.service';
   styleUrls: ['./list-lunette-solaire.component.scss']
 })
 export class ListLunetteSolaireComponent implements OnInit {
+  @Input() selectedLunette:any;
+  @Output() newItemEvent = new EventEmitter<any>();
 
   formValue = new FormGroup({
     ref: new FormControl(''),
@@ -32,7 +34,7 @@ export class ListLunetteSolaireComponent implements OnInit {
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
-
+  selected;
   
 
   constructor(
@@ -58,8 +60,14 @@ export class ListLunetteSolaireComponent implements OnInit {
     )
   }
 
+  LunetteChangedHandler(selectedLunette: LunetteSolaire) {
+    this.selected = selectedLunette;
+  }
+
   onCloseLunette(row: any ): void {
-    this.dialogRef.close();
+    console.log("selected row 1",row)
+    this.selectedLunette=row;
+    this.newItemEvent.emit(row);
   }
 
   applyFilter(event: Event) {

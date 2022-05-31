@@ -1,12 +1,17 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddAndEditClientComponent } from '../dashboard/add-and-edit-client/add-and-edit-client.component';
 import { ClientFileComponent } from '../dashboard/client-file/client-file.component';
 import { ClientComponent } from '../dashboard/client.component';
 import { Client } from '../model/client';
+import { Divers } from '../model/divers';
+import { Lentille } from '../model/lentille';
+import { LunetteSolaire } from '../model/lunetteSolaire';
+import { Monture } from '../model/monture';
 import { Vente } from '../model/vente';
+import { Verre } from '../model/verre';
 import { DiversService } from '../service/divers.service';
 import { ListClientsComponent } from './list-clients/list-clients.component';
 import { ListDiversComponent } from './list-divers/list-divers.component';
@@ -22,13 +27,29 @@ import { ListVerresComponent } from './list-verres/list-verres.component';
 })
 export class VenteComponent implements OnInit {
   @ViewChild(ListClientsComponent) child: any;
+
   dataSource!: MatTableDataSource<Vente>;
   vente: Vente = new Vente();
   getClient: Client=new Client();
+  getLunette: LunetteSolaire=new LunetteSolaire();
+  getLentille: Lentille=new Lentille();
+  getVerre: Verre=new Verre();
+  getDivers: Divers=new Divers();
+  getMonture: Monture=new Monture();
+
   venteData !: any;
   listVente: any;
   date:Date;
   time:Date;
+  openClientDialogListShow=false;
+  openLentilleDialogListShow=false;
+  openDiversDialogListShow=false;
+  openMontureDialogListShow=false;
+  openVerreDialogListShow=false;
+  openSolaireDialogListShow=false;
+  selected;
+  selectedClient:Client;
+  selectedLentille:Lentille;
   displayedColumns: string[] = ['id', 'ref', 'designation', 'PUVHT', 'qte', 'remise', 'TVA', 'MT TTC', 'oeil',
     'vision', 'promis', 'peniche', 'SPH', 'CYL', 'AXE', 'ADD', 'RAY', 'DIA',
     'colProvenance', 'DLC'];
@@ -46,8 +67,7 @@ export class VenteComponent implements OnInit {
     remiseVente: new FormControl('')
   
   })
-selected;
-selectedClient:Client;
+
   constructor(
     public client:ClientComponent,
     public dialog: MatDialog,
@@ -78,10 +98,40 @@ test(){
     this.client.openDialog();
   }
 
-  countChangedHandler(event:any) {
- //   this.selected = event.nomPrenom;
-    console.log("selected , event  ", event);
-    console.log("child ",this.child);
+  clientChangedHandler(event:any) {
+    this.openClientDialogListShow=false;
+    this.getClient = event;
+  }
+
+  lentilleChangedHandler(event:any) {
+    console.log("lentille ",event);
+    this.openLentilleDialogListShow=false;
+    this.getLentille = event;
+  }
+
+  LunetteChangedHandler(event:any) {
+    console.log("Lunette ",event);
+    this.openSolaireDialogListShow=false;
+    this.getLunette = event;
+  }
+  
+
+  VerreChangedHandler(event:any) {
+    console.log("Verre ",event);
+    this.openVerreDialogListShow=false;
+    this.getVerre = event;
+  }
+  
+  MontureChangedHandler(event:any) {
+    console.log("Monture ",event);
+    this.openMontureDialogListShow=false;
+    this.getMonture = event;
+  }
+  
+  DiversChangedHandler(event:any) {
+    console.log("Divers ",event);
+    this.openDiversDialogListShow=false;
+    this.getDivers = event;
   }
   
   addClient(){
@@ -95,11 +145,58 @@ test(){
     this.clientFile.openDialogFile();
   }
 
-  openDialogList(): void {
-    this.list.openDialogList();
+  openClientDialogList(): void {
+   this.openClientDialogListShow=true;
+   this.openLentilleDialogListShow=false;
+   this.openDiversDialogListShow=false;
+   this.openMontureDialogListShow=false;
+   this.openVerreDialogListShow=false;
+   this.openSolaireDialogListShow=false;
+  }
+  openLunetteDialogList(): void {
+    this.openSolaireDialogListShow=true;
+    this.openClientDialogListShow=false;
+    this.openLentilleDialogListShow=false;
+    this.openDiversDialogListShow=false;
+    this.openMontureDialogListShow=false;
+    this.openVerreDialogListShow=false;
+  }
+  openLentilleDialogList(): void {
+   this.openLentilleDialogListShow=true;
+   this.openClientDialogListShow=false;
+   this.openDiversDialogListShow=false;
+   this.openMontureDialogListShow=false;
+   this.openVerreDialogListShow=false;
+   this.openSolaireDialogListShow=false;
+  }
+  openVerreDialogList(): void {
+    this.openVerreDialogListShow=true;
+    this.openClientDialogListShow=false;
+   this.openLentilleDialogListShow=false;
+   this.openDiversDialogListShow=false;
+   this.openMontureDialogListShow=false;
+   this.openSolaireDialogListShow=false;
+  }
+  openMontureDialogList(): void {
+    this.openMontureDialogListShow=true;
+    this.openClientDialogListShow=false;
+    this.openLentilleDialogListShow=false;
+    this.openDiversDialogListShow=false;
+    this.openSolaireDialogListShow=false;
+    this.openVerreDialogListShow=false;
   }
 
-  openDialogListLunette(): void {
+  openDiversDialogList(): void {
+    this.openDiversDialogListShow=true;
+    this.openClientDialogListShow=false;
+    this.openLentilleDialogListShow=false;
+    this.openMontureDialogListShow=false;
+    this.openSolaireDialogListShow=false;
+    this.openVerreDialogListShow=false;
+  }
+
+
+/*  openDialogListLunette(): void {
     this.dialogRef1 = this.dialog.open(ListLunetteSolaireComponent, {
       height: '70%',
       width: '90%',
@@ -162,6 +259,6 @@ test(){
     this.dialogRef.afterClosed().subscribe(_result => {
       this.listDivers.loadData();
     });
-  }
+  }*/
 
 }

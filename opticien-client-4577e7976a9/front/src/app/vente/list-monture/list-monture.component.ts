@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild,EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -13,6 +13,8 @@ import { MontureService } from 'src/app/service/monture.service';
   styleUrls: ['./list-monture.component.scss']
 })
 export class ListMontureComponent implements OnInit {
+  @Input() selectedMonture:any;
+  @Output() newItemEvent = new EventEmitter<any>();
 
   dataSource!: MatTableDataSource<Monture>;
   monture: Monture = new Monture();
@@ -24,7 +26,7 @@ export class ListMontureComponent implements OnInit {
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
-
+  selected;
 
   formValue = new FormGroup({
     reference: new FormControl(''),
@@ -59,10 +61,15 @@ export class ListMontureComponent implements OnInit {
     )
   }
 
-  onCloseMonture(row: any ): void {
-    this.dialogRef.close();
+  MontureChangedHandler(selectedMonture: Monture) {
+    this.selected = selectedMonture;
   }
 
+  onCloseMonture(row: any ): void {
+    console.log("selected row 1",row)
+    this.selectedMonture=row;
+    this.newItemEvent.emit(row);
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
