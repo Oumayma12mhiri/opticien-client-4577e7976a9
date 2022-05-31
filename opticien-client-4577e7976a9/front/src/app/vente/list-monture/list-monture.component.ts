@@ -66,7 +66,6 @@ export class ListMontureComponent implements OnInit {
   }
 
   onCloseMonture(row: any ): void {
-    console.log("selected row 1",row)
     this.selectedMonture=row;
     this.newItemEvent.emit(row);
   }

@@ -71,7 +71,6 @@ export class ListVerresComponent implements OnInit {
   }
 
   onCloseVerre(row: any ): void {
-    console.log("selected row 1",row)
     this.selectedVerre=row;
     this.newItemEvent.emit(row);
   }

@@ -21,12 +21,12 @@ export class AddEditDiversComponent implements OnInit {
   i=0;
 
   formValue = new FormGroup({
-    name: new FormControl(''),
-    reference: new FormControl(''),
-    prixAchat: new FormControl(''),
-    prixVente: new FormControl(''),
-    quantite: new FormControl(''),
-    fournisseur: new FormControl(''),
+    name: new FormControl('',Validators.required),
+    reference: new FormControl('',Validators.required),
+    prixAchat: new FormControl('',Validators.required),
+    prixVente: new FormControl('',Validators.required),
+    quantite: new FormControl('',Validators.required),
+    fournisseur: new FormControl('',Validators.required),
 
   })
   constructor(
@@ -61,8 +61,14 @@ export class AddEditDiversComponent implements OnInit {
     this.showUpdate = false;
   }
 
+  get f() {
+    return this.formValue.controls;
+  }
 
   postDiversDetails() {
+    if (this.formValue.invalid) {
+      return;
+    }
     let divers = {
       name: this.formValue.value.name,
       reference: this.formValue.value.reference,

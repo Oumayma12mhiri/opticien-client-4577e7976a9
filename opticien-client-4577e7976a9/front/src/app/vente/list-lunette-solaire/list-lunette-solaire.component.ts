@@ -65,7 +65,6 @@ export class ListLunetteSolaireComponent implements OnInit {
   }
 
   onCloseLunette(row: any ): void {
-    console.log("selected row 1",row)
     this.selectedLunette=row;
     this.newItemEvent.emit(row);
   }

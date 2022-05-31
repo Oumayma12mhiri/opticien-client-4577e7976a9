@@ -119,10 +119,8 @@ export class ListClientsComponent implements OnInit {
     this.selected = selectedClient.nomPrenom;
   }
   onClose(row: any ): void {
-    console.log("ici",row)
     this.client=row;
     this.selectedClient=row;
-    console.log("selectedClient ",this.selectedClient)
     this.newItemEvent.emit(row);
    // this.countChangedHandler(this.selectedClient);
     this.dialogRef.close();

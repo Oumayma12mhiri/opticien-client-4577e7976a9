@@ -20,6 +20,57 @@ import { ListLunetteSolaireComponent } from './list-lunette-solaire/list-lunette
 import { ListMontureComponent } from './list-monture/list-monture.component';
 import { ListVerresComponent } from './list-verres/list-verres.component';
 
+const USER_DATA = [
+  
+];
+
+const COLUMNS_SCHEMA = [
+  {
+    key: 'isSelected',
+    type: 'isSelected',
+    label: '',
+  },
+  {
+    key: 'ref',
+    type: 'string',
+    label: 'Ref',
+  },
+  {
+    key: 'designation',
+    type: 'string',
+    label: 'Désignation',
+  },
+  {
+    key: 'puvht',
+    type: 'text',
+    label: 'PUVHT',
+  },
+  {
+    key: 'qte',
+    type: 'number',
+    label: 'Qte',
+  },
+  {
+    key: 'remise',
+    type: 'text',
+    label: 'Remise %',
+  },
+  {
+    key: 'tva',
+    type: 'text',
+    label: 'TVA',
+  },
+  {
+    key: 'mttc',
+    type: 'text',
+    label: 'MT TTC',
+  },
+  {
+    key: 'isEdit',
+    type: 'isEdit',
+    label: '',
+  },
+];
 @Component({
   selector: 'app-vente',
   templateUrl: './vente.component.html',
@@ -28,7 +79,6 @@ import { ListVerresComponent } from './list-verres/list-verres.component';
 export class VenteComponent implements OnInit {
   @ViewChild(ListClientsComponent) child: any;
 
-  dataSource!: MatTableDataSource<Vente>;
   vente: Vente = new Vente();
   getClient: Client=new Client();
   getLunette: LunetteSolaire=new LunetteSolaire();
@@ -50,9 +100,13 @@ export class VenteComponent implements OnInit {
   selected;
   selectedClient:Client;
   selectedLentille:Lentille;
-  displayedColumns: string[] = ['id', 'ref', 'designation', 'PUVHT', 'qte', 'remise', 'TVA', 'MT TTC', 'oeil',
-    'vision', 'promis', 'peniche', 'SPH', 'CYL', 'AXE', 'ADD', 'RAY', 'DIA',
-    'colProvenance', 'DLC'];
+ 
+  dataSource: MatTableDataSource<Vente>;
+  displayedColumns1: string[] = COLUMNS_SCHEMA.map((col) => col.key);
+  dataSource1 = USER_DATA;
+  columnsSchema: any = COLUMNS_SCHEMA;
+
+  displayedColumns: string[] = ['ref', 'designation', 'PUVHT', 'qte', 'remise', 'TVA', 'MT TTC', 'action'];
 
   formValue = new FormGroup({
     id: new FormControl(''),
@@ -65,7 +119,6 @@ export class VenteComponent implements OnInit {
     base: new FormControl(''),
     totaleVente: new FormControl(''),
     remiseVente: new FormControl('')
-  
   })
 
   constructor(
@@ -83,13 +136,24 @@ export class VenteComponent implements OnInit {
     public listDivers : ListDiversComponent,
   ) { }
 
-test(){
-  this.getClient=this.child.listClient[0];
-  console.log("click ",this.child)
-  console.log("click ",this.child.listClient[0].nomPrenom)
-  console.log("selected client ",this.selectedClient)
-}
+  addRow() {
+    const newRow = {
+      id: Date.now(),
+      ref: '',
+      designation: '',
+      puvht: '',
+      qte: 0,
+      remise:'',
+      tva: '',
+      mttc:'',
+      isEdit: true
+    };
+    this.dataSource1 = [newRow, ...this.dataSource1];
+  }
 
+  removeRow(id) {
+    this.dataSource1 = this.dataSource1.filter((u) => u.id !== id);
+  }
   ngOnInit(): void {
     this.date=new Date();
   }
@@ -104,32 +168,86 @@ test(){
   }
 
   lentilleChangedHandler(event:any) {
-    console.log("lentille ",event);
+    const newRow = {
+      id: event.id,
+      ref: event.code,
+      designation: event.description,
+      puvht: '',
+      qte:0,
+      remise:'',
+      tva: '',
+      mttc:''
+    };
+    console.log("lentille newRow ",newRow);
+    this.dataSource1 = [newRow, ...this.dataSource1];
     this.openLentilleDialogListShow=false;
     this.getLentille = event;
   }
 
   LunetteChangedHandler(event:any) {
-    console.log("Lunette ",event);
+    const newRow = {
+      id: event.id,
+      ref: event.code,
+      designation: event.description,
+      puvht: '',
+      qte:0,
+      remise:'',
+      tva: '',
+      mttc:''
+    };
+    console.log("lunette newRow ",newRow);
+    this.dataSource1 = [newRow, ...this.dataSource1];
     this.openSolaireDialogListShow=false;
     this.getLunette = event;
   }
-  
 
   VerreChangedHandler(event:any) {
-    console.log("Verre ",event);
+    const newRow = {
+      id: event.id,
+      ref: event.code,
+      designation: event.description,
+      puvht: '',
+      qte:0,
+      remise:'',
+      tva: '',
+      mttc:''
+    };
+    console.log("verre newRow ",newRow);
+    this.dataSource1 = [newRow, ...this.dataSource1];
     this.openVerreDialogListShow=false;
     this.getVerre = event;
   }
   
   MontureChangedHandler(event:any) {
-    console.log("Monture ",event);
+    const newRow = {
+      id: event.id,
+      ref: event.code,
+      designation: event.description,
+      puvht: '',
+      qte:0,
+      remise:'',
+      tva: '',
+      mttc:''
+    };
+    console.log("monture newRow ",newRow);
+    this.dataSource1 = [newRow, ...this.dataSource1];
     this.openMontureDialogListShow=false;
     this.getMonture = event;
   }
   
   DiversChangedHandler(event:any) {
-    console.log("Divers ",event);
+    const newRow = {
+      id: event.id,
+      ref: event.code,
+      designation: event.description,
+      puvht: '',
+      qte:0,
+      remise:'',
+      tva: '',
+      mttc:''
+    };
+    console.log("divers newRow ",newRow);
+    this.dataSource1 = [newRow, ...this.dataSource1];
     this.openDiversDialogListShow=false;
     this.getDivers = event;
   }
@@ -138,7 +256,6 @@ test(){
     this.add.clickAddClient();
   }
   listClient(){
-    console.log("ici")
     this.list.getAllClient();
   }
   openDialogFile(): void {
@@ -194,71 +311,5 @@ test(){
     this.openSolaireDialogListShow=false;
     this.openVerreDialogListShow=false;
   }
-
-
-/*  openDialogListLunette(): void {
-    this.dialogRef1 = this.dialog.open(ListLunetteSolaireComponent, {
-      height: '70%',
-      width: '90%',
-      data: {
-        
-      },
-    });
-    this.dialogRef.afterClosed().subscribe(_result => {
-      this.listDivers.loadData();
-    });
-  }
-
-  openDialogListDivers(): void {
-    this.dialogRef = this.dialog.open(ListDiversComponent, {
-      height: '70%',
-      width: '90%',
-      data: {
-        
-      },
-    });
-    this.dialogRef.afterClosed().subscribe(_result => {
-      this.listDivers.loadData();
-    });
-  }
-
-  openDialogListMonture(): void {
-    this.dialogRef2 = this.dialog.open(ListMontureComponent, {
-      height: '70%',
-      width: '90%',
-      data: {
-        
-      },
-    });
-    this.dialogRef.afterClosed().subscribe(_result => {
-      this.listDivers.loadData();
-    });
-  }
-
-  openDialogListLentille(): void {
-    this.dialogRef3 = this.dialog.open(ListLentillesComponent, {
-      height: '70%',
-      width: '90%',
-      data: {
-        
-      },
-    });
-    this.dialogRef.afterClosed().subscribe(_result => {
-      this.listDivers.loadData();
-    });
-  }
-
-  openDialogListVerre(): void {
-    this.dialogRef4 = this.dialog.open(ListVerresComponent, {
-      height: '70%',
-      width: '90%',
-      data: {
-        
-      },
-    });
-    this.dialogRef.afterClosed().subscribe(_result => {
-      this.listDivers.loadData();
-    });
-  }*/
 
 }

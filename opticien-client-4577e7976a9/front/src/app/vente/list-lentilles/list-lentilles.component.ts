@@ -77,7 +77,6 @@ export class ListLentillesComponent implements OnInit {
   }
 
   onCloseLentille(row: any ): void {
-    console.log("selected row 1",row)
     this.selectedLentille=row;
     this.newItemEvent.emit(row);
   }

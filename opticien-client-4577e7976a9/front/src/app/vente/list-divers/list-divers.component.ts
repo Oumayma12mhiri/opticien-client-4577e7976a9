@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild,EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -13,6 +13,8 @@ import { DiversService } from 'src/app/service/divers.service';
   styleUrls: ['./list-divers.component.scss']
 })
 export class ListDiversComponent implements OnInit {
+  @Input() selectedDivers:any;
+  @Output() newItemEvent = new EventEmitter<any>();
 
   dataSource!: MatTableDataSource<Divers>;
   divers: Divers = new Divers();
@@ -24,7 +26,7 @@ export class ListDiversComponent implements OnInit {
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
-
+  selected;
 
   formValue = new FormGroup({
     name: new FormControl(''),
@@ -59,10 +61,14 @@ export class ListDiversComponent implements OnInit {
     )
   }
 
-  onCloseDivers(row: any ): void {
-    this.dialogRef.close();
+  DiversChangedHandler(selectedDivers: Divers) {
+    this.selected = selectedDivers;
   }
 
+  onCloseDivers(row: any ): void {
+    this.selectedDivers=row;
+    this.newItemEvent.emit(row);
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
