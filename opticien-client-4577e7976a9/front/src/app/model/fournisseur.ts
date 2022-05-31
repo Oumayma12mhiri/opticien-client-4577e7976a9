@@ -1,3 +1,5 @@
+import { categorie } from "./categorie";
+
 export class Fournisseur {
     public id !: number;
     public name!: String;
@@ -5,7 +7,6 @@ export class Fournisseur {
     public adresse!: String;
     public email!: String;
     public numTel!: String;
-
-    // private vendeur!: String;
+    public categorieDto!: categorie ;
 
 }

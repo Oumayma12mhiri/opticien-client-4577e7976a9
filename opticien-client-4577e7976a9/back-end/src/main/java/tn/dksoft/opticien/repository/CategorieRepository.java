@@ -13,6 +13,8 @@ public interface CategorieRepository extends JpaRepository<Categorie, Long> {
 	Categorie findTopByOrderByIdDesc();
 
 	Categorie findByIdAndIsDeletedIsFalse(Long id);
+	
+	Categorie findByNameAndIsDeletedIsFalse(String name);
 
 	List<Categorie> findByIsDeletedIsFalse();
 	

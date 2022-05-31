@@ -11,39 +11,45 @@
 
         <!-- Réference Column -->
         <ng-container matColumnDef="nomFRS">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:5%;">Nom du fournisseur</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:6%;">Nom du fournisseur</th>
           <td mat-cell *matCellDef="let row" style="padding-left:1%;">{{row.name}} </td>
         </ng-container>
 
         <!-- NomPrénom Column -->
         <ng-container matColumnDef="matriculeFiscale">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:4%;">Matricule fiscale</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;">Matricule fiscale</th>
           <td mat-cell *matCellDef="let row" style="padding-left:1%;">{{row.matriculeFiscale}} </td>
         </ng-container>
 
         <!-- chiffreAffaire Column -->
         <ng-container matColumnDef="adresse">
           <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:3%;">Adresse</th>
-          <td mat-cell *matCellDef="let row" style="padding-left:2%;"> {{row.adresse}}</td>
+          <td mat-cell *matCellDef="let row" style="padding-left:3%;"> {{row.adresse}}</td>
         </ng-container>
 
         <!-- solde Column -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:11%;"> Email </th>
-          <td mat-cell *matCellDef="let row" style="padding-left:2%;"> {{row.email}}</td>
+          <td mat-cell *matCellDef="let row" style="padding-left:5%;"> {{row.email}}</td>
+        </ng-container>
+
+        <!-- solde Column -->
+        <ng-container matColumnDef="categorie">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:3%;"> Categorie </th>
+          <td mat-cell *matCellDef="let row" style="padding-left:6%;"> {{row.categorieDto.name}}</td>
         </ng-container>
 
         <!-- nbreVisite Column -->
         <ng-container matColumnDef="numTel">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:5%;"> Numéro de télèphone </th>
-          <td mat-cell *matCellDef="let row" style="padding-left:2%;"> {{row.numTel}}</td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:9%;"> Numéro de télèphone </th>
+          <td mat-cell *matCellDef="let row" style="padding-left:6%;"> {{row.numTel}}</td>
         </ng-container>
 
         <!-- action Column -->
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:6%;"> Actions </th>
 
-          <td mat-cell *matCellDef="let row" style="padding-left:5%;">
+          <td mat-cell *matCellDef="let row" style="padding-left:6%;">
             <!-- Edit button -->
             <button title="Modifier" class="modif" (click)="openDialog();onEdite(row)">
               <mat-icon style="color: rgba(11, 100, 3, 0.842);">edit </mat-icon>

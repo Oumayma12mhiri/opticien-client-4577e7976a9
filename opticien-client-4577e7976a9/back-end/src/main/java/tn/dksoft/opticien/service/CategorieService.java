@@ -82,6 +82,18 @@ public class CategorieService {
 			return null;
 		}
 	}
+	
+	public CategorieDto findByName(String name) {
+		try {
+			Categorie categorie = categorieRepository.findByNameAndIsDeletedIsFalse(name);
+			CategorieDto categorieDto = categorieMapper.fromEntityToDto(categorie);
+			log.info("Categorie gotted successfully");
+			return categorieDto;
+		} catch (Exception e) {
+			log.error("Cannot get Categorie", e);
+			return null;
+		}
+	}
 
 	public CategorieDto remove(Long id) {
 		try {

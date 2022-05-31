@@ -46,6 +46,11 @@ public class CategorieController {
 	public CategorieDto findById(@PathVariable Long id) {
 		return (categorieService.findById(id));
 	}
+	
+	@GetMapping("/{name}")
+	public CategorieDto findByName(@PathVariable String name) {
+		return (categorieService.findByName(name));
+	}
 
 	@PutMapping
 	public CategorieDto edit(@RequestBody CategorieDto categorieDto) {

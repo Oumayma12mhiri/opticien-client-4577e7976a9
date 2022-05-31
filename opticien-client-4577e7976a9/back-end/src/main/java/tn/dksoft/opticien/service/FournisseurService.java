@@ -11,8 +11,10 @@ import tn.dksoft.opticien.dto.FournisseurDto;
 import tn.dksoft.opticien.dto.search.PagedResponse;
 import tn.dksoft.opticien.dto.search.SearchRequest;
 import tn.dksoft.opticien.dto.search.SearchRequestUtil;
+import tn.dksoft.opticien.entity.Categorie;
 import tn.dksoft.opticien.entity.Fournisseur;
 import tn.dksoft.opticien.mapper.FournisseurMapper;
+import tn.dksoft.opticien.repository.CategorieRepository;
 import tn.dksoft.opticien.repository.FournisseurRepository;
 
 @Service
@@ -23,8 +25,11 @@ public class FournisseurService {
 	public final FournisseurRepository fournisseurRepository;
 
 	public final FournisseurMapper fournisseurMapper;
-
+	
+	public final CategorieRepository categorieRepository;
+	
 	public FournisseurDto add(FournisseurDto fournisseurDto) {
+		log.info("categorie with id= {}",fournisseurDto.getCategorie());
 		try {
 			Long id = 0L;
 			if (fournisseurRepository.findTopByOrderByIdDesc() == null) {
@@ -36,6 +41,9 @@ public class FournisseurService {
 			Fournisseur fournisseur = fournisseurMapper.fromDtoToEntity(fournisseurDto);
 
 			fournisseur.setId(id);
+			
+			Categorie categorie = categorieRepository.findByIdAndIsDeletedIsFalse(fournisseurDto.getCategorie().getId());
+			fournisseur.setCategorie(categorie);
 
 			fournisseurRepository.saveAndFlush(fournisseur);
 

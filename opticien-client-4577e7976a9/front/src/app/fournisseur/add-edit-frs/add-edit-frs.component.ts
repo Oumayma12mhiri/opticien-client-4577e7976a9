@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Fournisseur } from 'src/app/model/fournisseur';
+import { CategorieService } from 'src/app/service/categorie.service';
 import { FournisseurService } from 'src/app/service/frs-service';
 
 @Component({
@@ -16,19 +17,25 @@ export class AddEditFRSComponent implements OnInit {
     email: new FormControl(''),
     adresse: new FormControl(''),
     numTel: new FormControl(''),
-    categorieDto: new FormControl(''),
+    categorie: new FormControl(''),
   })
   showAdd!: boolean;
   showUpdate!: boolean;
+  allCategorie :any;
+
+  selected:[];
+  i=0;
 
   fournisseur: Fournisseur = new Fournisseur();
 
   constructor(
     public dialogRef: MatDialogRef<AddEditFRSComponent>,
-    public frsService: FournisseurService
+    public frsService: FournisseurService,
+    public CategorieService: CategorieService,
   ) { }
 
   ngOnInit(): void {
+    this.getAllCategorie();
   }
 
   onNoClick(): void {
@@ -40,16 +47,29 @@ export class AddEditFRSComponent implements OnInit {
     this.showAdd = true;
     this.showUpdate = false;
   }
+
+  getAllCategorie(){
+    this.CategorieService.getCategorie().subscribe(res => {
+      this.allCategorie = res
+      if(this.allCategorie[this.i].name != this.fournisseur.categorieDto.name){
+       this.i=this.i+1;
+     }
+     this.selected= this.allCategorie[this.i];
+     },
+       err => { console.log(err) }
+     )
+   }
+
   //save Fournisseur
   postFournisseurDetails() {
-
+console.log(this.formValue.value.categorie)
     let fournisseur = {
       name: this.formValue.value.name,
       matriculeFiscale: this.formValue.value.matriculeFiscale,
       email: this.formValue.value.email,
       adresse: this.formValue.value.adresse,
       numTel: this.formValue.value.numTel,
-      categorieDto: this.formValue.value.categorieDto,
+      categorieID: this.formValue.value.categorie,
 
     }
 
@@ -77,7 +97,7 @@ export class AddEditFRSComponent implements OnInit {
       email: row.email,
       adresse: row.adresse,
       numTel: row.numTel,
-      categorieDto: row.categorieDto,
+      categorie: row.categorie,
 
     })
   }
@@ -89,6 +109,7 @@ export class AddEditFRSComponent implements OnInit {
     this.fournisseur.email = this.formValue.value.email;
     this.fournisseur.adresse = this.formValue.value.adresse;
     this.fournisseur.numTel = this.formValue.value.numTel;
+   
 
 
 

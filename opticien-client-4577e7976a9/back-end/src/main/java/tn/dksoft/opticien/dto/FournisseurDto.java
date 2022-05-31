@@ -31,6 +31,7 @@ public class FournisseurDto implements Serializable {
 	
 	private String numTel ; 
 	
-	private CategorieDto categorieDto;
+	private CategorieDto categorie;
+
 
 }

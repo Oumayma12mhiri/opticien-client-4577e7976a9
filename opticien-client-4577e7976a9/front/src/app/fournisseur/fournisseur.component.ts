@@ -19,7 +19,7 @@ export class FournisseurComponent implements OnInit {
   fournisseur: Fournisseur = new Fournisseur();
   fournisseurData !: any;
   listFournisseur: any;
-  displayedColumns: string[] = ['nomFRS', 'matriculeFiscale', 'adresse', 'email', 'numTel', 'actions']
+  displayedColumns: string[] = ['nomFRS', 'matriculeFiscale', 'adresse', 'email', 'numTel', 'categorie', 'actions']
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
