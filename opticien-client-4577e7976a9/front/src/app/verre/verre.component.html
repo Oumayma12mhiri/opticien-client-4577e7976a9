@@ -1,10 +1,10 @@
 <div class="container-fluid page">
-    <div class="d-flex page__box p-3 mt-2">Verres</div>
+    <div class="d-flex page__box p-3 mt-2">Verre</div>
     <div class="page__content shadow p-3 position-relative">
         <div>
             <!-- search field -->
             <div class="input-group rounded">
-                <input type="text" placeholder="Chercher par nom et prénom" class="search" />
+                <input type="text" placeholder="Chercher Verre" class="search" (keyup)="applyFilter($event)" />
             </div>
             <!-- table -->
             <table mat-table [dataSource]="dataSource" matSort>
@@ -23,26 +23,32 @@
 
                 <!-- chiffreAffaire Column -->
                 <ng-container matColumnDef="marque">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;">marque</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;">Marque</th>
                     <td mat-cell *matCellDef="let row" style="padding-left:2%;">{{row.marque}}</td>
                 </ng-container>
 
                 <!-- solde Column -->
                 <ng-container matColumnDef="matiere">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:0%;"> matiere </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:0%;"> Matiere </th>
                     <td mat-cell *matCellDef="let row" style="padding-left:0%;">{{row.matiere}} </td>
                 </ng-container>
 
                 <!-- nbreVisite Column -->
                 <ng-container matColumnDef="prixAchat">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;">prixAchat </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;">Prix d'achat </th>
                     <td mat-cell *matCellDef="let row" style="padding-left:2%;">{{row.prixAchat}} </td>
                 </ng-container>
 
                 <!-- dateNaissance Column -->
                 <ng-container matColumnDef="prixVente">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;"> prixVente </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;"> Prix de vente </th>
                     <td mat-cell *matCellDef="let row" style="padding-left:2%;"> {{row.prixVente}}</td>
+                </ng-container>
+
+                <!-- solde Column -->
+                <ng-container matColumnDef="fournisseur">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style=" padding-left:5%; "> Fournisseur </th>
+                    <td mat-cell *matCellDef="let row " style="padding-left:5%; ">{{row.fournisseur.name}} </td>
                 </ng-container>
 
 
@@ -77,8 +83,8 @@
             <mat-paginator [pageSizeOptions]="[ 5, 10, 50]" aria-label="Select page of listVerre"></mat-paginator>
             <!-- Add Button -->
             <div class="d-flex  m-2">
-                <button type="button" class="ajouter" mat-raised-button (click)="openDialog()">
-            <mat-icon>person_add </mat-icon> Ajouter Verre
+                <button type="button" class="ajouter" mat-raised-button (click)="openDialog();addVerre()">
+            <mat-icon>visibility </mat-icon> Ajouter Verre
           </button>
             </div>
 

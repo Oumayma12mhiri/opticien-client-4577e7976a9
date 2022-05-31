@@ -36,7 +36,7 @@ public class LentilleDto implements Serializable {
 	private float indice;
 	private BigDecimal prixAchat;
 	private BigDecimal prixVente;
-	private CategorieDto categorieDto;
+	private FournisseurDto fournisseur;
 	private VenteDto venteDto ; 
 
 }

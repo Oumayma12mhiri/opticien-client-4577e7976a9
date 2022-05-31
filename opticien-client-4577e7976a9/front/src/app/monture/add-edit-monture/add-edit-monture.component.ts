@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Monture } from 'src/app/model/monture';
+import { FournisseurService } from 'src/app/service/frs-service';
 import { MontureService } from 'src/app/service/monture.service';
 
 @Component({
@@ -16,37 +17,59 @@ export class AddEditMontureComponent implements OnInit {
   showAdd!: boolean;
   showUpdate!: boolean;
 
+  allFournisseur :any;
+  selected:[];
+  i=0;
+
   formValue = new FormGroup({
     name: new FormControl(''),
     reference: new FormControl(''),
+    marque: new FormControl(''),
     prixAchat: new FormControl(''),
     prixVente: new FormControl(''),
-    quantite: new FormControl('')
+    quantite: new FormControl(''),
+    fournisseur: new FormControl(''),
   })
   constructor(public dialogRef: MatDialogRef<AddEditMontureComponent>,
     public montureService: MontureService,
+    public fournisseurService: FournisseurService,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.getAllFournisseur();
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
 
+  getAllFournisseur(){
+    this.fournisseurService.getFournisseurByCategorieName('monture').subscribe(res => {
+     this.allFournisseur = res
+     if(this.allFournisseur[this.i].name != this.monture.fournisseur.name){
+      this.i=this.i+1;
+    }
+    this.selected= this.allFournisseur[this.i];
+    },
+      err => { console.log(err) }
+    )
+  }
+
   //Save lunette Solaire
   postMontureDetails() {
+    console.log(this.formValue.value.marque);
     let monture = {
       reference: this.formValue.value.reference,
       marque: this.formValue.value.marque,
       prixAchat: this.formValue.value.prixAchat,
       prixVente: this.formValue.value.prixVente,
-      quantite: this.formValue.value.quantite
+      quantite: this.formValue.value.quantite,
+      fournisseur: this.formValue.value.fournisseur
     }
     console.log(monture);
     this.montureService.postMonture(monture)
       .subscribe(res => {
         console.log(res);
-        alert("Monture ajouté avec succès")
+        alert("Monture ajoutée avec succès")
         let ref = document.getElementById('cancel')
         ref?.click();
         this.formValue.reset();
@@ -64,13 +87,14 @@ export class AddEditMontureComponent implements OnInit {
       marque: this.formValue.value.marque,
       prixAchat: this.formValue.value.prixAchat,
       prixVente: this.formValue.value.prixVente,
-      quantite: this.formValue.value.quantite
+      quantite: this.formValue.value.quantite,
+      fournisseur: this.formValue.value.fournisseur
     }
     console.log(monture);
     this.montureService.UpdateMonture(monture)
       .subscribe(res => {
         console.log(res);
-        alert("Monture modifier avec succès")
+        alert("Monture modifiée avec succès")
         let ref = document.getElementById('cancel')
         ref?.click();
         this.formValue.reset();
@@ -89,6 +113,7 @@ export class AddEditMontureComponent implements OnInit {
     this.showAdd = false;
     this.showUpdate = true;
     console.log(row);
+    this.monture = row;
     this.monture.id = row.id;
     this.formValue.patchValue({
       id: row.id,
@@ -96,7 +121,8 @@ export class AddEditMontureComponent implements OnInit {
       marque: row.marque,
       prixAchat: row.prixAchat,
       prixVente: row.prixVente,
-      quantite: row.quantite
+      quantite: row.quantite,
+      fournisseur: row.fournisseur
     })
   }
 

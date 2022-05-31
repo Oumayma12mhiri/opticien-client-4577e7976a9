@@ -1,3 +1,5 @@
+import { Fournisseur } from "./fournisseur";
+
 export class Divers {
     public id!: number;
     public name!: String;
@@ -5,5 +7,5 @@ export class Divers {
     public prixAchat!: number;
     public prixVente!: number;
     public quantite!: number;
-
+    public fournisseur: Fournisseur;
 }

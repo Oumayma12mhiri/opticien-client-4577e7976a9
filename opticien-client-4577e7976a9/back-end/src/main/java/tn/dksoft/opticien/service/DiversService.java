@@ -13,8 +13,10 @@ import tn.dksoft.opticien.dto.search.PagedResponse;
 import tn.dksoft.opticien.dto.search.SearchRequest;
 import tn.dksoft.opticien.dto.search.SearchRequestUtil;
 import tn.dksoft.opticien.entity.Divers;
+import tn.dksoft.opticien.entity.Fournisseur;
 import tn.dksoft.opticien.mapper.DiversMapper;
 import tn.dksoft.opticien.repository.DiversRepository;
+import tn.dksoft.opticien.repository.FournisseurRepository;
 
 @Service
 @Slf4j
@@ -24,12 +26,15 @@ public class DiversService {
 	private final DiversRepository diversRepository;
 	
 	private final DiversMapper diversMapper;
+	
+	public final FournisseurRepository fournisseurRepository;
 
 	public DiversDto add(DiversDto diversDto) {
 
 		try {
 			Divers divers = diversMapper.fromDtoToEntity(diversDto); 
-			
+			Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(diversDto.getFournisseur().getId());
+			divers.setFournisseur(fournisseur);
 			diversRepository.saveAndFlush(divers);
 			log.info("Article divers with id= {} saved successfully", divers.getId());
 			return diversMapper.fromEntityToDto(divers);
@@ -70,6 +75,9 @@ public class DiversService {
 			if (diverOptional.isPresent()) {
 				Divers diver = diverOptional.get();
 				diver.setName(diversDto.getName());
+				log.info("fournisseur {}",diversDto.getFournisseur());
+				Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(diversDto.getFournisseur().getId());
+				diver.setFournisseur(fournisseur);
 				diver.setReference(diversDto.getReference());
 				diver.setPrixAchat(diversDto.getPrixAchat());;
 				diver.setPrixVente(diversDto.getPrixVente());

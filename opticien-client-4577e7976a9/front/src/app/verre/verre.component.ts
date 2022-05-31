@@ -19,7 +19,7 @@ export class VerreComponent implements OnInit {
   verre: Verre = new Verre();
   VerreData !: any;
   listVerre: any;
-  displayedColumns: string[] = ['code', 'description', 'marque','matiere' ,'prixAchat', 'prixVente','actions']
+  displayedColumns: string[] = ['code', 'description', 'marque','matiere' ,'prixAchat', 'prixVente','fournisseur','actions']
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -41,10 +41,12 @@ export class VerreComponent implements OnInit {
     cylInf: new FormControl(''),
     cylSup: new FormControl(''),
     sphInf: new FormControl(''),
+    sphSup: new FormControl(''),
     dia: new FormControl(''),
     indice: new FormControl(''),
     prixAchat: new FormControl(''),
-    prixVente: new FormControl('')
+    prixVente: new FormControl(''),
+    fournisseur: new FormControl('')
   })
 
   constructor(public dialog: MatDialog,
@@ -68,8 +70,8 @@ export class VerreComponent implements OnInit {
 
   openDialog(): void {
     this.dialogRef = this.dialog.open(AddEditVerreComponent, {
-      height: '80%',
-      width: '80%',
+      height: '70%',
+      width: '60%',
       data: {
         base: this.verre.base,
         code: this.verre.code,
@@ -84,10 +86,12 @@ export class VerreComponent implements OnInit {
         cylInf: this.verre.cylInf,  
         cylSup: this.verre.cylSup,
         sphInf: this.verre.sphInf,
+        sphSup:this.verre.sphSup,
         dia: this.verre.dia,
         indice: this.verre.indice,
         prixAchat: this.verre.prixAchat,
-        prixVente: this.verre.prixVente
+        prixVente: this.verre.prixVente,
+        fournisseur:this.verre.fournisseur
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {
@@ -95,12 +99,28 @@ export class VerreComponent implements OnInit {
     });
   }
 
+  //fill in fields from client information
+  onEdite(row: any) {
+    this.dialogRef.componentInstance.onEdit(row);
+  }
+  addVerre(){
+    this.dialogRef.componentInstance.clickAddVerre();
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   //remove verre
  deleteVerre(id: any) {
-  if (confirm("êtes-vous sur de supprimer ce verre ?")) {
+  if (confirm("Etes-vous sur de supprimer ce verre ?")) {
     this.verreService.DeleteVerre(id)
      .subscribe(_res => {
-        alert("Verre supprimé ");
+        alert("Verre supprimé avec succés ");
         this.loadData();
       }
      )

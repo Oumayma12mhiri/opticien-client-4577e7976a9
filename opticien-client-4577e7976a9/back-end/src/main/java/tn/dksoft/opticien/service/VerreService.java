@@ -12,8 +12,10 @@ import tn.dksoft.opticien.dto.VerreDto;
 import tn.dksoft.opticien.dto.search.PagedResponse;
 import tn.dksoft.opticien.dto.search.SearchRequest;
 import tn.dksoft.opticien.dto.search.SearchRequestUtil;
+import tn.dksoft.opticien.entity.Fournisseur;
 import tn.dksoft.opticien.entity.Verre;
 import tn.dksoft.opticien.mapper.VerreMapper;
+import tn.dksoft.opticien.repository.FournisseurRepository;
 import tn.dksoft.opticien.repository.VerreRepository;
 
 @Service
@@ -24,11 +26,16 @@ public class VerreService {
 	private final VerreRepository verreRepository;
 
 	private final VerreMapper verreMapper;
+	public final FournisseurRepository fournisseurRepository;
 
 	public VerreDto add(VerreDto dto) {
 
 		try {
 			Verre verre = verreMapper.fromDtoToEntity(dto);
+			
+			Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(dto.getFournisseur().getId());
+			verre.setFournisseur(fournisseur);
+			
 			verreRepository.saveAndFlush(verre);
 			log.info("Verre with id= {} saved successfully", verre.getId());
 			return verreMapper.fromEntityToDto(verre);
@@ -57,7 +64,7 @@ public class VerreService {
 
 	public List<VerreDto> findAll() {
 		try {
-			List<Verre> verres = verreRepository.findAll();
+			List<Verre> verres = verreRepository.findByIsDeletedIsFalse();
 			log.info("Verres gotted successfully ");
 			return verreMapper.fromEntitiesToDtoList(verres);
 		} catch (Exception e) {
@@ -73,6 +80,10 @@ public class VerreService {
 			if (verreOptional.isPresent()) {
 				Verre verre = verreOptional.get();
 				verre.setAddInf(verreDto.getAddInf());
+				log.info("fournisseur {}",verreDto.getFournisseur());
+				Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(verreDto.getFournisseur().getId());
+				verre.setFournisseur(fournisseur);
+				
 				verre.setAddSup(verreDto.getAddSup());
 				verre.setCylInf(verreDto.getCylInf());
 				verre.setCylSup(verreDto.getCylSup());

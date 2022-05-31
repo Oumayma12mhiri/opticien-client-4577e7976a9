@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Divers } from 'src/app/model/divers';
+import { Fournisseur } from 'src/app/model/fournisseur';
 import { DiversService } from 'src/app/service/divers.service';
+import { FournisseurService } from 'src/app/service/frs-service';
 
 @Component({
   selector: 'app-add-edit-divers',
@@ -13,38 +15,67 @@ export class AddEditDiversComponent implements OnInit {
   divers: Divers = new Divers();
   showAdd!: boolean;
   showUpdate!: boolean;
+
+  allFournisseur :any;
+  selected:[];
+  i=0;
+
   formValue = new FormGroup({
-    name: new FormControl(''),
-    reference: new FormControl(''),
-    prixAchat: new FormControl(''),
-    prixVente: new FormControl(''),
-    quantite: new FormControl('')
+    name: new FormControl('',Validators.required),
+    reference: new FormControl('',Validators.required),
+    prixAchat: new FormControl('',Validators.required),
+    prixVente: new FormControl('',Validators.required),
+    quantite: new FormControl('',Validators.required),
+    fournisseur: new FormControl('',Validators.required),
 
   })
-  constructor(public dialogRef: MatDialogRef<AddEditDiversComponent>, public diversService: DiversService) { }
+  constructor(
+    public dialogRef: MatDialogRef<AddEditDiversComponent>, 
+    public diversService: DiversService,
+    public fournisseurService: FournisseurService,) { }
 
   ngOnInit(): void {
+    this.getAllFournisseur();
   }
 
 
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  getAllFournisseur(){
+    this.fournisseurService.getFournisseurByCategorieName('divers').subscribe(res => {
+     this.allFournisseur = res
+     if(this.allFournisseur[this.i].name != this.divers.fournisseur.name){
+      this.i=this.i+1;
+    }
+    this.selected= this.allFournisseur[this.i];
+    },
+      err => { console.log(err) }
+    )
+  }
+
   clickAddDivers() {
     this.formValue.reset();
     this.showAdd = true;
     this.showUpdate = false;
   }
 
-  //Save lunette Solaire
+  get f() {
+    return this.formValue.controls;
+  }
+
   postDiversDetails() {
+    if (this.formValue.invalid) {
+      return;
+    }
     let divers = {
       name: this.formValue.value.name,
       reference: this.formValue.value.reference,
       prixAchat: this.formValue.value.prixAchat,
       prixVente: this.formValue.value.prixVente,
       quantite: this.formValue.value.quantite,
-
+      fournisseur: this.formValue.value.fournisseur
     }
 
     this.diversService.postDivers(divers)
@@ -59,7 +90,9 @@ export class AddEditDiversComponent implements OnInit {
         err => { console.log(err) }
       )
   }
+
   updateDiversDetails() {
+    console.log(this.formValue.value.fournisseur)
     let divers = {
       id: this.divers.id,
       name: this.formValue.value.name,
@@ -67,6 +100,7 @@ export class AddEditDiversComponent implements OnInit {
       prixAchat: this.formValue.value.prixAchat,
       prixVente: this.formValue.value.prixVente,
       quantite: this.formValue.value.quantite,
+      fournisseur: this.formValue.value.fournisseur
     }
     console.log(divers);
     this.diversService.UpdateDivers(divers)
@@ -85,6 +119,7 @@ export class AddEditDiversComponent implements OnInit {
     this.showAdd = false;
     this.showUpdate = true;
     console.log(row);
+    this.divers=row;
     this.divers.id = row.id;
     this.formValue.patchValue({
       id: row.id,
@@ -92,7 +127,8 @@ export class AddEditDiversComponent implements OnInit {
       name: row.name,
       prixAchat: row.prixAchat,
       prixVente: row.prixVente,
-      quantite: row.quantite
+      quantite: row.quantite,
+      fournisseur: row.fournisseur
     })
   }
 

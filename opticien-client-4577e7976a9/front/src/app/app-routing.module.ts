@@ -11,15 +11,17 @@ import { LentilleComponent } from './lentille/lentille.component';
 import { LunetteSolaireComponent } from './lunette-solaire/lunette-solaire.component';
 
 import { MontureComponent } from './monture/monture.component';
+import { ListClientsComponent } from './vente/list-clients/list-clients.component';
 import { VenteComponent } from './vente/vente.component';
 import { VerreComponent } from './verre/verre.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
- // { path: 'authentification', component: AuthenticationComponent },
+  { path: 'authentification', component: AuthenticationComponent },
   { path: 'home', component: HomeComponent },
   { path: 'vente', component: VenteComponent },
   { path: 'dashboard', component: ClientComponent},
+  { path: 'listClient', component: ListClientsComponent},
   { path: 'frs', component: FournisseurComponent},
   { path: 'divers', component: DiversComponent},
   { path: 'monture', component: MontureComponent},

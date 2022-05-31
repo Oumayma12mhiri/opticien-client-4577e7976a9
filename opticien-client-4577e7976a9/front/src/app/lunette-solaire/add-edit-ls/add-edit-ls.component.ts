@@ -16,6 +16,8 @@ export class AddEditLSComponent implements OnInit {
   showAdd!: boolean;
   showUpdate!: boolean;
   allFournisseur :any;
+  selected:[];
+  i=0;
   formValue = new FormGroup({
     ref: new FormControl(''),
     marque: new FormControl(''),
@@ -39,7 +41,10 @@ export class AddEditLSComponent implements OnInit {
   getAllFournisseur(){
     this.fournisseurService.getFournisseurByCategorieName('lunette').subscribe(res => {
      this.allFournisseur = res
-     console.log("fournisseur ",res);
+     if(this.allFournisseur[this.i].name != this.lunetteSolaire.fournisseur.name){
+      this.i=this.i+1;
+    }
+    this.selected= this.allFournisseur[this.i];
     },
       err => { console.log(err) }
     )
@@ -47,6 +52,7 @@ export class AddEditLSComponent implements OnInit {
 
   //Save lunette Solaire
   postLunetteSolaireDetails() {
+    console.log("fournisseur",this.formValue.value.fournisseur)
     let lunetteSolaire = {
       ref: this.formValue.value.ref,
       marque: this.formValue.value.marque,
@@ -55,11 +61,10 @@ export class AddEditLSComponent implements OnInit {
       quantite: this.formValue.value.quantite,
       fournisseur: this.formValue.value.fournisseur
     }
-
     this.lunetteSolaireService.postLunetteSolaire(lunetteSolaire)
       .subscribe(res => {
         console.log(res);
-        alert("Lunette Solaire ajouté avec succès")
+        alert("Lunette Solaire ajoutée avec succès")
         let ref = document.getElementById('cancel')
         ref?.click();
         this.formValue.reset();
@@ -80,11 +85,10 @@ export class AddEditLSComponent implements OnInit {
         quantite: this.formValue.value.quantite,
         fournisseur: this.formValue.value.fournisseur
       }
-      console.log(lunetteSolaire);
       this.lunetteSolaireService.UpdateLunetteSolaire(lunetteSolaire)
         .subscribe(res => {
           console.log(res);
-          alert("Lunette Solaire modifier avec succès")
+          alert("Lunette Solaire modifiée avec succès")
           let ref = document.getElementById('cancel')
           ref?.click();
           this.formValue.reset();
@@ -102,7 +106,8 @@ export class AddEditLSComponent implements OnInit {
     onEdit(row: any) {
       this.showAdd = false;
       this.showUpdate = true;
-      console.log(row);
+      console.log("row",row);
+      this.lunetteSolaire=row;
       this.lunetteSolaire.id = row.id;
       this.formValue.patchValue({
         id: row.id,

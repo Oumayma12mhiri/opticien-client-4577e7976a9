@@ -55,7 +55,7 @@
                         <!--<select matInput placeholder="..." formControlName="fournisseur" class="form-control" required id="fournisseur">
                             <option value=""></option>
                         </select>-->
-                        <mat-select formControlName="fournisseur" id="fournisseur" placeholder="...">
+                        <mat-select formControlName="fournisseur" [(ngModel)]="selected" id="fournisseur" placeholder="...">
                             <mat-option *ngFor="let fournisseur of allFournisseur" [value]="fournisseur">
                                 {{fournisseur.name}}
                             </mat-option>

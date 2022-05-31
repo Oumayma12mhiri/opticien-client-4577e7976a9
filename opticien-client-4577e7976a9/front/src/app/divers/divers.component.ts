@@ -19,7 +19,7 @@ export class DiversComponent implements OnInit {
   divers: Divers = new Divers();
   diversData !: any;
   listDivers: any;
-  displayedColumns: string[] = ['ref', 'nomDivers', 'prixAchat', 'prixVent', 'qte', 'actions']
+  displayedColumns: string[] = ['ref', 'nomDivers', 'prixAchat', 'prixVent', 'qte' ,'fournisseur', 'actions']
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -32,7 +32,8 @@ export class DiversComponent implements OnInit {
     reference: new FormControl(''),
     prixAchat: new FormControl(''),
     prixVente: new FormControl(''),
-    quantite: new FormControl('')
+    quantite: new FormControl(''),
+    fournisseur: new FormControl('')
   })
 
   constructor(public dialog: MatDialog, public diversService: DiversService) { }
@@ -66,18 +67,32 @@ export class DiversComponent implements OnInit {
       height: '60%',
       width: '50%',
       data: {
-
+        name: this.divers.name,
+        reference: this.divers.reference,
+        prixAchat: this.divers.prixAchat,
+        prixVente: this.divers.prixVente,
+        quantite: this.divers.quantite,
+        fournisseur: this.divers.fournisseur,
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {
-
+      this.loadData();
     });
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+  
   deleteDivers(id: any) {
-    if (confirm("êtes-vous sur de supprimer ce divers?")) {
+    if (confirm("Etes-vous sur de supprimer ce divers?")) {
       this.diversService.DeleteDivers(id)
         .subscribe(_res => {
-          alert("Divers supprimé ");
+          alert("Divers supprimé avec succes");
           this.loadData();
         }
         )

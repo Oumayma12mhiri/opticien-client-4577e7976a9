@@ -11,8 +11,10 @@ import tn.dksoft.opticien.dto.MontureDto;
 import tn.dksoft.opticien.dto.search.PagedResponse;
 import tn.dksoft.opticien.dto.search.SearchRequest;
 import tn.dksoft.opticien.dto.search.SearchRequestUtil;
+import tn.dksoft.opticien.entity.Fournisseur;
 import tn.dksoft.opticien.entity.Monture;
 import tn.dksoft.opticien.mapper.MontureMapper;
+import tn.dksoft.opticien.repository.FournisseurRepository;
 import tn.dksoft.opticien.repository.MontureRepository;
 
 @Service
@@ -23,6 +25,7 @@ public class MontureService {
 	public final MontureRepository montureRepository;
 
 	public final MontureMapper montureMapper;
+	public final FournisseurRepository fournisseurRepository;
 
 	public MontureDto add(MontureDto montureDto) {
 		try {
@@ -34,6 +37,8 @@ public class MontureService {
 			}
 
 			Monture monture = montureMapper.fromDtoToEntity(montureDto);
+			Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(montureDto.getFournisseur().getId());
+			monture.setFournisseur(fournisseur);
 
 			monture.setId(id);
 
@@ -77,6 +82,9 @@ public class MontureService {
 			if (montureDto.getMarque() != null) {
 				monture.setMarque(montureDto.getMarque());
 			}
+			
+			Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(montureDto.getFournisseur().getId());
+			monture.setFournisseur(fournisseur);
 			
 			if (montureDto.getReference() != null) {
 				monture.setReference(montureDto.getReference());

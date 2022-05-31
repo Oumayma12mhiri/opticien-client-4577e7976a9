@@ -1,3 +1,5 @@
+import { Fournisseur } from "./fournisseur";
+
 export class Monture {
     public id!:number;
     public reference!:number;
@@ -5,5 +7,5 @@ export class Monture {
     public prixAchat!: number; 
 	public prixVente!: number;
     public quantite!: number;
-
+    public fournisseur: Fournisseur;
 }

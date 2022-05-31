@@ -3,7 +3,6 @@ package tn.dksoft.opticien.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.hql.internal.ast.tree.IsNotNullLogicOperatorNode;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +12,10 @@ import tn.dksoft.opticien.dto.LunetteSolaireDto;
 import tn.dksoft.opticien.dto.search.PagedResponse;
 import tn.dksoft.opticien.dto.search.SearchRequest;
 import tn.dksoft.opticien.dto.search.SearchRequestUtil;
+import tn.dksoft.opticien.entity.Fournisseur;
 import tn.dksoft.opticien.entity.LunetteSolaire;
 import tn.dksoft.opticien.mapper.LunetteSolaireMapper;
+import tn.dksoft.opticien.repository.FournisseurRepository;
 import tn.dksoft.opticien.repository.LunetteSolaireRepository;
 
 @Service
@@ -25,11 +26,16 @@ public class LunetteSolaireService {
 	private final LunetteSolaireRepository lunetteSolaireRepository;
 
 	private final LunetteSolaireMapper lunetteSolaireMapper;
+	
+	public final FournisseurRepository fournisseurRepository;
 
 	public LunetteSolaireDto add(LunetteSolaireDto dto) {
-		log.info("lunette solaire dto : {}",dto);
 		try {
 			LunetteSolaire lunette = lunetteSolaireMapper.fromDtoToEntity(dto);
+			log.info("fournisseur {} ",dto.getFournisseur());
+			Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(dto.getFournisseur().getId());
+			lunette.setFournisseur(fournisseur);
+			
 			lunetteSolaireRepository.saveAndFlush(lunette);
 			log.info("Lunette Solaire with id= {} saved successfully", lunette.getId());
 			return lunetteSolaireMapper.fromEntityToDto(lunette);
@@ -75,6 +81,10 @@ public class LunetteSolaireService {
 			if (lunetteSolaireOptional.isPresent()) {
 				LunetteSolaire lunette = lunetteSolaireOptional.get();
 				lunette.setRef(lunetteDto.getRef());
+				
+				Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(lunetteDto.getFournisseur().getId());
+				lunette.setFournisseur(fournisseur);
+				
 				lunette.setMarque(lunetteDto.getMarque());
 				lunette.setQuantite(lunetteDto.getQuantite());
 				lunette.setPrixAchat(lunetteDto.getPrixAchat());

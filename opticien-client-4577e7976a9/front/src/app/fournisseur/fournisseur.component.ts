@@ -61,8 +61,8 @@ export class FournisseurComponent implements OnInit {
   //open modal
   openDialog(): void {
     this.dialogRef = this.dialog.open(AddEditFRSComponent, {
-      height: '60%',
-      width: '50%',
+      height: '50%',
+      width: '40%',
       data: {
 
       },
@@ -70,6 +70,14 @@ export class FournisseurComponent implements OnInit {
     this.dialogRef.afterClosed().subscribe(_result => {
 
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   //remove Fournisseur

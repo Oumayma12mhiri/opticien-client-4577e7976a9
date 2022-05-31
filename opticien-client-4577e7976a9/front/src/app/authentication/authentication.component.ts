@@ -47,11 +47,11 @@ export class AuthenticationComponent implements OnInit {
 
   }
 
-  getEtat() {
-    if (localStorage['username'] === undefined) {
-      return 'false'
-    } else
-      return 'true'
-  }
+  //getEtat() {
+    //if (localStorage['username'] === undefined) {
+     // return 'false'
+    //} else
+     // return 'true'
+ // }
 
 }

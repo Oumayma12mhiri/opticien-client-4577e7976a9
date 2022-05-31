@@ -11,8 +11,10 @@ import tn.dksoft.opticien.dto.LentilleDto;
 import tn.dksoft.opticien.dto.search.PagedResponse;
 import tn.dksoft.opticien.dto.search.SearchRequest;
 import tn.dksoft.opticien.dto.search.SearchRequestUtil;
+import tn.dksoft.opticien.entity.Fournisseur;
 import tn.dksoft.opticien.entity.Lentille;
 import tn.dksoft.opticien.mapper.LentilleMapper;
+import tn.dksoft.opticien.repository.FournisseurRepository;
 import tn.dksoft.opticien.repository.LentilleRepository;
 
 @Service
@@ -22,6 +24,8 @@ public class LentilleService {
 	private final LentilleRepository lentilleRepository;
 
 	private final LentilleMapper lentilleMapper;
+	
+	public final FournisseurRepository fournisseurRepository;
 
 	public LentilleDto delete(Long id) {
 		try {
@@ -41,6 +45,9 @@ public class LentilleService {
 		try {
 
 			Lentille lentille = lentilleMapper.fromDtoToEntity(lentilleDto);
+			
+			Fournisseur fournisseur = fournisseurRepository.findByIdAndIsDeletedIsFalse(lentilleDto.getFournisseur().getId());
+			lentille.setFournisseur(fournisseur); 
 			lentilleRepository.saveAndFlush(lentille);
 			log.info("success added lentille");
 			return lentilleMapper.fromEntityToDto(lentille);

@@ -1,3 +1,73 @@
+<<<<<<< HEAD
+2022-05-26 23:22:51,769 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2022-05-26 23:23:15,820 [Worker-4: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: tn.dksoft.opticien:TestOpticien:0.0.1-SNAPSHOT @ D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end\pom.xml.
+2022-05-26 23:23:15,820 [Worker-0: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: tn.dksoft.opticien:TestOpticien:0.0.1-SNAPSHOT @ D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end\pom.xml.
+2022-05-26 23:23:22,209 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-26 23:23:22,209 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-26 23:23:22,215 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-05-26 23:23:22,250 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-05-26 23:23:22,256 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-26 23:23:22,256 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-26 23:23:22,257 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end\src\test\resources
+2022-05-26 23:23:24,246 [Worker-6: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: tn.dksoft.opticien:TestOpticien:0.0.1-SNAPSHOT @ D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end\pom.xml.
+2022-05-26 23:23:27,641 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-26 23:23:27,641 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-26 23:23:27,646 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-05-26 23:23:27,661 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-05-26 23:23:27,665 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-26 23:23:27,665 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-26 23:23:27,665 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end\src\test\resources
+2022-05-26 23:23:31,106 [Worker-9: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2022-05-26 23:23:31,644 [Worker-9: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: tn.dksoft.opticien:TestOpticien:0.0.1-SNAPSHOT @ D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end\pom.xml.
+2022-05-26 23:23:32,158 [Worker-9: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /back-end/src/main/java
+2022-05-26 23:23:32,159 [Worker-9: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /back-end/src/main/resources
+2022-05-26 23:23:32,160 [Worker-9: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /back-end/src/main/resources
+2022-05-26 23:23:32,161 [Worker-9: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /back-end/src/test/java
+2022-05-26 23:23:32,618 [Worker-9: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2022-05-26 23:23:34,845 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-26 23:23:34,846 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-26 23:23:34,846 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-05-26 23:23:34,865 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-05-26 23:23:34,867 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-26 23:23:34,867 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-26 23:23:34,868 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end\src\test\resources
+2022-05-27 00:05:32,813 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-27 00:05:32,830 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-27 00:05:32,835 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-05-27 00:05:32,836 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-05-27 00:05:32,840 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-27 00:05:32,840 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-27 00:05:32,841 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end\src\test\resources
+2022-05-27 17:13:19,606 [Worker-48: Launching Executing clean in D__Users_Asus_Documents_workspace-projetPFE_opticien-client_4577e7976a9_back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end
+2022-05-27 17:13:20,546 [Worker-48: Launching Executing clean in D__Users_Asus_Documents_workspace-projetPFE_opticien-client_4577e7976a9_back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean -Dstyle.color=always
+2022-05-27 17:13:26,494 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-27 17:13:26,494 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-27 17:13:26,496 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-05-27 17:13:26,508 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-05-27 17:13:26,511 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-27 17:13:26,511 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-27 17:13:26,511 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end\src\test\resources
+2022-05-27 17:13:42,363 [Worker-54: Launching Executing install in D__Users_Asus_Documents_workspace-projetPFE_opticien-client_4577e7976a9_back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end
+2022-05-27 17:13:42,364 [Worker-54: Launching Executing install in D__Users_Asus_Documents_workspace-projetPFE_opticien-client_4577e7976a9_back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B install -Dstyle.color=always
+2022-05-27 17:14:08,735 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-27 17:14:08,735 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-27 17:14:08,737 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-05-27 17:14:08,919 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-05-27 17:14:08,922 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-27 17:14:08,923 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-27 17:14:08,923 [Worker-52: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end\src\test\resources
+2022-05-27 17:14:48,224 [Worker-55: Launching Executing install in D__Users_Asus_Documents_workspace-projetPFE_opticien-client_4577e7976a9_back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end
+2022-05-27 17:14:48,225 [Worker-55: Launching Executing install in D__Users_Asus_Documents_workspace-projetPFE_opticien-client_4577e7976a9_back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B install -Dstyle.color=always
+2022-05-27 17:14:54,392 [Worker-57: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-27 17:14:54,392 [Worker-57: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-27 17:14:54,392 [Worker-57: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-05-27 17:14:54,392 [Worker-57: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-05-27 17:14:54,394 [Worker-57: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-05-27 17:14:54,394 [Worker-57: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-05-27 17:14:54,394 [Worker-57: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end\src\test\resources
+2022-05-27 20:42:53,454 [Worker-61: Launching Executing clean in D__Users_Asus_Documents_workspace-projetPFE_opticien-client_4577e7976a9_back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate - D:\Users\Asus\Documents\workspace-projetPFE\opticien-client@4577e7976a9\back-end
+2022-05-27 20:42:53,755 [Worker-61: Launching Executing clean in D__Users_Asus_Documents_workspace-projetPFE_opticien-client_4577e7976a9_back-end] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean -Dstyle.color=always
+=======
 2022-05-26 21:57:26,017 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2022-05-26 21:57:51,326 [Worker-7: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
 2022-05-26 21:57:56,223 [Worker-7: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: tn.dksoft.opticien:TestOpticien:0.0.1-SNAPSHOT @ C:\Users\USER\Desktop\omayma\opticien-client-4577e7976a9\back-end\pom.xml.
@@ -132,3 +202,4 @@
 2022-05-26 23:35:52,669 [Stop Help Server] INFO  o.e.j.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@75d2c4a{/help,null,STOPPED}
 2022-05-27 00:10:20,319 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2022-05-27 22:38:09,586 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+>>>>>>> 1c525e8f3498ce55efca84691f5a9061201c10a3

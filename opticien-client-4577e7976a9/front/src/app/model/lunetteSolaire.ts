@@ -1,3 +1,5 @@
+import { Fournisseur } from "./fournisseur";
+
 export class LunetteSolaire {
     public id!:number;
     public ref!:number;
@@ -5,4 +7,5 @@ export class LunetteSolaire {
     public prixAchat!: number; 
 	public prixVente!: number;
     public quantite!: number;
+    public fournisseur: Fournisseur
 }

@@ -173,19 +173,27 @@ export class ClientComponent implements OnInit {
   }*/
   //search by first name
   Search() {
-    /*if (this.nomPrenom != "") {
+  /*  if (this.nomPrenom != "") {
       this.dataSource = this.listClient.filter(res => {
         return res.nomPrenom.toLocaleLowerCase().match(this.nomPrenom.toLocaleLowerCase());
       });
     } else if (this.nomPrenom == "") {
       this.getAllClient();
     }*/
-
     this.getAllClient();
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-  
-  //paging
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+    this.getAllClient();
+    console.log(filterValue.trim().toLowerCase());
+  }
+
+ /* //paging
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
 
@@ -194,7 +202,7 @@ export class ClientComponent implements OnInit {
       console.log(this.dataSource.paginator)
       this.dataSource.paginator.firstPage();
     }
-  }
+  }*/
 }
 
 

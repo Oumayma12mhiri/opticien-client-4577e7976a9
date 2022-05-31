@@ -50,6 +50,13 @@ import { LunetteSolaireComponent } from './lunette-solaire/lunette-solaire.compo
 import { AddEditLSComponent } from './lunette-solaire/add-edit-ls/add-edit-ls.component';
 import { AddEditVerreComponent } from './verre/add-edit-verre/add-edit-verre.component';
 import { MontureService } from './service/monture.service';
+import { AddEditLentilleComponent } from './lentille/add-edit-lentille/add-edit-lentille.component';
+import { ListClientsComponent } from './vente/list-clients/list-clients.component';
+import { ListVerresComponent } from './vente/list-verres/list-verres.component';
+import { ListLentillesComponent } from './vente/list-lentilles/list-lentilles.component';
+import { ListLunetteSolaireComponent } from './vente/list-lunette-solaire/list-lunette-solaire.component';
+import { ListMontureComponent } from './vente/list-monture/list-monture.component';
+import { ListDiversComponent } from './vente/list-divers/list-divers.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +84,13 @@ import { MontureService } from './service/monture.service';
     LunetteSolaireComponent,
     AddEditLSComponent,
     AddEditVerreComponent,
+    AddEditLentilleComponent,
+    ListClientsComponent,
+    ListVerresComponent,
+    ListLentillesComponent,
+    ListLunetteSolaireComponent,
+    ListMontureComponent,
+    ListDiversComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,7 +119,7 @@ import { MontureService } from './service/monture.service';
     
   ],
  
-  providers: [ClientServiceService,MontureService,AuthenticationComponent,VisiteServiceService,ClientFileComponent,OrganismeServiceService,OrganismeComponent,{provide:MatDialogRef,useValue:[]},GroupeFamComponent,GroupeFamServiceService,NewVisitComponent,ClientComponent,AddAndEditClientComponent],
+  providers: [ClientServiceService,ListClientsComponent,MontureService,AuthenticationComponent,VisiteServiceService,ClientFileComponent,OrganismeServiceService,OrganismeComponent,{provide:MatDialogRef,useValue:[]},GroupeFamComponent,GroupeFamServiceService,NewVisitComponent,ClientComponent,AddAndEditClientComponent,ListDiversComponent,VenteComponent],
   
   bootstrap: [AppComponent],
 })

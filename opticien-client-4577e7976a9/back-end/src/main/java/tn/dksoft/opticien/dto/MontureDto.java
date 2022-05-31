@@ -26,6 +26,6 @@ public class MontureDto implements Serializable {
     private BigDecimal prixAchat;
     private int quantite;
     private BigDecimal prixVente;
-    private CategorieDto categorieDto;
+    private FournisseurDto fournisseur;
     private VenteDto venteDto ; 
 }

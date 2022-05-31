@@ -12,11 +12,12 @@ export class AppComponent {
   constructor(public auth: AuthenticationComponent) { }
 
   sideBarToggler() {
-    if (this.auth.getEtat() == 'false') {
+   
       this.sideBarOpen = false;
-    } else if (this.auth.getEtat() == 'true')
+    
       this.sideBarOpen = true;
   }
+  
   getEtat()
   {
     let x =localStorage.getItem("logged");

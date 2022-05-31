@@ -1,0 +1,81 @@
+package tn.dksoft.opticien.mapper;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.Generated;
+import org.springframework.stereotype.Component;
+import tn.dksoft.opticien.dto.LunetteSolaireDto;
+import tn.dksoft.opticien.entity.LunetteSolaire;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2022-05-26T17:28:23+0200",
+    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.50.v20210914-1429, environment: Java 17.0.1 (Eclipse Adoptium)"
+)
+@Component
+public class LunetteSolaireMapperImpl implements LunetteSolaireMapper {
+
+    @Override
+    public List<LunetteSolaire> fromDtoListToEntities(List<LunetteSolaireDto> t) {
+        if ( t == null ) {
+            return null;
+        }
+
+        List<LunetteSolaire> list = new ArrayList<LunetteSolaire>( t.size() );
+        for ( LunetteSolaireDto lunetteSolaireDto : t ) {
+            list.add( fromDtoToEntity( lunetteSolaireDto ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public LunetteSolaire fromDtoToEntity(LunetteSolaireDto t) {
+        if ( t == null ) {
+            return null;
+        }
+
+        LunetteSolaire lunetteSolaire = new LunetteSolaire();
+
+        lunetteSolaire.setId( t.getId() );
+        lunetteSolaire.setMarque( t.getMarque() );
+        lunetteSolaire.setPrixAchat( t.getPrixAchat() );
+        lunetteSolaire.setPrixVente( t.getPrixVente() );
+        lunetteSolaire.setQuantite( t.getQuantite() );
+        lunetteSolaire.setRef( t.getRef() );
+
+        return lunetteSolaire;
+    }
+
+    @Override
+    public List<LunetteSolaireDto> fromEntitiesToDtoList(List<LunetteSolaire> i) {
+        if ( i == null ) {
+            return null;
+        }
+
+        List<LunetteSolaireDto> list = new ArrayList<LunetteSolaireDto>( i.size() );
+        for ( LunetteSolaire lunetteSolaire : i ) {
+            list.add( fromEntityToDto( lunetteSolaire ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public LunetteSolaireDto fromEntityToDto(LunetteSolaire i) {
+        if ( i == null ) {
+            return null;
+        }
+
+        LunetteSolaireDto lunetteSolaireDto = new LunetteSolaireDto();
+
+        lunetteSolaireDto.setId( i.getId() );
+        lunetteSolaireDto.setMarque( i.getMarque() );
+        lunetteSolaireDto.setPrixAchat( i.getPrixAchat() );
+        lunetteSolaireDto.setPrixVente( i.getPrixVente() );
+        lunetteSolaireDto.setQuantite( i.getQuantite() );
+        lunetteSolaireDto.setRef( i.getRef() );
+
+        return lunetteSolaireDto;
+    }
+}

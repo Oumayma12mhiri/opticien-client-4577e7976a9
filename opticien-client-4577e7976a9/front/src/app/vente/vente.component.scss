@@ -1,75 +1,92 @@
 @import "../home/home.component.scss";
-
-.chercher{
+.chercher {
     background-color: white;
     border-radius: 10px;
-    border:none;
-    width: 30px ;
+    border: none;
+    width: 30px;
     height: 30px;
     color: gray;
-  }
-.ajouter{
+}
+
+.ajouter {
     background-color: white;
     border-radius: 10px;
-    border:none;
-    width: 30px ;
+    border: none;
+    width: 30px;
     height: 30px;
     color: rgb(6, 59, 173);
-
 }
-.liste{
+
+.liste {
     background-color: white;
     border-radius: 10px;
-    border:none;
-    width: 30px ;
+    border: none;
+    width: 30px;
     height: 30px;
     color: #bd3f3f;
 }
-.dossier{
+
+.dossier {
     background-color: white;
     border-radius: 10px;
-    border:none;
-    width: 30px ;
+    border: none;
+    width: 30px;
     height: 30px;
     color: rgb(100, 185, 219);
 }
-.flash{
+
+.flash {
     background-color: white;
     border-radius: 10px;
-    border:none;
-    width: 30px ;
+    border: none;
+    width: 30px;
     height: 30px;
     color: #bd3f3f;
 }
-.vision{
+
+.vision {
     background-color: rgba(170, 170, 19, 0.692);
     border-radius: 10px;
-    font-size: large;
+    font-size: medium;
     font-weight: bold;
     text-align: center;
-    border:none;
-    width: 240px ;
+    border: none;
+    width: 90px;
     height: 35px;
     color: white;
 }
-.valider{
+
+.vision1 {
+    background-color: rgba(170, 170, 19, 0.692);
+    border-radius: 10px;
+    font-size: medium;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    width: 150px;
+    height: 35px;
+    color: white;
+}
+
+.valider {
     background-color: rgba(18, 97, 67, 0.842);
     border-radius: 10px;
-    border:none;
-    width: 150px ;
+    border: none;
+    width: 130px;
     height: 35px;
     color: white;
     font-size: large;
     font-weight: bold;
-    text-align: center;}
+    text-align: center;
+}
 
-
-mat-label{
+mat-label {
     color: rgb(6, 59, 173);
     font-weight: bold;
     font-size: 12px;
 }
-label{
+
+label {
     color: #082158;
 }
 
@@ -77,48 +94,47 @@ label{
     text-align: left;
     padding: 1.6rem 1rem;
     img {
-      width: 1000px;
-      height: 1000px;
+        width: 1000px;
+        height: 1000px;
     }
-  }
+}
 
-.example-small-box, .example-large-box, .example-smaller-box {
+.example-small-box,
+.example-large-box,
+.example-smaller-box {
     display: flex;
     align-items: initial;
-    justify-content:left;
+    justify-content: left;
     margin: 16px;
     padding: 16px;
     border-radius: 8px;
-  }
-  
-  .example-large-box {
+}
+
+.example-large-box {
     height: 150px;
     width: 980px;
-  }
+}
 
-  .example-small-box {
-    height: 300px;
+.example-small-box {
+    height: auto;
     width: 980px;
-  }
+}
 
-  .example-smaller-box {
+.example-smaller-box {
     height: 380px;
     width: 400px;
-    
-  }
-  th{
+}
+
+th {
     text-align: center;
     font-size: 13px;
     font-weight: bold;
     color: rgb(6, 59, 173);
-  
-  }
-  
-  td{
-  
+}
+
+td {
     text-align: left;
     font-size: 12px;
-    padding: top 5px;;
-  
-  }
-
+    padding: top 5px;
+    ;
+}

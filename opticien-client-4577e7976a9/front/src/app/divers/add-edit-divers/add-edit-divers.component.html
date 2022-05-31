@@ -1,86 +1,95 @@
 <h1 mat-dialog-title style="color: rgb(6, 59, 173);">
-  <mat-icon>person_add </mat-icon> Divers
+    <mat-icon>shopping_cart </mat-icon> Divers
 </h1>
 <div mat-dialog-content>
 
-  <form ngNativeValidate [formGroup]="formValue">
+    <form ngNativeValidate [formGroup]="formValue" (ngSubmit)="postDiversDetails()">
 
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-        <td style="padding-left:20%;">
-          <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
-            <mat-label>Reference :</mat-label>
-            <input matInput placeholder="..." type="text" formControlName="reference" class="form-control" required
-              id="reference">
-            <mat-icon matSuffix>face</mat-icon>
-            <mat-hint>Hint</mat-hint>
-          </mat-form-field>
-        </td>
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td style="padding-left:20%;">
+                    <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
+                        <mat-label>Reference :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="reference" class="form-control" required id="reference">
+                        <mat-icon matSuffix>description</mat-icon>
+                        <mat-hint>Hint</mat-hint>
+                    </mat-form-field>
+                </td>
 
-        <td style="padding-left:22%;">
-          <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
-            <mat-label>Nom de divers :</mat-label>
-            <input matInput placeholder="..." type="text" formControlName="name" class="form-control" required
-              id="name">
-            <mat-icon matSuffix>description</mat-icon>
-            <mat-hint>Hint</mat-hint>
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <td style="padding-left:20%;">
-          <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
-            <mat-label>Prix d'achat :</mat-label>
-            <input matInput placeholder="..." type="text" formControlName="prixAchat" class="form-control" required
-              id="prixAchat">
-            <mat-icon matSuffix>phone</mat-icon>
-            <mat-hint>Hint</mat-hint>
-          </mat-form-field>
-        </td>
+                <td style="padding-left:22%;">
+                    <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
+                        <mat-label>Nom de divers :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="name" class="form-control" required id="name">
 
-        <td style="padding-left:22%;">
-          <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
-            <mat-label>Prix de vente :</mat-label>
-            <input matInput placeholder="..." type="text" formControlName="prixVente" class="form-control" required
-              id="prixVente">
-            <mat-icon matSuffix>phone</mat-icon>
-            <mat-hint>Hint</mat-hint>
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
+                        <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
+                        <mat-hint>Hint</mat-hint>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td style="padding-left:20%;">
+                    <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
+                        <mat-label>Prix d'achat :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="prixAchat" class="form-control" required id="prixAchat">
+                        <mat-icon matSuffix>sell</mat-icon>
+                        <mat-hint>Hint</mat-hint>
+                    </mat-form-field>
+                </td>
 
-    <table>
-      <tr>
-        <td style="padding-left:80%;">
-          <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
-            <mat-label>Quantité :</mat-label>
-            <input matInput placeholder="..." type="text" formControlName="quantite" class="form-control" required
-              id="quantite">
-            <mat-icon matSuffix>email</mat-icon>
-            <mat-hint>Hint</mat-hint>
-          </mat-form-field>
-        </td>
+                <td style="padding-left:22%;">
+                    <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
+                        <mat-label>Prix de vente :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="prixVente" class="form-control" required id="prixVente">
+                        <mat-icon matSuffix>sell</mat-icon>
+                        <mat-hint>Hint</mat-hint>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
 
-      </tr>
-    </table>
+        <table>
+            <tr>
+                <td style="padding-left:20%;">
+                    <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
+                        <mat-label>Fournisseur :</mat-label>
+                        <!--<select matInput placeholder="..." formControlName="fournisseur" class="form-control" required id="fournisseur">
+                  <option value=""></option>
+              </select>-->
+                        <mat-select formControlName="fournisseur" [(ngModel)]="selected" id="fournisseur" placeholder="...">
+                            <mat-option *ngFor="let fournisseur of allFournisseur" [value]="fournisseur">
+                                {{fournisseur.name}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-icon matSuffix>account_circle</mat-icon>
+                        <mat-hint>Hint</mat-hint>
+                    </mat-form-field>
+                </td>
+                <td style="padding-left:22%;">
+                    <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
+                        <mat-label>Quantité :</mat-label>
+                        <input matInput placeholder="..." type="text" formControlName="quantite" class="form-control" required id="quantite">
+                        <mat-icon matSuffix>category</mat-icon>
+                        <mat-hint>Hint</mat-hint>
+                    </mat-form-field>
+                </td>
+
+            </tr>
+        </table>
 
 
 
-  </form>
+    </form>
 </div>
 
 
 <div mat-dialog-actions>
-  <button mat-raised-button color="warn" class="fermer" id="cancel" (click)="onNoClick()">Fermer <mat-icon>clear
+    <button mat-raised-button color="warn" class="fermer" id="cancel" (click)="onNoClick()">Fermer <mat-icon>clear
     </mat-icon></button>
 
-  <button mat-raised-button color="primary" type="submit" *ngIf="showAdd" (click)="postDiversDetails()" class="ajouter"
-    cdkFocusInitial>Ajouter <mat-icon>person_add
+    <button mat-raised-button color="primary" type="submit" *ngIf="showAdd" (click)="postDiversDetails()" class="ajouter" cdkFocusInitial>Ajouter <mat-icon>shopping_cart
     </mat-icon></button>
-  <button mat-raised-button color="primary" *ngIf="showUpdate" (click)="updateDiversDetails()" class="modif"
-    cdkFocusInitial>Modifier</button>
+    <button mat-raised-button color="primary" *ngIf="showUpdate" (click)="updateDiversDetails()" class="modif" cdkFocusInitial>Modifier</button>
 
 </div>

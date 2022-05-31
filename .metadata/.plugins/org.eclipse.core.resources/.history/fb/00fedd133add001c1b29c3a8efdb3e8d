@@ -1,0 +1,103 @@
+package tn.dksoft.opticien.mapper;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.Generated;
+import org.springframework.stereotype.Component;
+import tn.dksoft.opticien.dto.ClientDto;
+import tn.dksoft.opticien.entity.Client;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2022-05-26T17:01:09+0200",
+    comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 1.4.50.v20210914-1429, environment: Java 17.0.1 (Eclipse Adoptium)"
+)
+@Component
+public class ClientMapperImpl implements ClientMapper {
+
+    @Override
+    public List<ClientDto> fromEntitiesToDtoList(List<Client> i) {
+        if ( i == null ) {
+            return null;
+        }
+
+        List<ClientDto> list = new ArrayList<ClientDto>( i.size() );
+        for ( Client client : i ) {
+            list.add( fromEntityToDto( client ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<Client> fromDtoListToEntities(List<ClientDto> t) {
+        if ( t == null ) {
+            return null;
+        }
+
+        List<Client> list = new ArrayList<Client>( t.size() );
+        for ( ClientDto clientDto : t ) {
+            list.add( fromDtoToEntity( clientDto ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public ClientDto fromEntityToDto(Client i) {
+        if ( i == null ) {
+            return null;
+        }
+
+        ClientDto clientDto = new ClientDto();
+
+        clientDto.setAdresse( i.getAdresse() );
+        clientDto.setAge( i.getAge() );
+        clientDto.setChiffreAffaire( i.getChiffreAffaire() );
+        clientDto.setCin( i.getCin() );
+        clientDto.setDateNaissance( i.getDateNaissance() );
+        clientDto.setEmail( i.getEmail() );
+        clientDto.setId( i.getId() );
+        clientDto.setMatriculeFiscal( i.getMatriculeFiscal() );
+        clientDto.setNomPrenom( i.getNomPrenom() );
+        clientDto.setNumAssureSocial( i.getNumAssureSocial() );
+        clientDto.setNumTel1( i.getNumTel1() );
+        clientDto.setNumTel2( i.getNumTel2() );
+        clientDto.setObservations( i.getObservations() );
+        clientDto.setPays( i.getPays() );
+        clientDto.setReference( i.getReference() );
+        clientDto.setSolde( i.getSolde() );
+        clientDto.setVille( i.getVille() );
+
+        return clientDto;
+    }
+
+    @Override
+    public Client fromDtoToEntity(ClientDto t) {
+        if ( t == null ) {
+            return null;
+        }
+
+        Client client = new Client();
+
+        client.setAdresse( t.getAdresse() );
+        client.setAge( t.getAge() );
+        client.setChiffreAffaire( t.getChiffreAffaire() );
+        client.setCin( t.getCin() );
+        client.setDateNaissance( t.getDateNaissance() );
+        client.setEmail( t.getEmail() );
+        client.setId( t.getId() );
+        client.setMatriculeFiscal( t.getMatriculeFiscal() );
+        client.setNomPrenom( t.getNomPrenom() );
+        client.setNumAssureSocial( t.getNumAssureSocial() );
+        client.setNumTel1( t.getNumTel1() );
+        client.setNumTel2( t.getNumTel2() );
+        client.setObservations( t.getObservations() );
+        client.setPays( t.getPays() );
+        client.setReference( t.getReference() );
+        client.setSolde( t.getSolde() );
+        client.setVille( t.getVille() );
+
+        return client;
+    }
+}
