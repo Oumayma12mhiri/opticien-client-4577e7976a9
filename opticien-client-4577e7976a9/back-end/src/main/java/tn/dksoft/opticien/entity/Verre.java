@@ -86,5 +86,6 @@ public class Verre implements Serializable {
 
 	@ManyToOne
 	private Vente vente;
+	
 
 }

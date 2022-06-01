@@ -26,23 +26,18 @@ const USER_DATA = [
 
 const COLUMNS_SCHEMA = [
   {
-    key: 'isSelected',
-    type: 'isSelected',
-    label: '',
-  },
-  {
     key: 'ref',
-    type: 'string',
+    type: 'disabled',
     label: 'Ref',
   },
   {
     key: 'designation',
-    type: 'string',
+    type: 'disabled',
     label: 'Désignation',
   },
   {
     key: 'puvht',
-    type: 'text',
+    type: 'disabled',
     label: 'PUVHT',
   },
   {
@@ -101,6 +96,10 @@ export class VenteComponent implements OnInit {
   selectedClient:Client;
   selectedLentille:Lentille;
  
+  prixFinale: number;
+  prixSansRemise: number;
+  totaleTTC: number;
+  totaleRemise: number;
   dataSource: MatTableDataSource<Vente>;
   displayedColumns1: string[] = COLUMNS_SCHEMA.map((col) => col.key);
   dataSource1 = USER_DATA;
@@ -118,7 +117,8 @@ export class VenteComponent implements OnInit {
     prisme: new FormControl(''),
     base: new FormControl(''),
     totaleVente: new FormControl(''),
-    remiseVente: new FormControl('')
+    remiseVente: new FormControl(''),
+    totalTtc: new FormControl('')
   })
 
   constructor(
@@ -141,16 +141,42 @@ export class VenteComponent implements OnInit {
       id: Date.now(),
       ref: '',
       designation: '',
-      puvht: '',
-      qte: 0,
-      remise:'',
-      tva: '',
-      mttc:'',
+      puvht: 0,
+      qte: 1,
+      remise:0,
+      tva: 0,
+      mttc:0,
       isEdit: true
     };
     this.dataSource1 = [newRow, ...this.dataSource1];
   }
 
+  onBlur(element:any): void {
+    this.prixFinale=(element.puvht+(element.puvht*element.tva)/100)*element.qte;
+    console.log("prixFinale1 = ",this.prixFinale);
+    this.prixFinale=this.prixFinale-(this.prixFinale*element.remise)/100;
+    console.log("prixFinale2 = ",this.prixFinale);
+    this.calculTotalPrix(element);
+}
+
+calculTotalPrix(element:any){
+  this.prixFinale;
+  this.prixSansRemise=0;
+  this.totaleTTC=0;
+  this.totaleRemise=0;
+  this.dataSource1.forEach(res => {
+    if(element.id===res.id) {
+      res.mttc=this.prixFinale;
+      console.log("in if:",res.mttc);
+    }
+    this.prixSansRemise=this.prixSansRemise+(res.puvht+(res.puvht*res.tva)/100)*res.qte;
+    this.totaleTTC=this.totaleTTC+res.mttc;
+    this.totaleRemise= this.prixSansRemise-this.totaleTTC;
+    console.log("prixSansRemise",this.prixSansRemise);
+    console.log("totaleTTC",this.totaleTTC);    
+    console.log("totaleRemise",this.totaleRemise);  
+  });
+}
   removeRow(id) {
     this.dataSource1 = this.dataSource1.filter((u) => u.id !== id);
   }
@@ -170,16 +196,16 @@ export class VenteComponent implements OnInit {
   lentilleChangedHandler(event:any) {
     const newRow = {
       id: event.id,
-      ref: event.code,
+      ref: event.code, 
       designation: event.description,
-      puvht: '',
-      qte:0,
-      remise:'',
-      tva: '',
-      mttc:''
+      puvht: event.prixVente,
+      qte:1,
+      remise:0,
+      tva: 0,
+      mttc:0
     };
-    console.log("lentille newRow ",newRow);
     this.dataSource1 = [newRow, ...this.dataSource1];
+    console.log("lentille dataSource1 ",this.dataSource1);
     this.openLentilleDialogListShow=false;
     this.getLentille = event;
   }
@@ -187,13 +213,13 @@ export class VenteComponent implements OnInit {
   LunetteChangedHandler(event:any) {
     const newRow = {
       id: event.id,
-      ref: event.code,
-      designation: event.description,
-      puvht: '',
-      qte:0,
-      remise:'',
-      tva: '',
-      mttc:''
+      ref: event.ref,
+      designation: event.marque,
+      puvht: event.prixVente,
+      qte:1,
+      remise:0,
+      tva: 0,
+      mttc:0
     };
     console.log("lunette newRow ",newRow);
     this.dataSource1 = [newRow, ...this.dataSource1];
@@ -206,11 +232,11 @@ export class VenteComponent implements OnInit {
       id: event.id,
       ref: event.code,
       designation: event.description,
-      puvht: '',
-      qte:0,
-      remise:'',
-      tva: '',
-      mttc:''
+      puvht: event.prixVente,
+      qte:1,
+      remise:0,
+      tva: 0,
+      mttc:0
     };
     console.log("verre newRow ",newRow);
     this.dataSource1 = [newRow, ...this.dataSource1];
@@ -219,32 +245,34 @@ export class VenteComponent implements OnInit {
   }
   
   MontureChangedHandler(event:any) {
+    console.log("monture event ",event);
     const newRow = {
       id: event.id,
-      ref: event.code,
-      designation: event.description,
-      puvht: '',
-      qte:0,
-      remise:'',
-      tva: '',
-      mttc:''
+      ref: event.reference,
+      designation: event.marque,
+      puvht: event.prixVente,
+      qte:1,
+      remise:0,
+      tva: 0,
+      mttc:0
     };
-    console.log("monture newRow ",newRow);
     this.dataSource1 = [newRow, ...this.dataSource1];
+    console.log("monture dataSource1 ",this.dataSource1);
     this.openMontureDialogListShow=false;
     this.getMonture = event;
   }
   
   DiversChangedHandler(event:any) {
+    console.log(this.dataSource1)
     const newRow = {
       id: event.id,
-      ref: event.code,
-      designation: event.description,
-      puvht: '',
-      qte:0,
-      remise:'',
-      tva: '',
-      mttc:''
+      ref: event.reference,
+      designation: event.name,
+      puvht: event.prixVente,
+      qte:1,
+      remise:0,
+      tva: 0,
+      mttc:0
     };
     console.log("divers newRow ",newRow);
     this.dataSource1 = [newRow, ...this.dataSource1];

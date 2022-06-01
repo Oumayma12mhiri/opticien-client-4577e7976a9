@@ -73,5 +73,4 @@ public class Vente implements Serializable {
 	@ManyToOne
 	private Client client ; 
 	
-
 }
