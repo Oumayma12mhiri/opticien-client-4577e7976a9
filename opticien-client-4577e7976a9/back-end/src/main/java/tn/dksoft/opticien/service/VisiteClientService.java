@@ -82,11 +82,14 @@ public class VisiteClientService {
 
 	public VisiteClientDto findById(Long id) {
 		try {
+			System.out.println(id);
+
 			VisiteClient visiteclient = visiteclientRepository.findByIdAndIsDeletedIsFalse(id);
 			VisiteClientDto visiteClientDto = visiteclientMapper.fromEntityToDto(visiteclient);
-			log.info("visite client gotted successfully");
+			System.out.println(visiteclientRepository.findByIdAndIsDeletedIsFalse(id));
 			return visiteClientDto;
 		} catch (Exception e) {
+			System.out.print(e);
 			log.error("Cannot get visiteclient", e);
 			return null;
 		}

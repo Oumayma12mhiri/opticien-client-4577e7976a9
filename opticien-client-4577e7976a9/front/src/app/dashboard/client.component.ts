@@ -57,24 +57,25 @@ export class ClientComponent implements OnInit {
   sort: MatSort = new MatSort;
 
   dialogRef: any;
-  
+
   constructor(
     public dialog: MatDialog,
     private serviceClient: ClientServiceService,
-    public clientFile:ClientFileComponent
-   
+    public clientFile: ClientFileComponent
+
   ) { }
 
 
   ngOnInit(): void {
     this.serviceClient.getClient().subscribe(
-      (data : any) => {
-        if(data){ 
-        this.listClient = data;
-        this.dataSource = new MatTableDataSource(this.listClient)
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      }}
+      (data: any) => {
+        if (data) {
+          this.listClient = data;
+          this.dataSource = new MatTableDataSource(this.listClient)
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      }
     )
   }
 
@@ -110,12 +111,20 @@ export class ClientComponent implements OnInit {
     this.clientFile.openDialogFile();
   }
 
-  onEditFile(row: any){
+  onEditFile(row: any) {
     this.clientFile.dialogRef.componentInstance.onEditFile(row);
   }
 
-  getVisiteByclient(id: any){
-    this.clientFile.getVisiteByClient(id);
+  getVisiteByclient(client: any) {
+    console.log(client.solde)
+    if (client.solde != null) {
+      this.clientFile.getVisiteByClient(client.id, client.solde);
+
+    } else {
+      this.clientFile.getVisiteByClient(client.id, 0);
+
+    }
+
   }
 
   //fill in fields from client information
@@ -123,7 +132,7 @@ export class ClientComponent implements OnInit {
     this.dialogRef.componentInstance.onEdit(row);
   }
 
-  addClient(){
+  addClient() {
     this.dialogRef.componentInstance.clickAddClient();
   }
 
@@ -140,14 +149,14 @@ export class ClientComponent implements OnInit {
   }
 
   //remove client
- deleteClient(id: any) {
+  deleteClient(id: any) {
     if (confirm("êtes-vous sur de supprimer ce client ?")) {
       this.serviceClient.DeleteClient(id)
-       .subscribe(_res => {
+        .subscribe(_res => {
           alert("Client supprimé ");
           this.getAllClient();
         }
-       )
+        )
     }
   }
   /*del(id:any){
@@ -173,13 +182,13 @@ export class ClientComponent implements OnInit {
   }*/
   //search by first name
   Search() {
-  /*  if (this.nomPrenom != "") {
-      this.dataSource = this.listClient.filter(res => {
-        return res.nomPrenom.toLocaleLowerCase().match(this.nomPrenom.toLocaleLowerCase());
-      });
-    } else if (this.nomPrenom == "") {
-      this.getAllClient();
-    }*/
+    /*  if (this.nomPrenom != "") {
+        this.dataSource = this.listClient.filter(res => {
+          return res.nomPrenom.toLocaleLowerCase().match(this.nomPrenom.toLocaleLowerCase());
+        });
+      } else if (this.nomPrenom == "") {
+        this.getAllClient();
+      }*/
     this.getAllClient();
   }
   applyFilter(event: Event) {
@@ -193,16 +202,16 @@ export class ClientComponent implements OnInit {
     console.log(filterValue.trim().toLowerCase());
   }
 
- /* //paging
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      console.log(this.dataSource.paginator)
-      this.dataSource.paginator.firstPage();
-    }
-  }*/
+  /* //paging
+   applyFilter(event: Event) {
+     const filterValue = (event.target as HTMLInputElement).value;
+ 
+     this.dataSource.filter = filterValue.trim().toLowerCase();
+     if (this.dataSource.paginator) {
+       console.log(this.dataSource.paginator)
+       this.dataSource.paginator.firstPage();
+     }
+   }*/
 }
 
 
