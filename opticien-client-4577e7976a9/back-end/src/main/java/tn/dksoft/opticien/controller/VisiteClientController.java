@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.dksoft.opticien.dto.ClientDto;
 import tn.dksoft.opticien.dto.VisiteClientDto;
 import tn.dksoft.opticien.dto.search.PagedResponse;
 import tn.dksoft.opticien.dto.search.SearchRequest;
@@ -30,6 +31,8 @@ public class VisiteClientController {
 		super();
 		this.visiteclientService = visiteclientService;
 	}
+	
+	
 
 	@PostMapping
 	public VisiteClientDto save(@RequestBody VisiteClientDto visiteClientDto) {

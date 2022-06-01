@@ -41,7 +41,7 @@ export class AuthenticationComponent implements OnInit {
       err => {
         this.error = true;
         console.log(err);
-        this.errorMessage = "Invalid Credentials";
+        this.errorMessage = "Email/Mot de passe invalide, veuillez essayer de nouveau";
       }
     );
 

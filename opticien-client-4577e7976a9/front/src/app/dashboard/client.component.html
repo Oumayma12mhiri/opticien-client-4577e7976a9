@@ -23,9 +23,9 @@
                 </ng-container>
 
                 <!-- chiffreAffaire Column -->
-                <ng-container matColumnDef="chiffreAffaire">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;">Chiffre d'affaire</th>
-                    <td mat-cell *matCellDef="let row" style="padding-left:2%;"> {{row.chiffreAffaire}} </td>
+                <ng-container matColumnDef="cin">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;">Numéro de carte d'identité</th>
+                    <td mat-cell *matCellDef="let row" style="padding-left:2%;"> {{row.cin}} </td>
                 </ng-container>
 
                 <!-- solde Column -->
@@ -37,13 +37,13 @@
                 <!-- nbreVisite Column -->
                 <ng-container matColumnDef="nbreVisite">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;">Nombre de visite </th>
-                    <td mat-cell *matCellDef="let row" style="padding-left:2%;"> {{row.nbreVisite | date}} </td>
+                    <td mat-cell *matCellDef="let row" style="padding-left:2%;"> {{row.nbreVisite}} </td>
                 </ng-container>
 
                 <!-- dateNaissance Column -->
                 <ng-container matColumnDef="dateNaissance">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;"> date de naissance </th>
-                    <td mat-cell *matCellDef="let row" style="padding-left:2%;"> {{row.dateNaissance}} </td>
+                    <td mat-cell *matCellDef="let row" style="padding-left:2%;"> {{row.dateNaissance | date}} </td>
                 </ng-container>
 
                 <!-- observation Column -->
@@ -53,16 +53,11 @@
                 </ng-container>
 
                 <!-- organisme Column -->
-                <ng-container matColumnDef="organisme">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:1%;"> Organisme </th>
-                    <td mat-cell *matCellDef="let row" style="padding-left:1%;"> {{row.organisme}} </td>
+                <ng-container matColumnDef="numTel1">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:1%;"> Numéro de télèphone </th>
+                    <td mat-cell *matCellDef="let row" style="padding-left:1%;"> {{row.numTel1}} </td>
                 </ng-container>
 
-                <!-- groupe Column -->
-                <ng-container matColumnDef="groupe">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;"> Groupe </th>
-                    <td mat-cell *matCellDef="let row" style="padding-left:2%;"> {{row.groupe}} </td>
-                </ng-container>
 
                 <!-- action Column -->
                 <ng-container matColumnDef="actions">

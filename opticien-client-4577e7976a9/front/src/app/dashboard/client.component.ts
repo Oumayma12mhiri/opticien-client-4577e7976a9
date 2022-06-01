@@ -49,7 +49,7 @@ export class ClientComponent implements OnInit {
   client: Client = new Client();
   clientData !: any;
   listClient: any;
-  displayedColumns: string[] = ['reference', 'nomPrenom', 'chiffreAffaire', 'solde', 'nbreVisite', 'dateNaissance', 'observations', 'organisme', 'groupe', 'actions'];
+  displayedColumns: string[] = ['reference', 'nomPrenom', 'cin', 'solde', 'nbreVisite', 'dateNaissance', 'observations', 'numTel1',  'actions'];
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -81,7 +81,7 @@ export class ClientComponent implements OnInit {
   //open modal
   openDialog(): void {
     this.dialogRef = this.dialog.open(AddAndEditClientComponent, {
-      height: '90%',
+      height: '70%',
       width: '90%',
       data: {
         nomPrenom: this.client.nomPrenom,

@@ -16,7 +16,7 @@ import { VenteComponent } from './vente/vente.component';
 import { VerreComponent } from './verre/verre.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'authentification', pathMatch: 'full' },
   { path: 'authentification', component: AuthenticationComponent },
   { path: 'home', component: HomeComponent },
   { path: 'vente', component: VenteComponent },
