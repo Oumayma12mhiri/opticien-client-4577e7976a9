@@ -14,13 +14,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
-import { MatTableModule } from '@angular/material/table' ;
+import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { ClientServiceService } from './service/client-service.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddAndEditClientComponent } from './dashboard/add-and-edit-client/add-and-edit-client.component';
-import {MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,7 +30,6 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { ClientFileComponent } from './dashboard/client-file/client-file.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RegisterComponent } from './authentication/register/register.component';
-import { VisiteServiceService } from './service/visite-service.service';
 import { OrganismeComponent } from './dashboard/organisme/organisme.component';
 import { OrganismeServiceService } from './service/organisme-service.service';
 import { GroupeFamComponent } from './dashboard/groupe-fam/groupe-fam.component';
@@ -108,7 +107,7 @@ import { ListDiversComponent } from './vente/list-divers/list-divers.component';
     MatPaginatorModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatMenuModule,  
+    MatMenuModule,
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
@@ -116,11 +115,11 @@ import { ListDiversComponent } from './vente/list-divers/list-divers.component';
     MatSelectModule,
     FormsModule,
     MatTabsModule,
-    
+
   ],
- 
-  providers: [ClientServiceService,ListClientsComponent,MontureService,AuthenticationComponent,VisiteServiceService,ClientFileComponent,OrganismeServiceService,OrganismeComponent,{provide:MatDialogRef,useValue:[]},GroupeFamComponent,GroupeFamServiceService,NewVisitComponent,ClientComponent,AddAndEditClientComponent,ListDiversComponent,VenteComponent],
-  
+
+  providers: [ClientServiceService, ListClientsComponent, MontureService, AuthenticationComponent, ClientFileComponent, OrganismeServiceService, OrganismeComponent, { provide: MatDialogRef, useValue: [] }, GroupeFamComponent, GroupeFamServiceService, NewVisitComponent, ClientComponent, AddAndEditClientComponent, ListDiversComponent, VenteComponent],
+
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

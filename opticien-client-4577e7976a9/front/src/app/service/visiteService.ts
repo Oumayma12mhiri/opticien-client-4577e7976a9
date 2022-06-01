@@ -4,11 +4,13 @@ import { Client } from '../model/client';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthenticationServiceService } from './authentication-service.service';
+import { Verre } from '../model/verre';
+import { Visite } from '../model/visite';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClientServiceService {
+export class VisiteService {
 
   constructor(private http: HttpClient, private authService: AuthenticationServiceService) { }
   public getHeaders(): HttpHeaders {
@@ -22,23 +24,20 @@ export class ClientServiceService {
     return headers;
   }
 
-  public getClient(): Observable<Client[]> {
-    return this.http.get<Client[]>(environment.API_URL + "client", { headers: this.getHeaders() });
-  }
-  public getClientById(id): Observable<Client> {
-    return this.http.get<Client>(environment.API_URL + "client/" + id, { headers: this.getHeaders() });
+
+
+  public postVisite(visite: any) {
+    return this.http.post<Client>(environment.API_URL + "visiteclient", visite, { headers: this.getHeaders() });
   }
 
-  public postClient(client: any) {
-    return this.http.post<Client>(environment.API_URL + "client", client, { headers: this.getHeaders() });
+  public UpdateVisite(visite: Visite) {
+    return this.http.put<any>(environment.API_URL + "visiteclient", visite, { headers: this.getHeaders() })
   }
 
-  public UpdateClient(client: Client, id: number) {
-    console.log(id);
-    return this.http.put<any>(environment.API_URL + "client", client, { headers: this.getHeaders() })
+  public DeleteVisite(id: number) {
+    return this.http.delete<any>(environment.API_URL + "visiteclient/" + id, { headers: this.getHeaders() })
   }
-
-  public DeleteClient(id: number) {
-    return this.http.delete<any>(environment.API_URL + "client/" + id, { headers: this.getHeaders() })
+  public getVisiteOfClient(id: number) {
+    return this.http.get<any>(environment.API_URL + "visiteclient/find-by-client/" + id, { headers: this.getHeaders() })
   }
 }

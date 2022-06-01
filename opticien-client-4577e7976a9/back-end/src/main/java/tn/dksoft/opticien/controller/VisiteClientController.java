@@ -19,7 +19,7 @@ import tn.dksoft.opticien.dto.search.PagedResponse;
 import tn.dksoft.opticien.dto.search.SearchRequest;
 import tn.dksoft.opticien.service.VisiteClientService;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/visiteclient")
 public class VisiteClientController {

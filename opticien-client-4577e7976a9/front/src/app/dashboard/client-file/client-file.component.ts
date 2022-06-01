@@ -7,8 +7,8 @@ import { Visite } from 'src/app/model/visite';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ClientServiceService } from 'src/app/service/client-service.service';
-import { VisiteServiceService } from 'src/app/service/visite-service.service';
 import { NewVisitComponent } from './new-visit/new-visit.component';
+import { VisiteService } from 'src/app/service/visiteService';
 
 @Component({
   selector: 'app-client-file',
@@ -49,47 +49,22 @@ export class ClientFileComponent implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ClientFileComponent>,
     private serviceClient: ClientServiceService,
-    private serviceVisite: VisiteServiceService,
+    private serviceVisite: VisiteService,
     public newVisit: NewVisitComponent,
   ) { }
 
   ngOnInit(): void {
-    this.getAllVisites();
   }
 
-  //afficher les visites non archives
-  getVisiteNonArchive() {
-    this.serviceVisite.getVisitNonArchive().subscribe(
-      data => {
-        
-        this.listVisite = data;
-        this.dataSource = new MatTableDataSource(this.listVisite)
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        alert("Visite archivée");
-      }
-    )
 
-  }
-
-  editVisiteNonArchive(id) {
-    console.log(id);
-    let v = new Visite();
-    v.isDeleted = true;
-    this.serviceVisite.UpdateVisiteArchive(v, id).subscribe(val=>console.log(val));
-    //this.serviceVisite.UpdateVisiteArchive(v, id).subscribe(res => {
-      //alert("Visite archivée");
-    //})
-
-
-  }
 
   //afficher les visites pour chaque client
-  getVisiteByClient(id) {
+  getVisiteByClient(id, solde) {
     console.log();
-    this.serviceVisite.getVisitesByClient(id).subscribe(
+    this.serviceVisite.getVisiteOfClient(id).subscribe(
       data => {
-        localStorage.setItem('idClient',id);
+        localStorage.setItem('idClient', id);
+        localStorage.setItem("solde", solde);
         this.listVisite = data;
         this.dataSource = new MatTableDataSource(this.listVisite)
         this.dataSource.paginator = this.paginator;
@@ -99,7 +74,7 @@ export class ClientFileComponent implements OnInit {
 
   }
 
-  
+
 
 
 
@@ -110,7 +85,10 @@ export class ClientFileComponent implements OnInit {
 
   //button nouvelle visite (open modal)
   openDialogNewVisit(): void {
-    this.newVisit.openDialogNewVisit();
+    var idClient = parseInt(localStorage.getItem('idClient'));
+
+    this.serviceClient.getClientById(idClient).subscribe(res => { this.newVisit.openDialogNewVisit(res); });
+
   }
 
   openDialogFile(): void {
@@ -146,19 +124,7 @@ export class ClientFileComponent implements OnInit {
     }
   }
 
-  //afficher tous les visites 
-  getAllVisites() {
 
-    this.serviceVisite.getVisite().subscribe(
-      data => {
-
-        this.listVisite = data;
-        this.dataSource = new MatTableDataSource(this.listVisite)
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      }
-    )
-  }
 
   //remplir les informations de client dans les champs
   onEditFile(row: any) {
@@ -166,6 +132,7 @@ export class ClientFileComponent implements OnInit {
     this.visite.id = row.id;
 
     this.formValue.patchValue({
+      id: row.id,
       nomPrenom: row.nomPrenom,
       dateNaissance: row.dateNaissance,
       adresse: row.adresse,
