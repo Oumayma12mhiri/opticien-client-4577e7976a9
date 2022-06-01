@@ -25,6 +25,9 @@ export class ClientServiceService {
   public getClient(): Observable<Client[]> {
     return this.http.get<Client[]>(environment.API_URL + "client", { headers: this.getHeaders() });
   }
+  public getClientById(id): Observable<Client> {
+    return this.http.get<Client>(environment.API_URL + "client/" + id, { headers: this.getHeaders() });
+  }
 
   public postClient(client: any) {
     return this.http.post<Client>(environment.API_URL + "client", client, { headers: this.getHeaders() });

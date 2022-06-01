@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Client } from 'src/app/model/client';
 import { Visite } from 'src/app/model/visite';
-import { VisiteServiceService } from 'src/app/service/visite-service.service';
+import { VisiteService } from 'src/app/service/visiteService';
 
 
 @Component({
@@ -17,51 +17,62 @@ export class NewVisitComponent implements OnInit {
   client: Client = new Client();
   newVisite: Visite = new Visite();
 
-   dateVisNow !:Date;
-   @Input() date ="";
-   heureVisNow !:Date;
-   hours ="";
-   //dateVisNow =0;
-   idClient="";
+  dateVisNow !: Date;
+  @Input() date = "";
+  heureVisNow !: Date;
+  hours = "";
+  //dateVisNow =0;
+  idClient = 0;
+  solde = 0;
+  newSolde = 0;
 
   formValue = new FormGroup({
     refVisite: new FormControl(''),
     date: new FormControl(''),
     heure: new FormControl(''),
-    montantReçuParVisite: new FormControl(''),
+    montantrecu: new FormControl(''),
+    clientDto: new FormControl('')
   })
 
   constructor(public dialog: MatDialog,
-    private serviceVisite: VisiteServiceService,
+    private serviceVisite: VisiteService,
     public dialogRef: MatDialogRef<NewVisitComponent>) { }
   ngOnInit(): void {
-    
+
 
     this.dateVisNow = new Date();
-    this.date = this.dateVisNow.getFullYear()+'-'+(this.dateVisNow.getMonth()+1)+'-'+this.dateVisNow.getDate();
+    this.date = this.dateVisNow.getFullYear() + '-' + ((this.dateVisNow.getMonth() + 1).toString().length == 1 ? "0" + (this.dateVisNow.getMonth() + 1) : (this.dateVisNow.getMonth() + 1)) + '-' + (this.dateVisNow.getDate().toString().length == 1 ? "0" + this.dateVisNow.getDate() : this.dateVisNow.getDate());
     console.log(this.date);
 
     this.heureVisNow = new Date();
-    this.hours = this.heureVisNow.getHours() + ":" + this.heureVisNow.getMinutes() + ":" + this.heureVisNow.getSeconds();
+    this.hours = ((this.heureVisNow.getHours().toString().length == 1) ? "0" + this.heureVisNow.getHours() : this.heureVisNow.getHours()) + ":" + (this.heureVisNow.getMinutes().toString().length == 1 ? ("0" + this.heureVisNow.getMinutes()) : this.heureVisNow.getMinutes()) + ":" + ((this.heureVisNow.getSeconds().toString().length == 1) ? "0" + this.heureVisNow.getSeconds() : this.heureVisNow.getSeconds());
     console.log(this.hours);
 
-    this.idClient=localStorage.getItem('idClient');
+    this.idClient = parseInt(localStorage.getItem('idClient'));
+    console.log(this.idClient);
+    this.solde = parseFloat(localStorage.getItem('solde'));
+    console.log(this.solde)
+    this.newSolde = this.solde;
+
   }
 
   //open modal de button nouvelle visite
-  openDialogNewVisit(): void {
+  openDialogNewVisit(res): void {
+    this.client = res
+
     this.dialogRef = this.dialog.open(NewVisitComponent, {
       height: '75%',
       width: '30%',
       data: {
+        id: this.idClient,
         refVisite: this.visite.refVisite,
         date: this.visite.date,
         heure: this.visite.heure,
-        montantReçuParVisite: this.visite.montantReçuParVisite
+        montantrecu: this.visite.montantrecu,
       },
     });
     this.dialogRef.afterClosed().subscribe(_result => {
-      this.serviceVisite.getVisite();
+      this.serviceVisite.getVisiteOfClient(this.idClient);
     });
   }
 
@@ -70,14 +81,20 @@ export class NewVisitComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  calculerSolde() {
+    this.newSolde = this.solde - this.formValue.value.montantrecu
+  }
+
   //quand je click sur un client (afficher tt les visites de ce client)
   postVisitDetails() {
+    console.log(this.client.id)
     let visit = {
-      refVisite: this.formValue.value.refVisite,
-      date: this.formValue.value.date,
-      heure: this.formValue.value.heure,
-      montantReçuParVisite:this.formValue.value.montantReçuParVisite
+      date: this.date + "T" + this.hours,
+      montantrecu: this.newSolde,
+      clientDto: this.client,
+
     }
+    console.log(visit);
 
     this.serviceVisite.postVisite(visit)
       .subscribe(res => {
@@ -86,11 +103,12 @@ export class NewVisitComponent implements OnInit {
         let ref = document.getElementById('cancel2')
         ref?.click();
         this.formValue.reset();
-        this.serviceVisite.getVisite();
+        this.serviceVisite.getVisiteOfClient(this.idClient);
       },
         err => { alert("Quelque chose s'est mal passé") }
       )
 
   }
+
 
 }
