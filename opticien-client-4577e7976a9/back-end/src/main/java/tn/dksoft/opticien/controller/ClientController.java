@@ -34,7 +34,11 @@ public class ClientController {
 	@PostMapping
 	public ClientDto save(@RequestBody ClientDto clientDto) {
 		System.out.println(clientDto.getDateNaissance());
-		return (clientService.add(clientDto));
+		ClientDto addedClient = clientService.add(clientDto);
+		if (null == addedClient) {
+			throw new RuntimeException("Erreur : client déjà existant");
+		}
+		return (addedClient);
 
 	}
 

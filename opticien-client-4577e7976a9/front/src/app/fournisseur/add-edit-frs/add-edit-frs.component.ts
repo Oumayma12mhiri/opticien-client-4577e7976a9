@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Fournisseur } from 'src/app/model/fournisseur';
 import { CategorieService } from 'src/app/service/categorie.service';
@@ -11,10 +11,12 @@ import { FournisseurService } from 'src/app/service/frs-service';
   styleUrls: ['./add-edit-frs.component.scss']
 })
 export class AddEditFRSComponent implements OnInit {
+  isValidationInProgress = false;
+
   formValue = new FormGroup({
     name: new FormControl(''),
     matriculeFiscale: new FormControl(''),
-    email: new FormControl(''),
+    email: new FormControl('', Validators.email),
     adresse: new FormControl(''),
     numTel: new FormControl(''),
     categorie: new FormControl(''),
@@ -60,8 +62,31 @@ export class AddEditFRSComponent implements OnInit {
      )
    }
 
+   checkRequiredValues() : boolean {
+    if(!this.isValidationInProgress) {
+      return false;
+    }
+    let isRequiredMissing = false;
+    Object.keys(this.formValue.controls).forEach((key: string) => {
+      isRequiredMissing = isRequiredMissing || this.formValue.controls[key].errors?.required;
+    });
+    return isRequiredMissing;
+  }
+
+  checkMailFormat() : boolean {
+    if(!this.isValidationInProgress) {
+      return false;
+    }
+    return this.formValue.controls['email'].errors?.email;
+  }
+
   //save Fournisseur
   postFournisseurDetails() {
+    this.isValidationInProgress = true;
+    this.formValue.markAllAsTouched();
+    if (!this.formValue.valid) {
+      return;
+    }
 console.log(this.formValue.value.categorie)
     let fournisseur = {
       name: this.formValue.value.name,
@@ -81,7 +106,9 @@ console.log(this.formValue.value.categorie)
         this.formValue.reset();
         this.frsService.getFournisseur();
       },
-        err => { console.log(err) }
+        err => { 
+          alert(err.error.message);
+        }
       )
 
   }

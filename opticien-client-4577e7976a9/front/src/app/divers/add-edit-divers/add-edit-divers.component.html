@@ -2,6 +2,12 @@
     <mat-icon>shopping_cart </mat-icon> Divers
 </h1>
 <div mat-dialog-content>
+    <div>
+        <small *ngIf="checkRequiredValues()" class="text-danger">Vérifier les champs obligatoires</small>
+    </div>
+    <div>
+        <small *ngIf="formValue.errors?.prixInvalid" class="text-danger">Le prix d'achat doit être inférieur au prix de vente</small>
+    </div>
 
     <form ngNativeValidate [formGroup]="formValue" (ngSubmit)="postDiversDetails()">
 

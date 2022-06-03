@@ -16,6 +16,8 @@ public interface FournisseurRepository extends JpaRepository<Fournisseur, Long> 
     
     Fournisseur findByIdAndIsDeletedIsFalse(Long id);
     
+    Fournisseur findByNameAndIsDeletedIsFalse(String name);
+    
     Fournisseur findTopByOrderByIdDesc(); 
     
     List<Fournisseur> findByIsDeletedIsFalse();
