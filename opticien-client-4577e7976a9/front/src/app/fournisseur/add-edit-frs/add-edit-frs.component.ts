@@ -56,7 +56,7 @@ export class AddEditFRSComponent implements OnInit {
      if(this.allCategorie[this.i].name != this.fournisseur.categorie.name){
        this.i=this.i+1;
      }
-    this.selected= this.allCategorie[this.i];
+     this.selected= this.allCategorie[this.i];
      },
       err => { console.log(err) }
      )}

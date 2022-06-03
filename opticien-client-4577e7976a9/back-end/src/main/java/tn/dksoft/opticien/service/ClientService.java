@@ -74,6 +74,7 @@ public class ClientService {
 	public List<ClientDto> findAll() {
 		try {
 			List<Client> clients = clientRepository.findByIsDeletedIsFalse();
+			log.info("clients {}",clients);
 			List<ClientDto> clientDtos = clientMapper.fromEntitiesToDtoList(clients);
 			log.info("clients gotted successfully");
 			return clientDtos;
