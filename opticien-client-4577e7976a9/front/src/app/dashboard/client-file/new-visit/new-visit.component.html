@@ -4,6 +4,12 @@
 <div mat-dialog-content>
 
     <form [formGroup]="formValue">
+        <div>
+            <small *ngIf="formValue.errors?.dateInvalid" class="text-danger">La date de visite ne peut pas être dans le futur</small>
+        </div>
+        <div>
+            <small *ngIf="checkRequiredValues()" class="text-danger">Vérifier les champs obligatoires</small>
+        </div>
 
         <table class="example-full-width" cellspacing="0" align="center">
             <tr>
@@ -23,8 +29,8 @@
                 <td style="padding-left:0%;">
                     <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
                         <mat-label>Date visite :</mat-label>
-                        <input matInput placeholder="" type="text" formControlName="date" class="form-control" required
-                            id="date"> {{date}}
+                        <input matInput placeholder="" type="date" formControlName="date" class="form-control" required
+                            id="date" max="{{maxDate | date:'yyyy-MM-dd'}}"> {{date}}
                         <mat-icon matSuffix>event</mat-icon>
                     </mat-form-field>
                 </td>

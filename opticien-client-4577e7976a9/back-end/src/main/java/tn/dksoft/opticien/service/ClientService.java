@@ -42,6 +42,11 @@ public class ClientService {
 	public ClientDto add(ClientDto clientdto) {
 		try {
 
+			Optional<Client> oldClientOptional = clientRepository.findByEmailAndIsDeletedIsFalse(clientdto.getEmail());
+			if (oldClientOptional.isPresent()) {
+				log.error("client déjà existant");
+				return null;
+			}
 			Client client = clientMapper.fromDtoToEntity(clientdto);
 			clientRepository.saveAndFlush(client);
 			log.info("success added client");
@@ -69,7 +74,6 @@ public class ClientService {
 	public List<ClientDto> findAll() {
 		try {
 			List<Client> clients = clientRepository.findByIsDeletedIsFalse();
-			log.info("clients {}",clients);
 			List<ClientDto> clientDtos = clientMapper.fromEntitiesToDtoList(clients);
 			log.info("clients gotted successfully");
 			return clientDtos;

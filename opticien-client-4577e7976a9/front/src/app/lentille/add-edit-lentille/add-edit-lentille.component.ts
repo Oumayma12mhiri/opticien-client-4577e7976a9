@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Lentille } from 'src/app/model/lentille';
 import { FournisseurService } from 'src/app/service/frs-service';
@@ -11,6 +11,18 @@ import { LentilleService } from 'src/app/service/lentille.service';
   styleUrls: ['./add-edit-lentille.component.scss']
 })
 export class AddEditLentilleComponent implements OnInit {
+  isValidationInProgress = false;
+
+  prixAchatVenteValidator: ValidatorFn = (control : AbstractControl) : ValidationErrors | null => {
+    if (null != control.get('prixAchat') && null != control.get('prixVente')) {
+      let prixAchat = parseInt(control.get('prixAchat').value);
+      let prixVente = parseInt(control.get('prixVente').value);
+      if (prixAchat >= prixVente) {
+        return {'prixInvalid' : true};
+      }
+    }
+    return null;
+  }
 
   formValue = new FormGroup({
     base: new FormControl(''),
@@ -32,7 +44,7 @@ export class AddEditLentilleComponent implements OnInit {
     prixAchat: new FormControl(''),
     prixVente: new FormControl(''),
     fournisseur: new FormControl('')
-  })
+  }, {validators : [this.prixAchatVenteValidator, Validators.required]})
   showAdd!: boolean;
   showUpdate!: boolean;
   allFournisseur :any;
@@ -71,7 +83,23 @@ export class AddEditLentilleComponent implements OnInit {
     this.showUpdate = false;
   }
 
+  checkRequiredValues() : boolean {
+    if(!this.isValidationInProgress) {
+      return false;
+    }
+    let isRequiredMissing = false;
+    Object.keys(this.formValue.controls).forEach((key: string) => {
+      isRequiredMissing = isRequiredMissing || this.formValue.controls[key].errors?.required;
+    });
+    return isRequiredMissing;
+  }
+
   postLentilleDetails() {
+    this.isValidationInProgress = true;
+    this.formValue.markAllAsTouched();
+    if (!this.formValue.valid) {
+      return;
+    }
     let lentille = {
     base:this.formValue.value.base,
     code: this.formValue.value.code ,

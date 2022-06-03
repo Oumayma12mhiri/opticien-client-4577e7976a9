@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Divers } from 'src/app/model/divers';
 import { Fournisseur } from 'src/app/model/fournisseur';
@@ -19,6 +19,18 @@ export class AddEditDiversComponent implements OnInit {
   allFournisseur :any;
   selected:[];
   i=0;
+  isValidationInProgress = false;
+
+  prixAchatVenteValidator: ValidatorFn = (control : AbstractControl) : ValidationErrors | null => {
+    if (null != control.get('prixAchat') && null != control.get('prixVente')) {
+      let prixAchat = parseInt(control.get('prixAchat').value);
+      let prixVente = parseInt(control.get('prixVente').value);
+      if (prixAchat >= prixVente) {
+        return {'prixInvalid' : true};
+      }
+    }
+    return null;
+  }
 
   formValue = new FormGroup({
     name: new FormControl('',Validators.required),
@@ -28,7 +40,7 @@ export class AddEditDiversComponent implements OnInit {
     quantite: new FormControl('',Validators.required),
     fournisseur: new FormControl('',Validators.required),
 
-  })
+  }, {validators : [this.prixAchatVenteValidator, Validators.required]})
   constructor(
     public dialogRef: MatDialogRef<AddEditDiversComponent>, 
     public diversService: DiversService,
@@ -65,8 +77,21 @@ export class AddEditDiversComponent implements OnInit {
     return this.formValue.controls;
   }
 
+  checkRequiredValues() : boolean {
+    if(!this.isValidationInProgress) {
+      return false;
+    }
+    let isRequiredMissing = false;
+    Object.keys(this.formValue.controls).forEach((key: string) => {
+      isRequiredMissing = isRequiredMissing || this.formValue.controls[key].errors?.required;
+    });
+    return isRequiredMissing;
+  }
+
   postDiversDetails() {
-    if (this.formValue.invalid) {
+    this.isValidationInProgress = true;
+    this.formValue.markAllAsTouched();
+    if (!this.formValue.valid) {
       return;
     }
     let divers = {

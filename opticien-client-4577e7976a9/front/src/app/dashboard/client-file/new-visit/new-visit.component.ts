@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Client } from 'src/app/model/client';
 import { Visite } from 'src/app/model/visite';
@@ -25,6 +25,18 @@ export class NewVisitComponent implements OnInit {
   idClient = 0;
   solde = 0;
   newSolde = 0;
+  maxDate: Date = new Date();
+  isValidationInProgress = false;
+
+  dateValidator: ValidatorFn = (control : AbstractControl) : ValidationErrors | null => {
+    if (null != control.get('dateNaissance')) {
+      let value = control.get('dateNaissance').value;
+      if (new Date(value) >= this.maxDate) {
+        return {'dateInvalid' : true};
+      }
+    }
+    return null;
+  }
 
   formValue = new FormGroup({
     refVisite: new FormControl(''),
@@ -32,7 +44,7 @@ export class NewVisitComponent implements OnInit {
     heure: new FormControl(''),
     montantrecu: new FormControl(''),
     clientDto: new FormControl('')
-  })
+  }, {validators : [this.dateValidator, Validators.required]})
 
   constructor(public dialog: MatDialog,
     private serviceVisite: VisiteService,
@@ -85,8 +97,24 @@ export class NewVisitComponent implements OnInit {
     this.newSolde = this.solde - this.formValue.value.montantrecu
   }
 
+  checkRequiredValues() : boolean {
+    if(!this.isValidationInProgress) {
+      return false;
+    }
+    let isRequiredMissing = false;
+    Object.keys(this.formValue.controls).forEach((key: string) => {
+      isRequiredMissing = isRequiredMissing || this.formValue.controls[key].errors?.required;
+    });
+    return isRequiredMissing;
+  }
+
   //quand je click sur un client (afficher tt les visites de ce client)
   postVisitDetails() {
+    this.isValidationInProgress = true;
+    this.formValue.markAllAsTouched();
+    if (!this.formValue.valid) {
+      return;
+    }
     console.log(this.client.id)
     let visit = {
       date: this.date + "T" + this.hours,

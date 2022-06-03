@@ -2,6 +2,12 @@
     <mat-icon>panorama_fisheye </mat-icon> Lentille
 </h1>
 <div mat-dialog-content>
+    <div>
+        <small *ngIf="checkRequiredValues()" class="text-danger">Vérifier les champs obligatoires</small>
+    </div>
+    <div>
+        <small *ngIf="formValue.errors?.prixInvalid" class="text-danger">Le prix d'achat doit être inférieur au prix de vente</small>
+    </div>
 
     <form [formGroup]="formValue">
 
@@ -20,6 +26,7 @@
                         <mat-label> description:</mat-label>
                         <input matInput placeholder="..." type="text" formControlName="description" class="form-control" required id="description">
                         <mat-icon matSuffix>description</mat-icon>
+
                     </mat-form-field>
                 </td>
 

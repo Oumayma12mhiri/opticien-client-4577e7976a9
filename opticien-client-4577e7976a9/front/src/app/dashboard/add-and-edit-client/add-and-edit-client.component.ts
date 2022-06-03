@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Client } from 'src/app/model/client';
 import { Organisme } from 'src/app/model/organisme';
@@ -20,6 +20,18 @@ export class AddAndEditClientComponent implements OnInit {
   client: Client = new Client();
   showAdd!: boolean;
   showUpdate!: boolean;
+  maxDate: Date = new Date();
+  isValidationInProgress = false;
+
+  dateValidator: ValidatorFn = (control : AbstractControl) : ValidationErrors | null => {
+    if (null != control.get('dateNaissance')) {
+      let value = control.get('dateNaissance').value;
+      if (new Date(value) >= this.maxDate) {
+        return {'dateInvalid' : true};
+      }
+    }
+    return null;
+  }
 
   formValue = new FormGroup({
     reference: new FormControl(''),
@@ -27,7 +39,7 @@ export class AddAndEditClientComponent implements OnInit {
     nomPrenom: new FormControl(''),
     dateNaissance: new FormControl(''),
     age: new FormControl(''),
-    email: new FormControl(''),
+    email: new FormControl('', Validators.email),
     adresse: new FormControl(''),
     ville: new FormControl(''),
     pays: new FormControl(''),
@@ -37,9 +49,9 @@ export class AddAndEditClientComponent implements OnInit {
     groupe: new FormControl(''),
     organisme: new FormControl(''),
     observations: new FormControl(''),
-    matriculeFiscal: new FormControl(''),
+    matriculeFiscal: new FormControl('')
     //vendeur: new FormControl(''),
-  })
+  }, {validators : [this.dateValidator, Validators.required]})
   //list = ['France', 'Belgique', 'Japon', 'Maroc'];
 
   constructor(
@@ -66,9 +78,33 @@ export class AddAndEditClientComponent implements OnInit {
     this.groupe.openDialogGrp();
 
   }
+
+  checkRequiredValues() : boolean {
+    if(!this.isValidationInProgress) {
+      return false;
+    }
+    let isRequiredMissing = false;
+    Object.keys(this.formValue.controls).forEach((key: string) => {
+      isRequiredMissing = isRequiredMissing || this.formValue.controls[key].errors?.required;
+    });
+    return isRequiredMissing;
+  }
+
+  checkMailFormat() : boolean {
+    if(!this.isValidationInProgress) {
+      return false;
+    }
+    return this.formValue.controls['email'].errors?.email;
+  }
   
   //Save client
   postClientDetails() {
+    this.isValidationInProgress = true;
+    this.formValue.controls['dateNaissance'].updateValueAndValidity();
+    this.formValue.markAllAsTouched();
+    if (!this.formValue.valid) {
+      return;
+    }
     let client = {
       reference: this.formValue.value.reference,
       cin: this.formValue.value.cin,
@@ -99,7 +135,9 @@ export class AddAndEditClientComponent implements OnInit {
         this.formValue.reset();
         this.serviceClient.getClient();
       },
-        err => { console.log(err) }
+        err => { 
+          alert(err.error.message);
+        }
       )
 
   }

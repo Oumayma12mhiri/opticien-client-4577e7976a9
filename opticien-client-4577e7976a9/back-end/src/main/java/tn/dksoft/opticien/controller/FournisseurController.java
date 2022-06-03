@@ -34,7 +34,11 @@ public class FournisseurController {
 
 	@PostMapping
 	public FournisseurDto save(@RequestBody FournisseurDto fournisseurDto) {
-		return (fournisseurService.add(fournisseurDto));
+		FournisseurDto addedFournisseur = fournisseurService.add(fournisseurDto);
+		if (null == addedFournisseur) {
+			throw new RuntimeException("Erreur : fournisseur déjà existant");
+		}
+		return (addedFournisseur);
 	}
 
 	@GetMapping

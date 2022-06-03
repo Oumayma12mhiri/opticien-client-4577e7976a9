@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Monture } from 'src/app/model/monture';
 import { FournisseurService } from 'src/app/service/frs-service';
@@ -20,6 +20,18 @@ export class AddEditMontureComponent implements OnInit {
   allFournisseur :any;
   selected:[];
   i=0;
+  isValidationInProgress = false;
+
+  prixAchatVenteValidator: ValidatorFn = (control : AbstractControl) : ValidationErrors | null => {
+    if (null != control.get('prixAchat') && null != control.get('prixVente')) {
+      let prixAchat = parseInt(control.get('prixAchat').value);
+      let prixVente = parseInt(control.get('prixVente').value);
+      if (prixAchat >= prixVente) {
+        return {'prixInvalid' : true};
+      }
+    }
+    return null;
+  }
 
   formValue = new FormGroup({
     name: new FormControl(''),
@@ -29,7 +41,7 @@ export class AddEditMontureComponent implements OnInit {
     prixVente: new FormControl(''),
     quantite: new FormControl(''),
     fournisseur: new FormControl(''),
-  })
+  }, {validators : [this.prixAchatVenteValidator, Validators.required]})
   constructor(public dialogRef: MatDialogRef<AddEditMontureComponent>,
     public montureService: MontureService,
     public fournisseurService: FournisseurService,
@@ -54,8 +66,24 @@ export class AddEditMontureComponent implements OnInit {
     )
   }
 
+  checkRequiredValues() : boolean {
+    if(!this.isValidationInProgress) {
+      return false;
+    }
+    let isRequiredMissing = false;
+    Object.keys(this.formValue.controls).forEach((key: string) => {
+      isRequiredMissing = isRequiredMissing || this.formValue.controls[key].errors?.required;
+    });
+    return isRequiredMissing;
+  }
+
   //Save lunette Solaire
   postMontureDetails() {
+    this.isValidationInProgress = true;
+    this.formValue.markAllAsTouched();
+    if (!this.formValue.valid) {
+      return;
+    }
     console.log(this.formValue.value.marque);
     let monture = {
       reference: this.formValue.value.reference,

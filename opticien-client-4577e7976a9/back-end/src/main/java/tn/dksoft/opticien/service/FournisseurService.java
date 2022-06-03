@@ -31,6 +31,10 @@ public class FournisseurService {
 	public FournisseurDto add(FournisseurDto fournisseurDto) {
 		log.info("categorie with id= {}",fournisseurDto.getCategorie());
 		try {
+			Fournisseur oldFournisseur = fournisseurRepository.findByNameAndIsDeletedIsFalse(fournisseurDto.getName());
+			if (null != oldFournisseur) {
+				return null;
+			}
 			Long id = 0L;
 			if (fournisseurRepository.findTopByOrderByIdDesc() == null) {
 				id = 1L;
