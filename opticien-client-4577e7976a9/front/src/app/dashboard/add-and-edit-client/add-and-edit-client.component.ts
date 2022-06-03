@@ -161,7 +161,7 @@ export class AddAndEditClientComponent implements OnInit {
 
     this.serviceClient.UpdateClient(this.client, this.client.id)
       .subscribe(res => {
-        alert("Update Successfully");
+        alert("client modifié avec succès");
         let ref = document.getElementById('cancel')
         ref?.click();
         this.formValue.reset();

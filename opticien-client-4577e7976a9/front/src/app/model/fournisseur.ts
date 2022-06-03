@@ -1,4 +1,4 @@
-import { categorie } from "./categorie";
+import { Categorie } from "./categorie";
 
 export class Fournisseur {
     public id !: number;
@@ -7,6 +7,6 @@ export class Fournisseur {
     public adresse!: String;
     public email!: String;
     public numTel!: String;
-    public categorieDto!: categorie ;
+    public categorie!: Categorie ;
 
 }

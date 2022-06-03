@@ -123,7 +123,7 @@ public class VisiteClientService {
 	public List<VisiteClientDto> findByClient(Long clientId) {
 		try {
 			List<VisiteClient> visiteClients = visiteclientRepository.findByClientIdAndIsDeletedIsFalse(clientId);
-			log.info("Fournisseurs gotted successfully ");
+			log.info("visiteClients gotted successfully ");
 			return visiteclientMapper.fromEntitiesToDtoList(visiteClients);
 
 		} catch (Exception e) {

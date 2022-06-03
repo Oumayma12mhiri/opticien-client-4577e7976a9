@@ -1,5 +1,5 @@
 <h1 mat-dialog-title style="color: rgb(6, 59, 173);">
-    <mat-icon>person_add </mat-icon> Lentille
+    <mat-icon>panorama_fisheye </mat-icon> Lentille
 </h1>
 <div mat-dialog-content>
 
@@ -11,6 +11,7 @@
                     <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
                         <mat-label> code:</mat-label>
                         <input matInput placeholder="..." type="text" formControlName="code" class="form-control" required id="code">
+                        <mat-icon matSuffix>description</mat-icon>
                     </mat-form-field>
                 </td>
 
@@ -18,6 +19,7 @@
                     <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
                         <mat-label> description:</mat-label>
                         <input matInput placeholder="..." type="text" formControlName="description" class="form-control" required id="description">
+                        <mat-icon matSuffix>description</mat-icon>
                     </mat-form-field>
                 </td>
 
@@ -25,6 +27,7 @@
                     <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
                         <mat-label>marque:</mat-label>
                         <input matInput placeholder="..." type="text" formControlName="marque" class="form-control" required id="marque">
+                        <mat-icon matSuffix>hotel_class</mat-icon>
                     </mat-form-field>
                 </td>
 
@@ -155,6 +158,7 @@
                     <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
                         <mat-label>PrixAchat :</mat-label>
                         <input matInput placeholder="..." type="text" formControlName="prixAchat" class="form-control" required id="prixAchat">
+                        <mat-icon matSuffix>sell</mat-icon>
                     </mat-form-field>
                 </td>
 
@@ -163,6 +167,7 @@
                     <mat-form-field appearance="fill" style="width: 170px;font-size: 80%;">
                         <mat-label>prixVente :</mat-label>
                         <input matInput placeholder="..." type="text" formControlName="prixVente" class="form-control" required id="prixVente">
+                        <mat-icon matSuffix>sell</mat-icon>
                     </mat-form-field>
 
                 </td>
@@ -177,7 +182,7 @@
                                 {{fournisseur.name}}
                             </mat-option>
                         </mat-select>
-                        <mat-icon matSuffix>fournisseur</mat-icon>
+                        <mat-icon matSuffix>account_circle</mat-icon>
                         <mat-hint>Hint</mat-hint>
                     </mat-form-field>
                 </td>
@@ -195,7 +200,7 @@
     <button mat-raised-button color="warn" class="fermer" id="cancel" (click)="onNoClick()">Fermer <mat-icon>clear
       </mat-icon></button>
 
-    <button mat-raised-button color="primary" *ngIf="showAdd" (click)="postLentilleDetails()" class="ajouter" cdkFocusInitial>Ajouter <mat-icon>person_add </mat-icon></button>
+    <button mat-raised-button color="primary" *ngIf="showAdd" (click)="postLentilleDetails()" class="ajouter" cdkFocusInitial>Ajouter <mat-icon>panorama_fisheye </mat-icon></button>
     <button mat-raised-button color="primary" *ngIf="showUpdate" (click)="updateLentilleDetails()" class="modif" cdkFocusInitial>Modifier</button>
     <br/>
 </div>

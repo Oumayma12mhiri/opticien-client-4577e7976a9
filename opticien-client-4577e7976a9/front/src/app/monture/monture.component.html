@@ -1,5 +1,5 @@
 <div class="container-fluid page">
-    <div class="d-flex page__box p-3 mt-2">Monture</div>
+    <div class="d-flex page__box p-3 mt-2">Montures</div>
     <div class="page__content shadow p-3 position-relative">
         <div>
             <!-- search field -->
@@ -11,31 +11,31 @@
 
                 <!-- Réference Column -->
                 <ng-container matColumnDef="reference">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:1%;">Référence</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:3%;">Référence</th>
                     <td mat-cell *matCellDef="let row" style="padding-left:1%;">{{row.reference}} </td>
                 </ng-container>
 
                 <!-- NomPrénom Column -->
                 <ng-container matColumnDef="marque">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:2%;">Marque</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:3%;">Marque</th>
                     <td mat-cell *matCellDef="let row" style="padding-left:2%;"> {{row.marque}}</td>
                 </ng-container>
 
                 <!-- chiffreAffaire Column -->
                 <ng-container matColumnDef="prixAchat">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:3%;">Prix d'achat</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:5%;">Prix d'achat</th>
                     <td mat-cell *matCellDef="let row" style="padding-left:3%;">{{row.prixAchat}} </td>
                 </ng-container>
 
                 <!-- solde Column -->
                 <ng-container matColumnDef="prixVente">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:4%;"> Prix de vente </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:6%;"> Prix de vente </th>
                     <td mat-cell *matCellDef="let row" style="padding-left:4%;"> {{row.prixVente}} </td>
                 </ng-container>
 
                 <!-- solde Column -->
                 <ng-container matColumnDef="fournisseur">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style=" padding-left:5%; "> Fournisseur </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style=" padding-left:6%; "> Fournisseur </th>
                     <td mat-cell *matCellDef="let row " style="padding-left:5%; ">{{row.fournisseur.name}} </td>
                 </ng-container>
 
@@ -47,7 +47,7 @@
 
                 <!-- action Column -->
                 <ng-container matColumnDef="actions">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:7%;"> Actions </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left:9%;"> Actions </th>
 
                     <td mat-cell *matCellDef="let row" style="padding-left:7%;">
                         <!-- Edit button -->
@@ -75,7 +75,7 @@
             <!-- Add Button -->
             <div class="d-flex  m-2">
                 <button type="button" class="ajouter" mat-raised-button (click)="openDialog();addMonture()">
-          <mat-icon>person_add </mat-icon> Ajouter Monture
+          <mat-icon>visibility </mat-icon> Ajouter Monture
         </button>
             </div>
         </div>

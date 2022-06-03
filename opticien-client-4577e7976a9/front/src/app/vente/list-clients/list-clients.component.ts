@@ -43,7 +43,7 @@ export class ListClientsComponent implements OnInit {
   client: Client = new Client();
   clientData !: any;
   listClient: any;
-  displayedColumns: string[] = ['reference', 'nomPrenom', 'chiffreAffaire', 'solde', 'nbreVisite', 'dateNaissance', 'observations', 'organisme', 'groupe', 'actions'];
+  displayedColumns: string[] = ['reference', 'nomPrenom', 'cin', 'solde', 'dateNaissance', 'observations', 'numTel1',  'actions'];
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;

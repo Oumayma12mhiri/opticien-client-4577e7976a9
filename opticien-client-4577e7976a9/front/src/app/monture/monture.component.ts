@@ -58,7 +58,7 @@ export class MontureComponent implements OnInit {
   }
   openDialog(): void {
     this.dialogRef = this.dialog.open(AddEditMontureComponent, {
-      height: '60%',
+      height: '50%',
       width: '50%',
       data: {
         reference:this.monture.reference,

@@ -1,5 +1,5 @@
 <h1 mat-dialog-title style="color: rgb(6, 59, 173);">
-    <mat-icon>person_add </mat-icon> Monture</h1>
+    <mat-icon>visibility </mat-icon> Monture</h1>
 <div mat-dialog-content>
 
     <form [formGroup]="formValue">
@@ -10,7 +10,7 @@
                     <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
                         <mat-label>Reference :</mat-label>
                         <input matInput placeholder="..." type="text" formControlName="reference" class="form-control" required id="reference">
-                        <mat-icon matSuffix>ref</mat-icon>
+                        <mat-icon matSuffix>description</mat-icon>
                         <mat-hint>Hint</mat-hint>
                     </mat-form-field>
                 </td>
@@ -19,7 +19,7 @@
                     <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
                         <mat-label>Marque :</mat-label>
                         <input matInput placeholder="..." type="text" formControlName="marque" class="form-control" required id="marque">
-                        <mat-icon matSuffix>marque</mat-icon>
+                        <mat-icon matSuffix>hotel_class</mat-icon>
                         <mat-hint>Hint</mat-hint>
                     </mat-form-field>
                 </td>
@@ -31,7 +31,7 @@
                     <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
                         <mat-label>prix d'Achat :</mat-label>
                         <input matInput placeholder="..." type="text" formControlName="prixAchat" class="form-control" required id="prixAchat">
-                        <mat-icon matSuffix>ref</mat-icon>
+                        <mat-icon matSuffix>sell</mat-icon>
                         <mat-hint>Hint</mat-hint>
                     </mat-form-field>
                 </td>
@@ -40,7 +40,7 @@
                     <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
                         <mat-label>prix de vente :</mat-label>
                         <input matInput placeholder="..." type="text" formControlName="prixVente" class="form-control" required id="prixVente">
-                        <mat-icon matSuffix>vente</mat-icon>
+                        <mat-icon matSuffix>sell</mat-icon>
                         <mat-hint>Hint</mat-hint>
                     </mat-form-field>
                 </td>
@@ -60,7 +60,7 @@
                                 {{fournisseur.name}}
                             </mat-option>
                         </mat-select>
-                        <mat-icon matSuffix>fournisseur</mat-icon>
+                        <mat-icon matSuffix>account_circle</mat-icon>
                         <mat-hint>Hint</mat-hint>
                     </mat-form-field>
                 </td>
@@ -68,7 +68,7 @@
                     <mat-form-field appearance="fill" style="width: 200px;font-size: 80%;">
                         <mat-label>Quantité :</mat-label>
                         <input matInput placeholder="..." type="text" formControlName="quantite" class="form-control" required id="quantite">
-                        <mat-icon matSuffix>quantite</mat-icon>
+                        <mat-icon matSuffix>category</mat-icon>
                         <mat-hint>Hint</mat-hint>
                     </mat-form-field>
                 </td>
@@ -80,7 +80,7 @@
 <div mat-dialog-actions>
     <button mat-raised-button color="warn" class="fermer" id="cancel" (click)="onNoClick()">Fermer <mat-icon>clear </mat-icon></button>
 
-    <button mat-raised-button color="primary" *ngIf="showAdd" (click)="postMontureDetails()" class="ajouter" cdkFocusInitial>Ajouter <mat-icon>person_add </mat-icon></button>
+    <button mat-raised-button color="primary" *ngIf="showAdd" (click)="postMontureDetails()" class="ajouter" cdkFocusInitial>Ajouter <mat-icon>visibility </mat-icon></button>
     <button mat-raised-button color="primary" *ngIf="showUpdate" (click)="updateMontureDetails()" class="modif" cdkFocusInitial>Modifier</button>
 
 </div>

@@ -103,7 +103,8 @@ export class NewVisitComponent implements OnInit {
         let ref = document.getElementById('cancel2')
         ref?.click();
         this.formValue.reset();
-        this.serviceVisite.getVisiteOfClient(this.idClient);
+        let x = this.serviceVisite.getVisiteOfClient(this.idClient);
+        console.log(x);
       },
         err => { alert("Quelque chose s'est mal passé") }
       )

@@ -51,14 +51,14 @@ export class AddEditFRSComponent implements OnInit {
   getAllCategorie(){
     this.CategorieService.getCategorie().subscribe(res => {
       this.allCategorie = res
-      if(this.allCategorie[this.i].name != this.fournisseur.categorieDto.name){
+     if(this.allCategorie[this.i].name != this.fournisseur.categorie.name){
        this.i=this.i+1;
      }
-     this.selected= this.allCategorie[this.i];
+    this.selected= this.allCategorie[this.i];
      },
-       err => { console.log(err) }
-     )
-   }
+      err => { console.log(err) }
+     )}
+   
 
   //save Fournisseur
   postFournisseurDetails() {
@@ -69,7 +69,7 @@ console.log(this.formValue.value.categorie)
       email: this.formValue.value.email,
       adresse: this.formValue.value.adresse,
       numTel: this.formValue.value.numTel,
-      categorieID: this.formValue.value.categorie,
+      categorie: this.formValue.value.categorie,
 
     }
 

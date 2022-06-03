@@ -54,6 +54,7 @@ export class ClientFileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
   }
 
 
@@ -65,6 +66,10 @@ export class ClientFileComponent implements OnInit {
       data => {
         localStorage.setItem('idClient', id);
         localStorage.setItem("solde", solde);
+        console.log(id);
+        console.log(solde);
+        console.log('***********');
+        console.log(data);
         this.listVisite = data;
         this.dataSource = new MatTableDataSource(this.listVisite)
         this.dataSource.paginator = this.paginator;
@@ -75,9 +80,6 @@ export class ClientFileComponent implements OnInit {
   }
 
 
-
-
-
   //button fermer de modal dossier client
   onNoClick(): void {
     this.dialogRef.close();
@@ -86,7 +88,6 @@ export class ClientFileComponent implements OnInit {
   //button nouvelle visite (open modal)
   openDialogNewVisit(): void {
     var idClient = parseInt(localStorage.getItem('idClient'));
-
     this.serviceClient.getClientById(idClient).subscribe(res => { this.newVisit.openDialogNewVisit(res); });
 
   }

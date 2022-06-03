@@ -1,14 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { Categorie } from '../model/categorie';
+import { environment } from 'src/environments/environment.prod';
+import { User } from '../model/user';
 import { AuthenticationServiceService } from './authentication-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategorieService {
+export class UserService {
 
   constructor(private http: HttpClient, private authService: AuthenticationServiceService) { }
   public getHeaders(): HttpHeaders {
@@ -22,11 +21,8 @@ export class CategorieService {
     return headers;
   }
 
-  public getCategorie(): Observable<Categorie[]> {
-    return this.http.get<Categorie[]>(environment.API_URL + "categorie", { headers: this.getHeaders() });
+  public postUser(user: any) {
+    return this.http.post<User>(environment.API_URL + "user", user, { headers: this.getHeaders() });
   }
 
-  public getCategorieName(name: string): Observable<Categorie[]> {
-    return this.http.get<Categorie[]>(environment.API_URL + "categorie/name" + name, { headers: this.getHeaders() });
-  }
 }

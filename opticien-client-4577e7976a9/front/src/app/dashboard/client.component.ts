@@ -49,7 +49,7 @@ export class ClientComponent implements OnInit {
   client: Client = new Client();
   clientData !: any;
   listClient: any;
-  displayedColumns: string[] = ['reference', 'nomPrenom', 'cin', 'solde', 'nbreVisite', 'dateNaissance', 'observations', 'numTel1',  'actions'];
+  displayedColumns: string[] = ['reference', 'nomPrenom', 'cin', 'solde', 'dateNaissance', 'observations', 'numTel1',  'actions'];
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -150,68 +150,25 @@ export class ClientComponent implements OnInit {
 
   //remove client
   deleteClient(id: any) {
-    if (confirm("êtes-vous sur de supprimer ce client ?")) {
+    if (confirm("Etes-vous sur de supprimer ce client ?")) {
       this.serviceClient.DeleteClient(id)
         .subscribe(_res => {
-          alert("Client supprimé ");
+          alert("Client supprimé avec succés");
           this.getAllClient();
         }
         )
     }
   }
-  /*del(id:any){
-    this.serviceClient.DeleteClient(id);
-  }
-  deleteClient(id: any) {
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
-      icon: "warning",
-      //buttons: true,
-      dangerMode: true,
-    })
-    .then((this.del(id)) => {
-      if (del) {
-        swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-        });
-      } else {
-        swal("Your imaginary file is safe!");
-      }
-    });
-  }*/
-  //search by first name
-  Search() {
-    /*  if (this.nomPrenom != "") {
-        this.dataSource = this.listClient.filter(res => {
-          return res.nomPrenom.toLocaleLowerCase().match(this.nomPrenom.toLocaleLowerCase());
-        });
-      } else if (this.nomPrenom == "") {
-        this.getAllClient();
-      }*/
-    this.getAllClient();
-  }
+  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-    this.getAllClient();
-    console.log(filterValue.trim().toLowerCase());
   }
 
-  /* //paging
-   applyFilter(event: Event) {
-     const filterValue = (event.target as HTMLInputElement).value;
- 
-     this.dataSource.filter = filterValue.trim().toLowerCase();
-     if (this.dataSource.paginator) {
-       console.log(this.dataSource.paginator)
-       this.dataSource.paginator.firstPage();
-     }
-   }*/
+  
 }
 
 
